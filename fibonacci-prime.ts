@@ -23,3 +23,5 @@ const solution = (n:number) => {
   
   return primeFib;
 };
+
+solution(10);
