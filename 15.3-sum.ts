@@ -9,5 +9,9 @@ function threeSum(nums: number[]): number[][] {
  
     return [[0]]
 };
+
+var nums = [-1,0,1,2,-1,-4];
+threeSum(nums);
+
 // @lc code=end
 
