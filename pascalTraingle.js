@@ -1,7 +1,9 @@
-const pascalTriangle = (num:number) =>{
+
+
+const pascalTriangle = (num) =>{
     if (num === 0) return [];
     if (num === 1) return [[1]];
-    let result:number[][] = [];
+    let result = [];
     for(let row = 1; row<=num; row++){
         let arr = [];
         for(let col = 0; col<row; col++){

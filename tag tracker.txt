@@ -1,7 +1,0 @@
-1. two-sum: array, hash-table
-3. longest-substring-without-repeating-characters: hash-table, two-pointers, string, sliding-window
-5. longest-palindromic-substring: string, dynamic-programming
-11. container-with-most-water: array, two-pointers
-15. 3-sums: sort, array, two-pointers
-19. remove-nth-node-from-end-of-list: linked-list, two-pointers
-200. number-of-islands: depth-first-search, breadth-first-search, union-find, recursive

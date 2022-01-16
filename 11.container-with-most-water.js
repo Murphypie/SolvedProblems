@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-function maxArea(height: number[]): number {
+function maxArea(height){
     let max = 0;
 
     for(let i = 0, j = height.length-1; i<j;){

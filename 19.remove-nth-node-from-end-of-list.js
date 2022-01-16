@@ -8,16 +8,14 @@
 
 //Definition for singly-linked list.
 class ListNode {
-    val: number
-    next: ListNode | null
-    constructor(val?: number, next?: ListNode | null) {
+    constructor(val, next) {
         this.val = (val===undefined ? 0 : val)
         this.next = (next===undefined ? null : next)
     }
 }
 
 
-function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
+function removeNthFromEnd(head, n){
     
     let A = new ListNode(4);
     return A;

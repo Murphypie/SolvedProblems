@@ -92,28 +92,63 @@ class BinarySearchTree{
             queue.shift();
         }
     }
+
     min(){
-
+        let min = Infinity;
+        const leftTraverser = (root) => {
+            if(!root) return;
+            min = Math.min(min, root.val);
+            if(root.left){
+                leftTraverser(root.left);
+            }
+        }
+        leftTraverser(this);
+        return min;
     }
+
     max(){
-
+        let max = -Infinity;
+        const rightTraverser = (root) =>{
+            if(!root) return;
+            max = Math.max(max, root.val);
+            if(root.right){
+                rightTraverser(root.right);
+            }
+        }
+        rightTraverser(this);
+        return max;
     }
-    height(){
 
+    height(){
+        let height = 0;
+        const heightFinder = (root) =>{
+
+            if(!root.right && !root.left){
+                height = height - 1
+                return
+            }
+
+            if(root.left){
+                height = height + 1;
+                heightFinder(root.left)
+            };
+            if(root.right){
+                height = height + 1;
+                heightFinder(root.right);
+            }
+                
+        }
+        heightFinder(this);
+        return height+1;
     }
 }
 
-const node = new BinarySearchTree(8);
-node.add(3);
+const node = new BinarySearchTree(20);
+node.add(8);
+node.add(22);
+node.add(4);
+node.add(12);
 node.add(10);
-node.add(1);
-node.add(6);
 node.add(14);
-node.add(4)
-node.add(7)
-node.add(13)
 
-node;
-node.contains(9)
-const log = (x)=>{console.log(x)}
-node.breadthFirst(log);
+console.log(node.height())

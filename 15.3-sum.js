@@ -5,9 +5,9 @@
  */
 
 // @lc code=start
-function threeSum(nums: number[]): number[][] {
+function threeSum(nums){
  
-    return [[0]]
+  
 };
 
 var nums = [-1,0,1,2,-1,-4];
