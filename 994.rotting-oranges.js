@@ -49,6 +49,6 @@ var orangesRotting = function(grid) {
     return fresh === 0 ? min : -1;
 };
 
-orangesRotting([[2,1,0,2]])
+orangesRotting([[2,1,1],[1,1,0],[0,1,1]])
 
 // @lc code=end

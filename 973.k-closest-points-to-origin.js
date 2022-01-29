@@ -12,6 +12,7 @@
  */
 var kClosest = function(points, k) {
     //https://leetcode.com/problems/k-closest-points-to-origin/discuss/1463986/JS-O(K-*-N-log-N)-or-MinHeap
+    
 };
 
 kClosest([[3,3],[5,-1],[-2,4]], 2);
