@@ -12,14 +12,9 @@
 var maximalSquare = function(matrix) {
 
 
-    for(let i = 0; i<matrix.length; i++){
-        for(let j = 0; j<matrix[0].length; j++){
-
-        }
-    }
 };
 
-let matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
+let matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","1","1","1"]]
 maximalSquare(matrix);
 // @lc code=end
 
@@ -37,4 +32,4 @@ maximalSquare(matrix);
     //         max = Math.max(matrix[i][j], max);
     //     }
     // }
-    // return max;
+    // return max*max;

@@ -6,14 +6,11 @@
 
 // @lc code=start
 function maxArea(height){
-    let max = 0;
-
+   let area = 0;
     for(let i = 0, j = height.length-1; i<j;){
-        max = Math.max(max, Math.min(height[i], height[j])*(j-i));
-        height[i] < height[j] ? i++ : j--;
-    }
-
-    return max;
+        area = Math.max(area, (j-i)*Math.min(height[i], height[j]));
+        height[j] < height[i] ? j-- : i++;
+   }
+   return area;
 };
 // @lc code=end
-

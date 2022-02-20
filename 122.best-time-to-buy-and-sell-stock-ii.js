@@ -10,7 +10,10 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
+    
+    
 
+    
 };
 maxProfit([7,1,5,8,3,6,4]);
 

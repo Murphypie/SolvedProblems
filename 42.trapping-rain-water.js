@@ -9,9 +9,11 @@
  * @param {number[]} height
  * @return {number}
  */
+
+
+
 var trap = function(height) {
-
-
+ 
 };
 
 // 1. Brute Force (time - O(n^2), space - O(n))

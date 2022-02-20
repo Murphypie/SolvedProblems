@@ -16,9 +16,29 @@ class ListNode {
 
 
 function removeNthFromEnd(head, n){
-    
-    let A = new ListNode(4);
-    return A;
+
 };
+
+let node = new ListNode(1);
+node.next = new ListNode(2);
+node.next.next = new ListNode(3);
+node.next.next.next = new ListNode(4);
+node.next.next.next.next = new ListNode(5);
+//node.next.next.next.next.next = new ListNode(6);
+removeNthFromEnd(node, 2)
 // @lc code=end
 
+    // let fast = head;
+    // let slow = head;
+ 
+    // for (let i = 0; i < n; i++) fast = fast.next
+    // if (!fast) return head.next
+
+    // while (fast.next){
+    //     fast = fast.next
+    //     slow = slow.next
+    // }
+
+    // slow.next = slow.next.next
+
+    // return head;

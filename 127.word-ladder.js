@@ -12,7 +12,7 @@
  * @return {number}
  */
 var ladderLength = function (beginWord, endWord, wordList) {
-
+ 
 };
 
 let beginWord = "hit";

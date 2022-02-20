@@ -37,8 +37,6 @@ class QuickUnion {
   test.unite(0,1);
   test.unite(1,2);
   test.unite(2,0);
-  //test.unite(3,1);
-
 
 
  test;

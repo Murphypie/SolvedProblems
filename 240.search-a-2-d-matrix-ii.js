@@ -11,34 +11,34 @@
  * @return {boolean}
  */
 var searchMatrix = function(matrix, target) {
-  ///gdf/gdf/g/g/d
+
 };
 
-const binarySearch = (matrix, target) =>{
-    let low = 0;
-    let high = matrix.length-1; 
-    let bool = false;
-    while(low <= high){
-        let mid = Math.floor((high+low)/2)
-        if(target>matrix[mid]){
-            low = mid + 1;
-        }
-        if(target<matrix[mid]){
-            high = mid - 1;
-        }
-        if(target === matrix[mid]){
-            bool = true;
-            return bool;
-        }
-    }
-    return bool;
-}
 
 
-//let arr = [2,5,8,12,19]
-//binarySearch(arr, 5);
 
-
-searchMatrix([[1],[2],[3],[4],[5]], 2);
+searchMatrix([[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], 5);
 // @lc code=end
 
+
+/*
+    if(!matrix || !matrix.length) return false;
+
+    const rows = matrix.length;
+    const cols = matrix[0].length;
+
+    const hasTarget = (startRow, endRow, startCol, endCol) =>{
+        if(startRow > endRow || startCol > endCol) return false;
+        const middleRow = Math.floor((endRow - startRow) / 2) + startRow;
+        const middleCol = Math.floor((endCol - startCol) / 2) + startCol;
+
+        if(matrix[middleRow][middleCol] === target) return true;
+
+        if(matrix[middleRow][middleCol] < target){
+            return hasTarget(middleRow+1, endRow, startCol, endCol) || hasTarget(startRow, middleRow, middleCol +1, endCol);
+        }else{
+            return hasTarget(startRow, endRow, startCol, middleCol - 1) || hasTarget(startRow, middleRow - 1, middleCol, endCol);
+        }
+    }
+    return hasTarget(0, rows-1, 0, cols-1);
+*/

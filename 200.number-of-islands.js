@@ -12,22 +12,7 @@
 var numIslands = function(grid) {
     let count = 0;
 
-    const depthSearch = (grid, i, j) =>{
-        if(i < 0 || i === grid.length || j<0 || j === grid[i].length){
-            return
-        }
-
-        if(grid[i][j] === '1'){
-            grid[i][j] = '0';
-        }else{
-            return
-        }
-
-        depthSearch(grid, i+1, j);
-        depthSearch(grid, i-1, j);
-        depthSearch(grid, i, j+1);
-        depthSearch(grid, i, j-1);
-    }
+ 
 
     for(let i = 0; i<grid.length; i++){
         for(let j = 0; j<grid[i].length; j++){
@@ -39,6 +24,15 @@ var numIslands = function(grid) {
     }
     return count;
 };
+
+const depthSearch = (grid, i, j) =>{
+    if(grid[i] === undefined || grid[i][j] === undefined ||  grid[i][j] === "0") return;
+    if(grid[i][j] === "1") grid[i][j] = "0";
+    depthSearch(grid, i+1, j)
+    depthSearch(grid, i-1, j) 
+    depthSearch(grid, i, j+1) 
+    depthSearch(grid, i, j-1) 
+}
 
 let grid = [
     ["1","1","1","1","0"],
