@@ -45,6 +45,12 @@ LRUCache.prototype.put = function(key, value) {
     this.stack.set(key, value);
 };
 
+let lRUCache = new LRUCache(2);
+lRUCache.put(1, 1); // cache is {1=1}
+lRUCache.put(2, 2); // cache is {1=1, 2=2}
+lRUCache.get(1);    // return 1
+lRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+
 
 /** 
  * Your LRUCache object will be instantiated and called as such:

@@ -19,23 +19,23 @@
 */
 
 const knapsack = (itemsLeft, weightAvailable) => {
-    // Recursive function
-    // 1. For every iteration, remove one element from the given array and subtract weight available
-    // 2. Use greedy algorithm, take or leave method
-    // 3. After iteration, return the max value from take or leave method
-    
-    if(itemsLeft.length === 0 || weightAvailable === 0) return 0;
-    
-    const remaining = itemsLeft.slice(1);
+  // 1. Take or Leave method - recursive function
+  // 2. For every iteration, remove the first element from the given array
+  // 3. Take variable will have element + recursive function (pass the array that the first element was removed)
+  // 4. Leave variable will only have recursive function
+  // 5. Base case(exit condition) is if itemsLeft length is 0 or weightAvailable is 0
 
-    if(itemsLeft[0].weight > weightAvailable){
-      return knapsack(remaining, weightAvailable);
-    }
+  if(itemsLeft.length === 0 || weightAvailable === 0) return 0;
+  const remaining = itemsLeft.slice(1);
 
-    const take = itemsLeft[0].value + knapsack(remaining, weightAvailable-itemsLeft[0].weight);
-    const leave = knapsack(remaining, weightAvailable);
-    return Math.max(take, leave);
+  if(itemsLeft[0].weight > weightAvailable){
+    return knapsack(remaining, weightAvailable);
+  }
 
+  const take = itemsLeft[0].value + knapsack(remaining, weightAvailable-itemsLeft[0].weight);
+  const leave = knapsack(remaining, weightAvailable);
+
+  return Math.max(take, leave);
 };
 
 let items = [
@@ -44,7 +44,6 @@ let items = [
     {weight: 3, value : 40},
   ];
 knapsack(items, 6);
-
 
 
 /*

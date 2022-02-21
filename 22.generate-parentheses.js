@@ -1,0 +1,49 @@
+/*
+ * @lc app=leetcode id=22 lang=javascript
+ *
+ * [22] Generate Parentheses
+ */
+
+// @lc code=start
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function(n) {
+    const output = [];
+    function go(l,r,s){
+        if(l>r) return;
+        if(l===0 && r === 0){
+            output.push(s);
+            return
+        }
+        if(l>0) go(l-1, r, s+"(");
+        if(r>0) go(l, r-1, s+")");
+
+    }
+    go(n,n,'');
+    return output;
+}
+generateParenthesis(3);
+// @lc code=end
+
+
+
+/*
+   // recursive - take or leave method (open or close)
+    let output = new Set();
+    const recursive = (remaining, str, open, close) =>{
+        if(remaining === 0){
+            if(open === n && close === n && str[0] !== ")" && str[n*2-1] !== "(") output.add(str);;
+            return;
+        }
+        if(open === n){
+            recursive(remaining-1, str+")", open, close+1)
+        }
+        recursive(remaining-1, str+"(", open+1, close);
+        if(open !== close) recursive(remaining-1, str+")", open, close+1);
+    }
+
+    recursive(n*2, "", 0, 0)
+    return Array.from(output)
+*/
