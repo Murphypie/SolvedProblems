@@ -23,27 +23,31 @@ const insertionSortBinaryAdd = (arr, num) => {
     let start = 0;
     let end = arr.length-1;
     let index;
+    let whileSkipBool = false;
 
-    if(num < arr[0]) index = 0;
+    if(num < arr[0]) index = 0, whileSkipBool = true;
 
-    if(num > arr[end]) index = end+1;
+    if(num > arr[end]) index = end+1, whileSkipBool = true;
 
     let ans = -1;
-
-    while(start <= end){
-        const mid = start + (Math.floor((end-start)/2));
-        if(arr[mid] <= num){
-            start = mid+1;
-            ans = mid;
-        }else{
-            end = mid -1
+    
+    if(!whileSkipBool){
+        while(start <= end){
+            const mid = start + (Math.floor((end-start)/2));
+            if(arr[mid] <= num){
+                start = mid+1;
+                ans = mid;
+            }else{
+                end = mid -1
+            }
         }
+        index = ans + 1;
     }
-    index = ans + 1;
+
     arr.splice(index, 0 , num);
 }
 
 let arr = [1,3,5,6,10]
-insertionSortBinaryAdd(arr, 7);
+insertionSortBinaryAdd(arr, 15);
 arr;
 
