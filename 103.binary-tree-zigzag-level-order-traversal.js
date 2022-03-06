@@ -4,6 +4,8 @@
  * [103] Binary Tree Zigzag Level Order Traversal
  */
 
+const { PollingWatchKind } = require("typescript");
+
 // @lc code=start
 
 //Definition for a binary tree node.
@@ -18,6 +20,19 @@ function TreeNode(val, left, right) {
  * @return {number[][]}
  */
 var zigzagLevelOrder = function(root) {
+
+};
+
+let root = new TreeNode(3, new TreeNode(9), new TreeNode(20));
+root.right.left = new TreeNode(15)
+root.right.right = new TreeNode(7);
+zigzagLevelOrder(root);
+
+
+// @lc code=end
+
+
+
     // if(root === null) return [];
     // let output = [];
     // let queue = [root];
@@ -37,13 +52,3 @@ var zigzagLevelOrder = function(root) {
     //     counter++;
     // }
     // return output;
-};
-
-// let root = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-// root.left.left = new TreeNode(4)
-// root.right.right = new TreeNode(5);
-// zigzagLevelOrder(root);
-
-
-// @lc code=end
-

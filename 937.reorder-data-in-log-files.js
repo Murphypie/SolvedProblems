@@ -10,7 +10,18 @@
  * @return {string[]}
  */
 var reorderLogFiles = function(logs) {
-    const digits = [], letters = [];
+ 
+};
+
+let logs = ["dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"]
+reorderLogFiles(logs)
+
+
+// @lc code=end
+
+
+/*
+   const digits = [], letters = [];
     
     logs.forEach(x=>{
         if(isFinite(x.split(' ')[1])){
@@ -28,11 +39,4 @@ var reorderLogFiles = function(logs) {
     })
 
     return [...letters, ...digits]
-};
-
-let logs = ["zoey i love you","lucas i love you","rong i love you"]
-reorderLogFiles(logs)
-
-
-// @lc code=end
-
+*/

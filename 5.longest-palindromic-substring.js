@@ -8,11 +8,17 @@
 // racecar
 // abba
 function longestPalindrome(s) {
-
-
+    let leftIndex = 0;
+    let rightIndex = 0;    
+    for(let i = 0; i<s.length; i++){
+        for(let j of [i, i+1]){
+            for(let l = i, r = j;s[l] && s[l]===s[r]; l--, r++){
+                [leftIndex, rightIndex] = (r-l+1) > (rightIndex - leftIndex + 1) ? [l, r] : [leftIndex, rightIndex];
+            }
+        }
+    }
+    return s.slice(leftIndex, rightIndex+1);
 };
-
-longestPalindrome('racecar')
 
 // @lc code=end
 

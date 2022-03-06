@@ -10,7 +10,14 @@
  * @return {number[][]}
  */
 var merge = function(intervals) {
-    let sortedInt = intervals.sort((a,b)=>{
+
+};
+
+merge([[1,3],[2,6],[8,10],[15,18]])
+// @lc code=end
+
+/*
+  let sortedInt = intervals.sort((a,b)=>{
         if(b[0] - a[0] > 0){
             return -1;
         }else{
@@ -26,8 +33,5 @@ var merge = function(intervals) {
         }
     }
     return mergedInt;
-};
 
-merge([[1,4],[2,3]])
-// @lc code=end
-
+*/

@@ -38,21 +38,78 @@ It is guaranteed that there is at least one user who visited at least 3 websites
 No user visits two websites at the same time
  */
 
-function maxVisited(username, timestamp, website){
-    let cacheObj = {};
-    for(let i = 0; i<username.length; i++){
-        if(!cacheObj[website[i]]){
-            cacheObj[website[i]] = [username[i]];
-        }else if(!cacheObj[website[i]].includes(username[i])){
-            cacheObj[website[i]].push(username[i]);
+function maxVisited(username, timestamp, website) {
+  // Create a map of entries and sort it based on timestamps
+  // O(n log n)
+  const entriesMap = timestamp
+    .map((item, i) => [username[i], timestamp[i], website[i]])
+    .sort((a, b) => a[1] - b[1]);
+
+  // group websites by users
+  // O(n)
+  const entriesByUsers = {};
+  entriesMap.forEach((entry) => {
+    if (!entriesByUsers[entry[0]]) entriesByUsers[entry[0]] = [];
+    entriesByUsers[entry[0]].push(entry[2]);
+  });
+
+  const seq = {};
+  let max = ["", 0];
+  
+  // get all possible 3-sequences for each user and increment the count of each sequence in seq
+  // O(n ^ 3)
+  Object.entries(entriesByUsers).forEach(([_, websites]) => {
+    const seqByUsers = {};
+    for (let i = 0; i < websites.length - 2; i++) {
+      for (let j = i + 1; j < websites.length - 1; j++) {
+        for (let k = j + 1; k < websites.length; k++) {
+          const key = `${websites[i]}|${websites[j]}|${websites[k]}`;
+          if (!seqByUsers[key]) seqByUsers[key] = 1;
         }
+      }
     }
-    cacheObj;
     
+    Object.keys(seqByUsers).forEach((seqByUser) => {
+      if (!seq[seqByUser]) seq[seqByUser] = 0;
+      seq[seqByUser] += 1;
+  
+      if (
+        (seq[seqByUser] === max[1] &&
+          seqByUser.split("|").join(" ") < max[0].split("|").join(" ")) ||
+        seq[seqByUser] > max[1]
+      ) {
+        max[0] = seqByUser;
+        max[1] = seq[seqByUser];
+      }
+    });
+  });
+
+  return max[0].split("|");
 }
 
-
-const username = ["joe","joe","joe","james","james","james","james","mary","mary","mary"];
-const timestamp = [1,2,3,4,5,6,7,8,9,10];
-const website = ["home","about","career","home","cart","maps","home","home","about","career"]
-maxVisited(username, timestamp, website)
+const username = [
+  "joe",
+  "joe",
+  "joe",
+  "james",
+  "james",
+  "james",
+  "james",
+  "mary",
+  "mary",
+  "mary",
+];
+const timestamp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const website = [
+  "home",
+  "about",
+  "career",
+  "home",
+  "cart",
+  "maps",
+  "home",
+  "home",
+  "about",
+  "career",
+];
+maxVisited(username, timestamp, website);

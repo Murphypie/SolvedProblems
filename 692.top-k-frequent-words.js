@@ -12,7 +12,16 @@
  */
 
  var topKFrequent = function(words, k) {
-    let hash = {};
+     
+};
+
+
+
+topKFrequent(["the","day","is","sunny","the","the","the","sunny","is","is"], 4)
+// @lc code=end
+
+/*
+  let hash = {};
     for (let word of words) {
         hash[word] = hash[word]+1||1;
     }
@@ -26,10 +35,4 @@
         return countCompare;
     })
     return result.slice(0,k)
-};
-
-
-
-topKFrequent(["the","day","is","sunny","the","the","the","sunny","is","is"], 4)
-// @lc code=end
-
+*/

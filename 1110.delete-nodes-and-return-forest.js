@@ -19,7 +19,28 @@
  * @return {TreeNode[]}
  */
 var delNodes = function(root, to_delete) {
-   
+   // 1. BFS method to traverse (preorder)
+   // 2. Check if the value is included in to_delete array. shoudDelete to hold boolean value
+   // 3. When invoking recursive function, pass shouldDelete variable to next children tree
+   // 3-1. If shouldDelete is true, then children tree will be severed from the main tree and will be the starting root
+   // 4. If it is a Root and shouldDelete is false, then push it to output array
+   // 5. If shouldDelete is true, return null, else return root
+
+    let output = [];
+
+    let search = function(root, isRoot){
+        if(!root) return null;
+        let shouldDelete = to_delete.includes(root.val);
+        if(isRoot && !shouldDelete){
+            output.push(root)
+        }
+        root.left = search(root.left, shouldDelete);
+        root.right = search(root.right, shouldDelete);
+        return shouldDelete ? null:root
+    }
+
+    search(root, true);
+    return output;
 };
 
  function TreeNode(val, left, right) {

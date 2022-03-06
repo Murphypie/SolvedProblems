@@ -1,6 +1,26 @@
 
 
 const pascalTriangle = (num) =>{
+    if(num === 0) return [];
+    if(num === 1) return [[1]];
+    let output = [];
+    for(let i = 1; i<=num; i++){
+        let temp = [];
+        for(let j = 0; j<i; j++){
+            if(j===0 || j === i-1){
+                temp.push(1);
+            }else{
+                temp.push(output[i-2][j] + output[i-2][j-1])
+            }
+        }
+        output.push(temp);
+    }
+    return output;
+}
+
+pascalTriangle(3);
+
+/*
     if (num === 0) return [];
     if (num === 1) return [[1]];
     let result = [];
@@ -16,6 +36,4 @@ const pascalTriangle = (num) =>{
         result.push(arr);
     }
     return result;
-}
-
-pascalTriangle(5);
+*/
