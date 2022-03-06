@@ -11,16 +11,7 @@
  * @return {number}
  */
 var search = function(nums, target) {
- 
-};
-
-let nums = [7,8,9,10,12,14,15,17,18,19,0,1,2,4,6];
-let target = 4;
-search(nums, target);
-// @lc code=end
-
-/*
-   let left = 0;
+  let left = 0;
     let right = nums.length - 1;
       
     while (left <= right) {
@@ -60,4 +51,13 @@ search(nums, target);
     }
       
     return -1;
+};
+
+let nums = [7,8,9,10,12,14,15,17,18,19,0,1,2,4,6];
+let target = 4;
+search(nums, target);
+// @lc code=end
+
+/*
+  
 */

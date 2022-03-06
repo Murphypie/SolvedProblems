@@ -10,14 +10,6 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-
-};
-
-productExceptSelf([0,0])
-
-// @lc code=end
-
-/*
     let sum = 1;
     let zeroLocation = [];
     for(let i = 0; i<nums.length; i++){
@@ -43,4 +35,12 @@ productExceptSelf([0,0])
         }
     }
     return resultArr;
+};
+
+productExceptSelf([0,0])
+
+// @lc code=end
+
+/*
+ 
 */
