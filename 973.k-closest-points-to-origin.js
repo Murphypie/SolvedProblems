@@ -22,7 +22,7 @@ var kClosest = function(points, k) {
     // 6. Heapify at 0 to move down the 0th element
     // 7. Repeat remove function for k amount. 
 
-    let p = Math.floor((points.length-2)/2);
+    let p = Math.floor((points.length-2)/2); // parent
     
     for(let i = p; i>=0; i--){
         heapify(points, i, distance);
@@ -106,3 +106,4 @@ kClosest([[10,5], [3,5], [7,4], [3,3],[5,-1],[-2,4]], 3);
         return point[0] * point[0] + point[1] * point[1]
     }
 */
+

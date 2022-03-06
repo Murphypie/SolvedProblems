@@ -26,21 +26,22 @@ var delNodes = function(root, to_delete) {
    // 4. If it is a Root and shouldDelete is false, then push it to output array
    // 5. If shouldDelete is true, return null, else return root
 
-    let output = [];
+   let output = [];
 
-    let search = function(root, isRoot){
-        if(!root) return null;
-        let shouldDelete = to_delete.includes(root.val);
-        if(isRoot && !shouldDelete){
-            output.push(root)
-        }
-        root.left = search(root.left, shouldDelete);
-        root.right = search(root.right, shouldDelete);
-        return shouldDelete ? null:root
-    }
+   let search = function(root, isRoot){
+       if(!root) return null;
+       let shouldDelete = to_delete.includes(root.val);
+       if(isRoot && !shouldDelete){
+           output.push(root)
+       }
+       root.left = search(root.left, shouldDelete);
+       root.right = search(root.right, shouldDelete);
+       return shouldDelete ? null:root
+   }
 
-    search(root, true);
-    return output;
+   search(root, true);
+   return output;
+   
 };
 
  function TreeNode(val, left, right) {
