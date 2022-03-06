@@ -11,7 +11,25 @@
  * @return {number[]}
  */
 var maxSlidingWindow = function(nums, k) {
+   for (let i = 0; i < nums.length; i++) {
+        // add the number at the right position queue
+        while (nums[i] > dequeue[dequeue.length - 1]) {
+            dequeue.pop();
+        }
+        dequeue.push(nums[i]);
 
+        /**
+         * once the window fully overlaps the array, we can start register
+         * the maximum values in each iteration. 
+         */
+        if (i >= k - 1) {
+            output.push(dequeue[0]);
+            // remove maximum value when it's moving outside of the window
+            if (nums[i - k + 1] === dequeue[0]) {
+                dequeue.shift();
+            }
+        }
+    }
 };
 
 maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)

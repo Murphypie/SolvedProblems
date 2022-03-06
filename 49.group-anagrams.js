@@ -12,16 +12,7 @@ const { setEmitFlags } = require("typescript");
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-
-};
-
-
-groupAnagrams(["eat","tea","tan","ate","nat","bat"])
-// @lc code=end
-
-
-/*
-  const stringSorter = (str) =>{
+    const stringSorter = (str) =>{
         return str.replace(/[^\w]/g).toLowerCase().split('').sort().join();
     }
 
@@ -34,5 +25,14 @@ groupAnagrams(["eat","tea","tan","ate","nat","bat"])
         }
     }
     return Object.values(hashTable);
+};
+
+
+groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+// @lc code=end
+
+
+/*
+ 
 
 */
