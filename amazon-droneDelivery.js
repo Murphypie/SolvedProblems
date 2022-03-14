@@ -40,7 +40,7 @@ function droneDelivery(arr, n, d1, d2){
     // dp[i][j] denotes weight i is carried by the first drone and weight j is carried by the second drone
     let dp = new Array(d1+1).fill(false).map(()=>new Array(d2+1).fill(false));
     dp[0][0] = true;
-
+    let total = 0;
     for(let i = 0; i <n; i++){
         for(let drone1 = d1; drone1 >=0; drone1--){
             for(let drone2 = d2; drone2 >= 0; drone2--){
@@ -51,13 +51,11 @@ function droneDelivery(arr, n, d1, d2){
                 }
             }
         }
+        total += arr[i]
     }
     
-    let ans = 0, total = 0;
-    for(let i = 0; i<n; i++){
-        total += arr[i];
-    }
-    ans = total;
+    let ans = total;
+    
     for(let drone1 = 0; drone1 <=d1; drone1++){
         for(let drone2 = 0; drone2 <=d2; drone2++){
             if(dp[drone1][drone2]){
