@@ -15,7 +15,7 @@ var groupAnagrams = function(strs) {
     const stringSorter = (str) =>{
         return str.replace(/[^\w]/g).toLowerCase().split('').sort().join();
     }
-
+    
     const hashTable = {};
     for(let word of strs){
         if(!hashTable[stringSorter(word)]){

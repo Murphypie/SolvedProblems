@@ -6,6 +6,8 @@
 
 // @lc code=start
 function twoSum(nums, target){
+  // 1. 
+
   const numberMap = new Map();
   for(let i = 0; i<nums.length; i++){
     const compliment = target - nums[i];

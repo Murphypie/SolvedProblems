@@ -38,7 +38,7 @@ function threeSum(nums){
 };
 
 
-var nums = [1,-1,-1,0];
+var nums = [-1,0,1,2,-1,-4]
 threeSum(nums);
 
 // @lc code=end

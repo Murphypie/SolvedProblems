@@ -11,23 +11,18 @@
  */
 var generateParenthesis = function(n) {
     const output = [];
-    function go(l,r,s){
-        if(l>r) return;
-        if(l===0 && r === 0){
-            output.push(s);
-            return
-        }
-        if(l>0) go(l-1, r, s+"(");
-        if(r>0) go(l, r-1, s+")");
-
+    function go(l,r,str){
+        if(l>r) return; // r>l means that paren is not closed
+        if(l===0 && r===0) output.push(str)
+        if(l>0) go(l-1,r,str+"(");
+        if(r>0) go(l,r-1,str+")");
     }
-    go(n,n,'');
+    go(n,n,"");
     return output;
+
 }
 generateParenthesis(3);
 // @lc code=end
-
-
 
 /*
    // recursive - take or leave method (open or close)

@@ -46,8 +46,6 @@ var search = function(nums, target) {
           right = mid - 1;
         }
       }
-      
-      
     }
       
     return -1;
@@ -59,5 +57,5 @@ search(nums, target);
 // @lc code=end
 
 /*
-  
+   
 */
