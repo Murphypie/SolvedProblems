@@ -23,20 +23,19 @@ var letterCombinations = function(digits) {
         "8": ['t', 'u', 'v'],
         "9": ['w', 'x', 'y', 'z']
     };
-    const l = digits.length;
-    let resultArr = [];
+    const length = digits.length;
+    let count = 0;
+    let output = [];
     const recur = (str, count) =>{
-        if(count === l){ 
-            resultArr.push(str);
-        }else{
+        if(count === length) output.push(str);
+        else{
             for(let char of letterObj[digits[count]]){
-                recur(str+char, count+1)
+                recur(str+char, count+1);
             }
         }
     }
-
-    recur('', 0)
-    return resultArr;
+    recur("",count)
+    return output;
 };
 
 letterCombinations("23")

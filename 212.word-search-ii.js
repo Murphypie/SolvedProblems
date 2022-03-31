@@ -52,6 +52,8 @@ var findWords = function(board, words) {
                 if(!pointer[c]) pointer[c] = {};
                 pointer = pointer[c];
             }
+            
+            // Pointer should be at the end of tree since it was updated in for loop (pointer = pointer[c])
             pointer.end = w;
         }
         return root;
@@ -65,3 +67,7 @@ const words = ["oath","pea","eat","rain"]
 findWords(board, words)
 // @lc code=end
 
+/*
+
+
+*/

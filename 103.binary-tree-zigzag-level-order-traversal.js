@@ -20,7 +20,25 @@ function TreeNode(val, left, right) {
  * @return {number[][]}
  */
 var zigzagLevelOrder = function(root) {
+   if(root === null) return [];
+    let output = [];
+    let queue = [root];
+    let counter = 0;
+    while(queue.length > 0){
+        const size = queue.length;
+        const level = [];
+        for(let i = 0; i<size; i++){
+            const node = queue.shift();
+            if(counter % 2 === 0) level.push(node.val);
+            else level.unshift(node.val);
 
+            if(node.left) queue.push(node.left)
+            if(node.right) queue.push(node.right)
+        }
+        output.push(level);
+        counter++;
+    }
+    return output;
 };
 
 let root = new TreeNode(3, new TreeNode(9), new TreeNode(20));
@@ -33,22 +51,4 @@ zigzagLevelOrder(root);
 
 
 
-    // if(root === null) return [];
-    // let output = [];
-    // let queue = [root];
-    // let counter = 0;
-    // while(queue.length > 0){
-    //     const size = queue.length;
-    //     const level = [];
-    //     for(let i = 0; i<size; i++){
-    //         const node = queue.shift();
-    //         if(counter % 2 === 0) level.push(node.val);
-    //         else level.unshift(node.val);
-
-    //         if(node.left) queue.push(node.left)
-    //         if(node.right) queue.push(node.right)
-    //     }
-    //     output.push(level);
-    //     counter++;
-    // }
-    // return output;
+ 
