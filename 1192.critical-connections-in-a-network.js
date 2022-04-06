@@ -4,7 +4,7 @@
  * [1192] Critical Connections in a Network
  */
 
-const { updateFor } = require("typescript");
+const { addSyntheticLeadingComment } = require("typescript");
 
 // @lc code=start
 /**
@@ -15,14 +15,54 @@ const { updateFor } = require("typescript");
 
 
  var criticalConnections = function(n, connections) {
-    let nodes = new Graph(n);
+     let adjList =  new Array(n).fill().map(x => new Array())
+     let disc = new Array(n);
+     let low = new Array(n)
+  
+     for(let [src, dest] of connections){
+         adjList[src].push(dest);
+     }
+     let counter = 1;
+     let output = [];
+
+
+     function dfs(curr, prev){
+         // Increasing discovery rank and low
+        disc[curr] = low[curr] = counter++;
+
+        
+        for(let next of adjList[curr]){
+            if(!disc[next]){ // If unvisited
+                dfs(next, curr)
+                // invoked after it runs dfs recursive call. 
+                low[curr] = Math.min(low[curr], low[next]);
+            }else if(next !== prev){ // Every case except two nodes going back and forth
+                low[curr] = Math.min(low[curr], disc[next]);
+            }
+            if(low[next] > disc[curr]){
+                output.push([curr, next]);
+            }
+        }
+
+               
+    }
+    
+    dfs(0,-1);
+
+    return output;
+ }
+
+criticalConnections(4, [[0,1],[1,2],[2,0],[1,3]]);
+
+/*
+  let nodes = new Graph(n);
         for(let [src,dest] of connections){
             nodes.addEdge(src, dest);
         }
         let disc = new Array(n);
         let low = new Array(n);
         let time = 1;
-        let ans = [];
+        let ans = []; 
         const criticalDFS = (curr, prev) =>{
             disc[curr] = low[curr] = time++;
             for(let next of nodes.adjList[curr]){
@@ -43,13 +83,5 @@ const { updateFor } = require("typescript");
         }
         criticalDFS(0, -1);
         return ans;
- }
+*/
 
-criticalConnections(4, [[0,1],[1,2],[2,0],[1,3]]);
-
-
-
-
-// var criticalConnections = function(n, connections) {
-//    
-// };

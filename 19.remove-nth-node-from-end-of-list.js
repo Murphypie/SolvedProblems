@@ -16,18 +16,21 @@
 
 
 function removeNthFromEnd(head, n){
-    let fast = head;
-    let slow = head;
-    
-    for(let i = 0; i<n; i++) fast = fast.next;
-    if(!fast) return head.next;
+   let fast = head;
+   let slow = head;
 
-    while(fast.next){
-        fast = fast.next;
-        slow = slow.next
-    }
-    slow.next = slow.next.next;
-    return head;
+   for(let i = 0; i<n;i++){
+       fast = fast.next;
+   }
+   if(fast === null) return head.next;
+   while(fast.next !== null){
+       fast = fast.next;
+       slow = slow.next;
+   }
+
+   slow.next = slow.next.next;
+
+   return head;
 };
 
 // let node = new ListNode(1);
