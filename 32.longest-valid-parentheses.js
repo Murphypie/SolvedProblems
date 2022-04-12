@@ -12,7 +12,15 @@ const { setConstantValue } = require("typescript");
  * @return {number}
  */
 var longestValidParentheses = function(s) {
-    let stack = [-1];
+  
+};
+
+let s = ")()"//"((())()" 
+longestValidParentheses(s)
+// @lc code=end
+
+/*
+  let stack = [-1];
     let max = 0;
 
     for(let i = 0; i<s.length; i++){
@@ -30,9 +38,4 @@ var longestValidParentheses = function(s) {
     }
 
     return max;
-};
-
-let s = "()())(())()"
-longestValidParentheses(s)
-// @lc code=end
-
+*/

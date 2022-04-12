@@ -41,7 +41,7 @@ var findOrder = function(numCourses, prerequisites) {
   return numCourses === 0 ? output : [];
 };
 
-let numCourses = 2, prerequisites = [[0,1],[1,0]]
+let numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
 findOrder(numCourses, prerequisites)
 
 

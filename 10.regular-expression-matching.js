@@ -12,7 +12,7 @@ const { versionMajorMinor } = require("typescript");
  * @param {string} p
  * @return {boolean}
  */
-var isMatch = function(s, p) {
+var isMatch = function (s, p) {
     const memo = new Map();
 
     function recurse(sIdx, pIdx){
@@ -23,10 +23,12 @@ var isMatch = function(s, p) {
         let result = null;
         if(p[pIdx] === s[sIdx] || p[pIdx] === '.'){
             if(p[pIdx+1] === '*') result = recurse(sIdx, pIdx+2) || recurse(sIdx+1, pIdx);
+            else result = recurse(sIdx+1, pIdx+1)
         }else {
             if(p[pIdx + 1] === '*') result = recurse(sIdx, pIdx+2);
             else result = false;
        }
+       
        memo.set(`${sIdx}-${pIdx}`, result);
        return result;
     }
@@ -34,6 +36,6 @@ var isMatch = function(s, p) {
     return recurse(0,0);
 };
 
-isMatch("abcdefg", ".*")
+isMatch("abcasdbsd", "abca.....*");
 // @lc code=end
-
+ 

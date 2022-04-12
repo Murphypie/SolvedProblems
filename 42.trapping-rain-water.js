@@ -13,24 +13,24 @@
 
 
 var trap = function(height) {
-   // two pointer
-   let left = 0;
-   let right = height.length-1;
-   let lMax = 0;
-   let rMax = 0;
-   let res = 0;
-   while(left<right){
-       lMax = Math.max(lMax, height[left]);
-       if(height[left] < lMax){
-           res += lMax - height[left];
-       }
-       rMax = Math.max(rMax, height[right]);
-       if(height[right] < rMax){
-           res += rMax - height[right];
-       }
-       height[left] < height[right] ? left++ : right--; 
-   }
-   return res;
+    let left = 0;
+    let right = height.length-1;
+    let lMax = 0;
+    let rMax = 0;
+    let res = 0;
+    while(left<right){
+        lMax = Math.max(lMax, height[left]);
+        if(height[left] < lMax){
+            res += lMax - height[left];
+        }
+        rMax = Math.max(rMax, height[right]);
+        if(height[right] < rMax){
+            res += rMax - height[right];
+        }
+        height[left] < height[right] ? left++ : right--; 
+    }
+    return res;
+    
 };
 
 // 1. Brute Force (time - O(n^2), space - O(n))
@@ -57,4 +57,25 @@ trap([4,2,0,3,2,5])
         output += Math.min(left[i], right[i]) - height[i]
     }
     return output
+*/
+
+/*
+   // two pointer
+   let left = 0;
+   let right = height.length-1;
+   let lMax = 0;
+   let rMax = 0;
+   let res = 0;
+   while(left<right){
+       lMax = Math.max(lMax, height[left]);
+       if(height[left] < lMax){
+           res += lMax - height[left];
+       }
+       rMax = Math.max(rMax, height[right]);
+       if(height[right] < rMax){
+           res += rMax - height[right];
+       }
+       height[left] < height[right] ? left++ : right--; 
+   }
+   return res;
 */
