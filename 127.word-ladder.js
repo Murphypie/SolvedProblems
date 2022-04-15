@@ -12,7 +12,26 @@
  * @return {number}
  */
 var ladderLength = function (beginWord, endWord, wordList) {
-  const wordSet = new Set(wordList)
+
+};
+
+let beginWord = "hit";
+let endWord = "cog";
+let wordList = ["hot","dot","dog","lot","log"]
+ladderLength(beginWord, endWord, wordList);
+// @lc code=end
+
+
+
+  // manipulate beginWord string -> change each letter to all alphabet and see if it's included in the wordList
+  // If included, save them in an array.
+  // Loop through the saved item array and see if they exist in wordList and so on.
+  // Do this until you can find the endWord.
+  // hit -> hot -> dot -> [dog, lot] -> cog
+
+
+  /*
+    const wordSet = new Set(wordList)
     let queue = [beginWord];
     let steps = 1;
     
@@ -41,19 +60,5 @@ var ladderLength = function (beginWord, endWord, wordList) {
         queue = next
         steps++;
     }
-    return 0;    
-};
-
-let beginWord = "hit";
-let endWord = "cog";
-let wordList = ["hot", "dot", "dog", "lot", "log", "cog"];
-ladderLength(beginWord, endWord, wordList);
-// @lc code=end
-
-
-
-  // manipulate beginWord string -> change each letter to all alphabet and see if it's included in the wordList
-  // If included, save them in an array.
-  // Loop through the saved item array and see if they exist in wordList and so on.
-  // Do this until you can find the endWord.
-  // hit -> hot -> dot -> [dog, lot] -> cog
+    return 0;   
+  */

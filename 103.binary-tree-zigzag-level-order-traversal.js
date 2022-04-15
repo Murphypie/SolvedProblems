@@ -10,17 +10,28 @@ const { PollingWatchKind } = require("typescript");
 
 //Definition for a binary tree node.
 function TreeNode(val, left, right) {
-    this.val = (val===undefined ? 0 : val)
-    this.left = (left===undefined ? null : left)
-    this.right = (right===undefined ? null : right)
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
 }
 
 /**
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var zigzagLevelOrder = function(root) {
-   if(root === null) return [];
+var zigzagLevelOrder = function (root) {
+  
+};
+
+let root = new TreeNode(3, new TreeNode(9), new TreeNode(20));
+root.right.left = new TreeNode(15);
+root.right.right = new TreeNode(7);
+zigzagLevelOrder(root);
+
+// @lc code=end
+
+/*
+  if(root === null) return [];
     let output = [];
     let queue = [root];
     let counter = 0;
@@ -39,16 +50,4 @@ var zigzagLevelOrder = function(root) {
         counter++;
     }
     return output;
-};
-
-let root = new TreeNode(3, new TreeNode(9), new TreeNode(20));
-root.right.left = new TreeNode(15)
-root.right.right = new TreeNode(7);
-zigzagLevelOrder(root);
-
-
-// @lc code=end
-
-
-
- 
+ */

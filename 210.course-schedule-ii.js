@@ -13,43 +13,46 @@
 
 
 var findOrder = function(numCourses, prerequisites) {
-  const inDegrees = Array(numCourses).fill(0);
-  for (const [v] of prerequisites) {
-    inDegrees[v]++;
-  }
-  
-  const q = [];
-  // Checking the degree of 0 which means no prereq is needed
-  // If no 0 degrees found, that means we have cycle
-  for (let i = 0; i < inDegrees.length; i++) {
-    const degree = inDegrees[i];
-    if (degree === 0) q.push(i);
-  }
+    // 1. Count all the classes available - [0,1,1,2];
+    // 2. Push element that is zero to stack which means that no prereq is required.
+    // 3. Using BFS, while stack is not empty, 
 
-  const output = [];
-  while(q.length){
-    const firstEl = q.shift();
-    numCourses--;
-    output.push(firstEl);
-    for(let [v,u] of prerequisites){
-      if(u === firstEl){
-        inDegrees[v]--;
-        if(inDegrees[v] === 0) q.push(v)
-      }
+    let countArr = new Array(numCourses).fill(0);
+    for(let [u,v] of prerequisites){
+        countArr[u]++
     }
-  }
-  return numCourses === 0 ? output : [];
+
+    let stack = []
+    let output = [];
+    for(let i = 0; i<countArr.length; i++){
+        if(countArr[i] === 0){
+            output.push(i)
+            stack.push(i)
+        }
+    };
+
+    while(stack.length){
+        let curr = stack.shift();
+        for(let [u,v] of prerequisites){
+            if(v===curr){
+                countArr[u]--;
+                if(countArr[u] === 0){
+                    output.push(u)
+                    stack.push(u);
+                }
+            }
+        }
+    }
+    
+    return countArr.every(x=>x===0) ? output : [];
 };
 
-let numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
+let numCourses = 3, prerequisites = [[1,0],[1,2],[0,1]]
 findOrder(numCourses, prerequisites)
 
 
 
 // @lc code=end
-
-
-
 
 /*
 const inDegrees = Array(numCourses).fill(0);
