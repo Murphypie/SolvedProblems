@@ -4,8 +4,6 @@
  * [210] Course Schedule II
  */
 
-const { JsxFlags } = require("typescript");
-
 // @lc code=start
 /**
  * @param {number} numCourses
@@ -13,8 +11,48 @@ const { JsxFlags } = require("typescript");
  * @return {number[]}
  */
 
+
 var findOrder = function(numCourses, prerequisites) {
   const inDegrees = Array(numCourses).fill(0);
+  for (const [v] of prerequisites) {
+    inDegrees[v]++;
+  }
+  
+  const q = [];
+  // Checking the degree of 0 which means no prereq is needed
+  // If no 0 degrees found, that means we have cycle
+  for (let i = 0; i < inDegrees.length; i++) {
+    const degree = inDegrees[i];
+    if (degree === 0) q.push(i);
+  }
+
+  const output = [];
+  while(q.length){
+    const firstEl = q.shift();
+    numCourses--;
+    output.push(firstEl);
+    for(let [v,u] of prerequisites){
+      if(u === firstEl){
+        inDegrees[v]--;
+        if(inDegrees[v] === 0) q.push(v)
+      }
+    }
+  }
+  return numCourses === 0 ? output : [];
+};
+
+let numCourses = 2, prerequisites = [[0,1],[1,0]]
+findOrder(numCourses, prerequisites)
+
+
+
+// @lc code=end
+
+
+
+
+/*
+const inDegrees = Array(numCourses).fill(0);
   for (const [v] of prerequisites) {
     inDegrees[v]++;
   }
@@ -38,17 +76,4 @@ var findOrder = function(numCourses, prerequisites) {
     }
   }
   return numCourses === 0 ? res : [];
-};
-
-findOrder(3, [[1,0],[1,2],[0,1]])
-
-
-
-// @lc code=end
-
-
-
-
-/*
-
 */

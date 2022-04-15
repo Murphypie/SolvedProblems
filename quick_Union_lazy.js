@@ -27,15 +27,14 @@ class QuickUnion {
 
 }
 
-const test = new QuickUnion(10);
-test.unite(3,4);
-test.unite(4,9);
+const test = new QuickUnion(6);
+test.unite(1,2);
 test.unite(2,3);
-test.unite(5,6);
-test;
-test.unite(5,3);
-test;
+test.unite(3,4);
+test.unite(1,4);
+test.unite(1,5);
 
+test.id
 
 // Trees can get tall with quick union lazy - (because unite doesn't differentiate which one's greater value
 // but just add then whichever the order in which p and q are given)
