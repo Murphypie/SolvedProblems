@@ -13,6 +13,28 @@
 
  var topKFrequent = function(words, k) {
     let hash = {};
+    for(let word of words){
+        if(!hash[word]) hash[word] = 1;
+        else hash[word]++
+    }
+    let output = Object.keys(hash).sort((a,b)=>{
+        let compare = hash[b] - hash[a]
+        if(compare === 0){
+            return a.localeCompare(b);
+        }
+        return compare;
+    })
+
+    output;
+};
+
+
+
+topKFrequent(["i","love","leetcode","i","love","coding", "coding", 'i'], 2)
+// @lc code=end
+
+/*
+      let hash = {};
     for (let word of words) {
         hash[word] = hash[word]+1||1;
     }
@@ -26,13 +48,4 @@
         return countCompare;
     })
     return result.slice(0,k)
-};
-
-
-
-topKFrequent(["the","day","is","sunny","the","the","the","sunny","is","is"], 4)
-// @lc code=end
-
-/*
-  
 */

@@ -21,7 +21,6 @@ var maxHeight = function(cuboids) {
             else return -1
         }else return -1;
     })
-   cuboids;
     let heights = cuboids.map(x=>x[2]);
     let tallest = 1;
 

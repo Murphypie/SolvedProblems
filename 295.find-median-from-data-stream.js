@@ -8,7 +8,6 @@
 
 var MedianFinder = function() {
     this.arr = [];
-    
 };
 
 /** 

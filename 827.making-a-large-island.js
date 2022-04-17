@@ -16,6 +16,72 @@ of the island as value; e.g., (index, area)
 2. Iterate through grid again, and if 0 is encountered, check if it is possible to connect islands.
 We can do it by checking four directions and using index (if found) to get the area of an island from hash table.
 */
+
+const largestIsland = (grid) =>{
+    let islandArea = new Map();
+    let islandIdx = 2;
+   
+    let maxArea = 0;
+    let area = 0;
+    for(let i = 0; i<grid.length; i++){
+        for(let j = 0; j<grid[0].length; j++){
+            if(grid[i][j] === 1){
+                area = dfs(grid, i, j, islandIdx)
+                islandArea.set(islandIdx, area)
+                islandIdx++;
+            }
+            maxArea = Math.max(maxArea, area)
+        }
+    }
+   
+    for(let i = 0; i<grid.length; i++){
+        for(let j = 0; j<grid[0].length; j++){
+            let seen = new Set();
+            if(grid[i][j] === 0){
+                let area = 1
+                for(let [newRow, newCol] of directions(i,j)){
+                    if(validIdx(grid, newRow, newCol) 
+                    && grid[newRow][newCol] !== 0
+                    && !seen.has(grid[newRow][newCol])){
+                        area += islandArea.get(grid[newRow][newCol]);
+                        seen.add(grid[newRow][newCol])
+                    }
+                    maxArea = Math.max(area, maxArea);
+                }
+            }
+        }
+    }
+    return maxArea
+}
+
+function validIdx(grid, row, col){
+    return row >= 0 && row < grid.length && col >= 0 && col < grid[0].length;
+}
+
+function directions(row, col) {
+    // up, right, down, left
+    return [[row-1,col], [row,col+1], [row+1,col], [row,col-1]];
+}
+
+
+function dfs(grid, i, j, islandIdx){
+    if(grid[i] === undefined || grid[i][j] === undefined || grid[i][j] !== 1) return 0;
+    grid[i][j] = islandIdx;
+    let area = 1;
+    area += dfs(grid, i+1, j, islandIdx)+
+    dfs(grid, i, j+1, islandIdx)+
+    dfs(grid, i-1, j, islandIdx)+
+    dfs(grid, i, j-1, islandIdx)
+    return area;
+}
+
+// @lc code=end
+
+let grid = [[1,1],[1,1]]
+largestIsland(grid);
+
+
+/*
 var largestIsland = function(grid) {
     if (grid.length === 0 || grid[0].length === 0) {
         return 0;
@@ -36,7 +102,7 @@ var largestIsland = function(grid) {
             }
         }
     }
-    
+    islandMap;
     for (let row = 0; row < grid.length; row++) {
         for (let col = 0; col < grid[0].length; col++) {
             // check if it is possible to connect islands
@@ -87,5 +153,4 @@ function directions(row, col) {
     // up, right, down, left
     return [[row-1,col], [row,col+1], [row+1,col], [row,col-1]];
 }
-// @lc code=end
-
+*/

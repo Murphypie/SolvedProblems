@@ -10,6 +10,30 @@
  * @return {number[]}
  */
 var partitionLabels = function(s) {
+    // Using a loop, find a last occuring index
+    // Store the max last occuring index in a variable
+    // If index from loop and max last occuring index are the same, store it in output
+    // Set previous last occruing index as a anchor point which will be subtracted to get length of next partition
+
+    
+    let output = [];
+    let maxIndex = 0;
+    let anchorPoint = 0;
+    for(let i = 0; i<s.length; i++){
+        maxIndex = Math.max(s.lastIndexOf(s[i]), maxIndex);
+        if(i === maxIndex){
+            output.push(i+1 - anchorPoint)
+            anchorPoint = i+1;
+        }
+    }
+    return output;
+};
+
+partitionLabels("ababcbacadefegdehijhklij")
+// @lc code=end
+
+
+/*
    // input will have a multiple partitions with a partition being similar to each other
    // 1. Go through the given string and find the last occruence of chars
    // 2. As you go through the loop, compare max value and update accordingly
@@ -29,13 +53,7 @@ var partitionLabels = function(s) {
        }
    }
    return resultArr;
-};
-
-partitionLabels("ababcbacadefegdehijhklij")
-// @lc code=end
-
-
-
+*/
 
 
 

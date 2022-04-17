@@ -9,6 +9,7 @@
  * @param {string} s
  * @return {number}
  */
+
 var uniqueLetterString = function(s) {
     let result = 0;
     const n = s.length;
@@ -38,6 +39,8 @@ var uniqueLetterString = function(s) {
     return result;
 };
 
+
+uniqueLetterString("ABC")
 //For Example, "LEETCODE", we can notice that "E" present multiple times and only the substrings contains one "E" can help "E" to be counted in. 
 // "LE", "ET", "ETCOD" are good, but "LEE", "ETCODE" are not.
 
@@ -49,6 +52,33 @@ var uniqueLetterString = function(s) {
 // If we fix the left part, then we can have 5 different ways of right part ("", "C", "CO", "COD", "CODE")
 
 
-uniqueLetterString("ABA")
 // @lc code=end
 
+/*
+  let result = 0;
+    const n = s.length;
+    const hash = {};
+    for (let i = 0; i < n; i++) { // create the hash table contains every letter's index arr.
+        const letter = s[i];
+        if (hash[letter] === undefined) {
+            hash[letter] = [i];
+        } else {
+            hash[letter].push(i);
+        }
+    }
+	
+    for (let letter in hash) {  // iterate every letter
+        const arr = hash[letter];  // the arr contains all indexes the letter present in the string
+		let lastIdx = arr[0];
+		let lastRange = arr[0] + 1;  // left part length
+        for (let i = 1; i < arr.length; i++) {
+            const currIdx = arr[i];
+            const currRange = currIdx - lastIdx; // right part length
+            result += lastRange * currRange;  // multiply both side length to get the ways of valid substrings
+            lastIdx = currIdx;
+            lastRange = currRange;   // set next left part to be current right part
+        }
+        result += lastRange * (n - lastIdx);  // don't forget the last calcution 
+    }
+    return result;
+*/
