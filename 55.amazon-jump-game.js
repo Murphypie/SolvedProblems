@@ -16,7 +16,15 @@
 // [0] - true
 
 var canJump = function(nums) {
-    let idx = 0;
+
+};
+
+let arr = [0]
+canJump(arr);
+// @lc code=end
+
+/*
+   let idx = 0;
     let max = 0;
     let target = nums.length - 1;
   
@@ -35,9 +43,4 @@ var canJump = function(nums) {
     }
     
     return false;
-};
-
-let arr = [3,2,1,0,4]
-canJump(arr);
-// @lc code=end
-
+*/

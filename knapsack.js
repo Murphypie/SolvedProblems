@@ -45,6 +45,18 @@ let items = [
   ];
 knapsack(items, 6);
 
+// const knapsack = (itemsLeft, weightAvailable) =>{
+//   // base case
+//   if(itemsLeft.length === 0) return 0;
+//   if(weightAvailable < itemsLeft[0].weight) return 0;
+//   // take or leave appraoch
+//   let take = itemsLeft[0].value + knapsack(itemsLeft.slice(1), weightAvailable-itemsLeft[0].weight);
+//   let leave = knapsack(itemsLeft.slice(1), weightAvailable);
+
+//   return Math.max(take, leave)
+// }
+
+
 
 /*
   Extension: complete knapsack with Bottom-Up Dynamic Programming

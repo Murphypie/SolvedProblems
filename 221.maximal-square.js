@@ -9,7 +9,29 @@
  * @param {character[][]} matrix
  * @return {number}
  */
+
+
 var maximalSquare = function(matrix) {
+    let max = 0;
+    for(let i = 0; i<matrix.length; i++){
+        for(let j = 0; j<matrix[0].length; j++){
+            if(i<matrix.length-1 && j<matrix[0].length-1){
+                    matrix[i+1][j+1] = Math.min(matrix[i][j], matrix[i+1][j], matrix[i][j+1]) + 1;
+                    max = Math.max(max, matrix[i+1][j+1])
+            } 
+        }
+    }
+
+    return max*max;
+};
+
+let matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
+maximalSquare(matrix);
+// @lc code=end
+
+
+
+/*
   let max = 0;
     for(let i = 0; i<matrix.length; i++){
         for(let j = 0; j<matrix[0].length; j++){
@@ -23,11 +45,4 @@ var maximalSquare = function(matrix) {
     return max*max;
 
 
-};
-
-let matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","1","1","1"]]
-maximalSquare(matrix);
-// @lc code=end
-
-
-
+*/

@@ -40,79 +40,143 @@ https://workat.tech/machine-coding/practice/design-parking-lot-qm6hwq4wkhp8
 # We can assume that there will only be 1 parking lot. The ID of that parking lot is PR1234.
 */
 
+const vehicleType = {0: "Car", 1: "Bike", 2:"Truck"}
 
-const vehicleType = {
-    1: "Car",
-    2: "Bike",
-    3: "Truck",
-    "Car": 1,
-    "Bike": 2,
-    "Truck": 3
-}
-
-class Vehicle{
-    constructor(type, regNum, color){
-        this.type;
-        if(typeof type === 'number' && vehicleType[type]){
-            this.type = vehicleType[type];
-        }else if(vehicleType[type]){
-                this.type = type;
-        }else{
-            throw "choose correct vehicle type"
-        }
-        this.regNum = regNum;
+class vehicle{
+    constructor(type, reg, color){
+        this.type = type;
+        this.reg = reg;
         this.color = color;
     }
 }
 
-class Slots{
-    constructor(floor){
-        this.floor = floor
+class slot{
+    constructor(slotid){
+        this.slotid = slotid;
+        this.ticket = '';
+        this.slotType = 0;
         this.occupied = false;
         this.vehicleType = 0;
-        this.regNum = 0;
-        this.color = '';
+        this.reg = "";
+        this.color = "";
+        this.initiate();
     }
-    park(vehicle){
-        this.vehicleType = vehicle.type;
-        this.regNum = vehicle.regNum;
-        this.color = vehicle.color;
+    initiate(){
+        if(this.slotid === 0){
+            this.slotType = 2;
+        }else if(this.slotid === 1 || this.slotid ===2){
+            this.slotType = 1;
+        }else{
+            this.slotType = 0;
+        }
+    }
+    park(floorLevel, slotid, vehicleType, reg, color, parkingid){
         this.occupied = true;
+        this.vehicleType = vehicleType;
+        this.reg = reg;
+        this.color = color;
+        this.ticket = parkingid+"_"+floorLevel+"_"+slotid
+        return this.ticket
+    }
+    unpark(){
+        this.occupied = false;
+        this.vehicleType = 0;
+        this.reg = "";
+        this.color = "";
+        this.ticket = ""
     }
 }
 
-class Floor{
-    constructor(floorAmount, slotsAmount){
-        this.floorAmount = floorAmount;
-        this.slotsAmount = slotsAmount;
+class floor{
+    constructor(floorLevel){
+        this.floorLevel = floorLevel;
         this.slots = [];
     }
-    populateSlots(){
-        for(let i = 0; i<this.slotsAmount; i++){
-            this.slots[i] = new Slots(this.floorAmount)
+    populateSlots(noOfSlotsPerFloor){
+        for(let i = 0; i<noOfSlotsPerFloor; i++){
+            this.slots[i] = new slot(i)
         }
     }
-
 }
 
-class ParkingLot{
-    constructor(id, floorAmount, slotsAmount){
-        this.id = id;
-        this.floorAmount = floorAmount;
-        this.slotsAmount = slotsAmount;
-        this.floor = [];
-        this.initialize();
+class parkingLot{
+    constructor(parkinglotid, noOfFloors, noOfSlotsPerFloor){
+        this.parkinglotid = parkinglotid;
+        this.noOfFloors = noOfFloors;
+        this.noOfSlotsPerFloor = noOfSlotsPerFloor;
+        this.floorArr = [];
+        this.initiate();
     }
-    initialize(){
-        for(let i = 0; i<this.floorAmount; i++){
-            this.floor[i] = new Floor(i, this.slotsAmount);
-            this.floor[i].populateSlots();
+    initiate(){
+        for(let i = 0; i<this.noOfFloors; i++){
+            this.floorArr[i] = new floor(i);
+            this.floorArr[i].populateSlots(this.noOfSlotsPerFloor)
         }
     }
-    park(){
-        
+    occupied(floor, slotid){
+        if(this.floorArr[floor].slots[slotid].occupied === false) return true;
+        else return false
     }
 
+    parkVehicle(vehicleType, reg, color){
+        for(let i = 0; i < this.noOfFloors; i++){
+             for(let j = 0; j< this.floorArr[i].slots.length; j++){
+                if(this.occupied(i,j) && this.floorArr[i].slots[j].slotType === vehicleType){
+                    return this.floorArr[i].slots[j].park(i, j, vehicleType, reg, color, this.parkinglotid);
+                }
+             }
+        }
+        return "Not enough space"
+    }
+
+    unparkVehicle(ticket_id){
+        for(let i = 0; i < this.noOfFloors; i++){
+            for(let j = 0; j< this.floorArr[i].slots.length; j++){
+               if(this.floorArr[i].slots[j].ticket === ticket_id){
+                this.floorArr[i].slots[j].unpark();
+               }
+            }
+       }
+    }
+
+    display(){
+        const availableSlots = {};
+        for(let i = 0; i < this.noOfFloors; i++){
+            for(let j = 0; j< this.floorArr[i].slots.length; j++){
+                if(!this.floorArr[i].slots[j].occupied){ // Vacant
+                    if(!availableSlots["free_slots"]){
+                        availableSlots["free_slots"] = 1;
+                    }else{
+                        availableSlots["free_slots"]++
+                    }
+                }else{
+                    if(!availableSlots["occupied_slots"]){
+                        availableSlots["occupied_slots"] = 1;
+                    }else{
+                        availableSlots["occupied_slots"]++
+                    }
+                }
+            }
+       }
+       return availableSlots;
+    }
+
+ 
 }
 
-let test = new ParkingLot(10, 3, 5);
+class parkingLotFactory{
+    createParkinglot(parkinglotid, noOfFloors, noOfSlotsPerFloor){
+        return new parkingLot(parkinglotid, noOfFloors, noOfSlotsPerFloor);
+    }
+}
+
+let user = new parkingLotFactory();
+let parking = user.createParkinglot(1151, 3, 10);
+let park1 = parking.parkVehicle(2, 'ABC', 'Blue')
+parking.parkVehicle(2, 'BCD', 'Red')
+parking.parkVehicle(2, 'CFG', 'Black')
+parking.parkVehicle(2, 'GHI', 'Blac')
+parking.display();
+parking.unparkVehicle(park1)
+
+

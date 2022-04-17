@@ -13,6 +13,16 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function(nums, k) {
+  
+
+};
+
+let nums = [1,2,3,4,5,6,7], k = 3;
+rotate(nums, k)
+
+// @lc code=end
+
+/*
     // 1 2 3 4 5 6, k = 2
     // 1->3, 3->5, 5->1, 6->2, 2->4, 4->6
 
@@ -31,10 +41,4 @@ var rotate = function(nums, k) {
         }while(start !== current)
     }
     return nums
-};
-
-let nums = [1,2,3,4,5,6], k = 2;
-rotate(nums, k)
-
-// @lc code=end
-
+ */
