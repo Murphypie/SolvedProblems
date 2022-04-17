@@ -19,8 +19,7 @@
  * @return {TreeNode}
  */
 var mergeTrees = function (root1, root2) {
- 
-
+    
 };
 
 function TreeNode(val, left, right) {

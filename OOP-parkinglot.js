@@ -1,45 +1,15 @@
-/*
-https://workat.tech/machine-coding/practice/design-parking-lot-qm6hwq4wkhp8
+// Create the parking lot.
+// 1. Clarify - Looking for me to demonstarate the structure or fully implement
+// 2. Use case - Think and talk through. Understand all the different functionalities,
+// 2-1. Identify key objects - If for parking lot, vehicles, parking posts, parking garages, entrances, exits,
+// 2-2. Identify operations supported by Objects: Work out all the behaviors you'd expect (ex. car should be able to  move, park in given spot)
+// 2-3. Map out the relationships between the different objects that will need to interface with each other 
+//(a car should be able to park in a "parking spot", Parking garages hsould be able to fit multiple parking spots)
+// 3. Propose a design
+// 4. Draw Diagram
+// 5. Analyze Constrains
+// 6. Scalability
 
-# Create a command-line application for the parking lot system with the following requirements.
-
-# The functions that the parking lot system can do:
-# Create the parking lot.
-# Add floors to the parking lot.
-# Add a parking lot slot to any of the floors.
-# Given a vehicle,it finds the first available slot,books it,creates a ticket,parks the vehicle,and finally returns the ticket.
-# Unparks a vehicle given the ticket id.
-# Displays the number of free slots per floor for a specific vehicle type.
-# Displays all the free slots per floor for a specific vehicle type.
-# Displays all the occupied slots per floor for a specific vehicle type.
-
-# Details about the Vehicles: - DONE
-# Every vehicle will have a type,registration number,and color.
-# Different Types of Vehicles:
-# Car
-# Bike
-# Truck
-
-# Details about the Parking Slots:
-# Each type of slot can park a specific type of vehicle.
-# No other vehicle should be allowed by the system.
-# Finding the first available slot should be based on:
-# The slot should be of the same type as the vehicle.
-# The slot should be on the lowest possible floor in the parking lot.
-# The slot should have the lowest possible slot number on the floor.
-# Numbered serially from 1 to n for each floor where n is the number of parking slots on that floor.
-
-# Details about the Parking Lot Floors:
-# Numbered serially from 1 to n where n is the number of floors.
-# Might contain one or more parking lot slots of different types.
-# We will assume that the first slot on each floor will be for a truck,the next 2 for bikes,and all the other slots for cars.
-
-# Details about the Tickets:
-# The ticket id would be of the following format:
-# <parking_lot_id>_<floor_no>_<slot_no>
-# Example: PR1234_2_5 (denotes 5th slot of 2nd floor of parking lot PR1234)
-# We can assume that there will only be 1 parking lot. The ID of that parking lot is PR1234.
-*/
 
 const vehicleType = {0: "Car", 1: "Bike", 2:"Truck"}
 

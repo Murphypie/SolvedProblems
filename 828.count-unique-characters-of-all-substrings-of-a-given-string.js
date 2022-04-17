@@ -9,8 +9,28 @@
  * @param {string} s
  * @return {number}
  */
+
 var uniqueLetterString = function(s) {
-    let result = 0;
+    
+};
+
+
+uniqueLetterString("ABC")
+//For Example, "LEETCODE", we can notice that "E" present multiple times and only the substrings contains one "E" can help "E" to be counted in. 
+// "LE", "ET", "ETCOD" are good, but "LEE", "ETCODE" are not.
+
+// ["L" | "1E" | "2E" | "TCOD" | "3E"]
+// Take a look at "1E", it has one letter on the left side, and zero letter in the right side,
+// so there are 2 different ways to contains this "E" (LE, E), which is calculated by (1+leftlength(=1))*(1+rightlength(=0)) = 2
+// Take a look at "2E", it has zero letter on the left, and four on the right, (1+leftLength(=1))*(1+rightLength(=4))=5
+// For T, if we fix the right part, then therer are 4 different ways of left part (Left has "", "E", "EE", "LEE")
+// If we fix the left part, then we can have 5 different ways of right part ("", "C", "CO", "COD", "CODE")
+
+
+// @lc code=end
+
+/*
+  let result = 0;
     const n = s.length;
     const hash = {};
     for (let i = 0; i < n; i++) { // create the hash table contains every letter's index arr.
@@ -36,19 +56,4 @@ var uniqueLetterString = function(s) {
         result += lastRange * (n - lastIdx);  // don't forget the last calcution 
     }
     return result;
-};
-
-//For Example, "LEETCODE", we can notice that "E" present multiple times and only the substrings contains one "E" can help "E" to be counted in. 
-// "LE", "ET", "ETCOD" are good, but "LEE", "ETCODE" are not.
-
-// ["L" | "1E" | "2E" | "TCOD" | "3E"]
-// Take a look at "1E", it has one letter on the left side, and zero letter in the right side,
-// so there are 2 different ways to contains this "E" (LE, E), which is calculated by (1+leftlength(=1))*(1+rightlength(=0)) = 2
-// Take a look at "2E", it has zero letter on the left, and four on the right, (1+leftLength(=1))*(1+rightLength(=4))=5
-// For T, if we fix the right part, then therer are 4 different ways of left part (Left has "", "E", "EE", "LEE")
-// If we fix the left part, then we can have 5 different ways of right part ("", "C", "CO", "COD", "CODE")
-
-
-uniqueLetterString("ABA")
-// @lc code=end
-
+*/
