@@ -13,52 +13,47 @@
  */
 
  var findWords = function(board, words) {
-    let output = [];
-    let trie = buildTrie(words)
-    let pointer = trie;
+    let trie = buildTrie(words);
+    let output = []
 
     for(let i = 0; i<board.length; i++){
-        for(let j = 0; j<board[i].length; j++){
-                matchWords(i,j, board, pointer)
+        for(let j = 0; j<board[0].length; j++){
+            searcher(i,j, board, trie)
         }
     }
 
-    function matchWords(i,j, board, pointer){
-        if(pointer.end){
-            output.push(pointer.end)
-            pointer.end = null;
+    function searcher(i,j,board, trie){
+        if(trie.end){
+            output.push(trie.end)
+            trie.end = 0;
         };
-    
         if(board[i] === undefined || board[i][j] === undefined) return;
-        let curr = board[i][j]
-        if(!pointer[curr]) return;
-         board[i][j] = 0;
-         matchWords(i+1, j, board, pointer[curr]) 
-         matchWords(i, j+1, board, pointer[curr]) 
-         matchWords(i-1, j, board, pointer[curr]) 
-         matchWords(i, j-1, board, pointer[curr])
-         board[i][j] = curr;
-    
+        let char = board[i][j];
+        if(!trie[char]) return
+        board[i][j] = 0;
+        searcher(i-1, j, board, trie[char])
+        searcher(i+1, j, board, trie[char])
+        searcher(i, j-1, board, trie[char])
+        searcher(i, j+1, board, trie[char])
+        board[i][j] = char;
     }
     return output;
 };
 
-
-
-
 function buildTrie(words){
-    let obj = {};
-    for(let w of words){
-        let pointer = obj;
-        for(let c of w){
-            if(!pointer[c]) pointer[c] = {};
-            pointer = pointer[c]
+    const trie = {};
+    for(let word of words){
+        let head = trie;
+        for(let str of word){
+            if(!head[str]){
+                head[str] = {};
+            }
+            head = head[str];
         }
-        pointer.end = w;
+        head.end = word;
     }
-    return obj;;
+    return trie;
 }
-
 
 const board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
 const words = ["oath","over","pea","eat","rain"]

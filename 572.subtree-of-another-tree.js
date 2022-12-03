@@ -21,22 +21,9 @@
 
 
 var isSubtree = function(root, subRoot) {
-    
-    function isMatch(root, subRoot){
-        if(!root || !subRoot) return !root && !subRoot;
-        if(root.val !== subRoot.val) return false;
-  
-        return isMatch(root.left, subRoot.left) && isMatch(root.right, subRoot.right)
-    }
-  
-    function dfs(root){
-        if(!root) return false;
-        if(root.val === subRoot.val && isMatch(root, subRoot)) return true;
-        return dfs(root.left) || dfs(root.right)
-    }
-    return dfs(root)
-
+ 
 };
+
 
 
 // @lc code=end
@@ -53,7 +40,7 @@ root.left = new TreeNode(4)
 root.right = new TreeNode(5);
 root.left.left = new TreeNode(1);
 root.left.right = new TreeNode(2);
-//root.left.right.left = new TreeNode(0);
+root.left.right.left = new TreeNode(0);
 
 let subRoot = new TreeNode(4);
 subRoot.left = new TreeNode(1);

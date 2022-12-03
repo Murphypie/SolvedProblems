@@ -18,25 +18,7 @@
  * @return {number}
  */
 var maxProduct = function (root) {
-    let allSums = [];
-    let total = treeSum(root);
-    let max = 0;
-    
-    for(let sum of allSums){
-        max = Math.max(max, (total-sum)*sum);
-    }
 
-    function treeSum(root) {
-        if(root === null) return 0;
-        let leftsum = treeSum(root.left)
-        let rightsum = treeSum(root.right)
-        let totalSum = leftsum+rightsum+root.val;
-        allSums.push(totalSum);
-        return totalSum;
-    }
-    
-
-    return max % 1000000007;
 };
 
 
@@ -56,3 +38,26 @@ root.right.left = new TreeNode(6);
 maxProduct(root);
 
 // @lc code=end
+
+
+/*
+let allSums = [];
+    let total = treeSum(root);
+    let max = 0;
+    
+    for(let sum of allSums){
+        max = Math.max(max, (total-sum)*sum);
+    }
+
+    function treeSum(root) {
+        if(root === null) return 0;
+        let leftsum = treeSum(root.left)
+        let rightsum = treeSum(root.right)
+        let totalSum = leftsum+rightsum+root.val;
+        allSums.push(totalSum);
+        return totalSum;
+    }
+    
+
+    return max % 1000000007;
+ */

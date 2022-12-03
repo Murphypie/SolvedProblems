@@ -15,7 +15,20 @@ https://leetcode.com/discuss/interview-question/1554594/amazon-oa-oct-2021-sde2
 */
 
 function periodsOfDecreaseRating(ratings){
-    let i = 0;
+  
+}
+// 4 - 1
+// 4,3 = 2
+// 5 - 1
+// 5,4 - 2
+// 5,4,3 - 3
+// 5,4,3,2 - 4 
+
+let ratings = [4,3,5,4,3,2];
+periodsOfDecreaseRating(ratings);
+
+/*
+  let i = 0;
     let sum = 0;
     for(let j = 0; j<ratings.length; j++){
         if(j > 0 && ratings[j]<ratings[j-1]){
@@ -27,13 +40,4 @@ function periodsOfDecreaseRating(ratings){
     }
     
     return sum;
-}
-// 4 - 1
-// 4,3 = 2
-// 5 - 1
-// 5,4 - 2
-// 5,4,3 - 3
-// 5,4,3,2 - 4 
-
-let ratings = [4,3,5,4,3,2];
-periodsOfDecreaseRating(ratings);
+*/

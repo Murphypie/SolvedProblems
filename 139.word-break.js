@@ -11,24 +11,22 @@
  * @return {boolean}
  */
 var wordBreak = function(s, wordDict) {
-  if (wordDict == null || wordDict.length === 0) return false;
-    const set = new Set(wordDict);
-    const dp = Array(s.length+1).fill(false);
+    let dp = new Array(s.length+1).fill(false);
     dp[0] = true;
-    for (let end = 1; end <= s.length; end++) {
-        for (let start = 0; start < end; start++) {
-          const w = s.slice(start, end);
-          if (dp[start] === true && set.has(w)) {
-            dp[end] = true;
-            break;
-          }
+    for(let end = 1; end<=s.length; end++){
+        for(let begin = 0; begin<end; begin++){
+            if(dp[begin] && wordDict.includes(s.slice(begin, end))){
+                dp[end] = true;
+                break;
+            }
         }
-      }
-      return dp[s.length];
+    }
+    dp;
+    return dp[dp.length-1];
 };
 
 const s = "leetcode"
-const wordDict = ["leet","code"]
+const wordDict =   ["leet","code"]
 wordBreak(s, wordDict);
 // @lc code=end
 

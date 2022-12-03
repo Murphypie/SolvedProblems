@@ -16,7 +16,7 @@
 
 
 function removeNthFromEnd(head, n){
-   let fast = head;
+    let fast = head;
    let slow = head;
 
    for(let i = 0; i<n;i++){

@@ -10,6 +10,14 @@
  * @return {number[]}
  */
 var sortedSquares = function(nums) {
+
+
+};
+
+sortedSquares([-4,-1,0,3,10])
+// @lc code=end
+
+/*
     // 1. use two pointers (start and end)
     // 2. Whichever greater will be pushed to output arr with its value squred
     // 3. Depending on which was greater, we will either increase or decrease left or right poninter
@@ -31,6 +39,4 @@ var sortedSquares = function(nums) {
         output[i] = square*square;
     }
     return output;
-};
-// @lc code=end
-
+*/

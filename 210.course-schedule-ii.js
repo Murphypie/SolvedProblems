@@ -13,41 +13,45 @@
 
 
 var findOrder = function(numCourses, prerequisites) {
-    // 1. Count all the classes available - [0,1,1,2];
-    // 2. Push element that is zero to stack which means that no prereq is required.
-    // 3. Using BFS, while stack is not empty, 
-
-    let countArr = new Array(numCourses).fill(0);
-    for(let [u,v] of prerequisites){
-        countArr[u]++
+    let edges = new Array(numCourses).fill([])
+    let numOfClass = new Array(numCourses).fill(0)
+    let took = new Array(numCourses).fill(false);
+    for(let [a,b] of prerequisites){
+        if(!edges[b].length){
+            edges[b] = [];
+        }
+        edges[b].push(a)
+        numOfClass[a] += 1;
     }
 
-    let stack = []
-    let output = [];
-    for(let i = 0; i<countArr.length; i++){
-        if(countArr[i] === 0){
-            output.push(i)
-            stack.push(i)
+    let queue = [];
+    for(let i = 0; i<numOfClass.length; i++){
+        if(numOfClass[i] === 0){
+            queue.push(i);
         }
-    };
-
-    while(stack.length){
-        let curr = stack.shift();
-        for(let [u,v] of prerequisites){
-            if(v===curr){
-                countArr[u]--;
-                if(countArr[u] === 0){
-                    output.push(u)
-                    stack.push(u);
-                }
+    }
+    let output = [];
+    
+    function dfs(queue){
+        while(queue.length){
+            let q = queue.shift();
+            output.push(q);
+            for(let cls of edges[q]){
+                numOfClass[cls]--;
+                if(numOfClass[cls] === 0) queue.push(cls);
             }
         }
     }
-    
-    return countArr.every(x=>x===0) ? output : [];
+
+    dfs(queue)
+
+    for(let i = 0; i<numOfClass.length; i++){
+        if(numOfClass[i] !== 0) return []
+    }
+    return output;
 };
 
-let numCourses = 3, prerequisites = [[1,0],[1,2],[0,1]]
+let numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
 findOrder(numCourses, prerequisites)
 
 

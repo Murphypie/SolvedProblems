@@ -1,23 +1,48 @@
+/*
+[ [ 'rock', 'rock' ],
+  [ 'rock', 'paper' ],
+  [ 'rock', 'scissors' ],
+  [ 'paper', 'rock' ],
+  [ 'paper', 'paper' ],
+  [ 'paper', 'scissors' ],
+  [ 'scissors', 'rock' ],
+  [ 'scissors', 'paper' ],
+  [ 'scissors', 'scissors' ] ]
+*/
+
+
 const rockPaperScissors = (num) =>{
     const rps = ['rock', 'paper', 'scissors'];
-    const result = [];
-
-    const recur = (arr, count) =>{
-        if(count === num) result.push(arr);
+    const output = []
+    const recur = (num, arr) =>{
+        if(num === 0) output.push(arr);
         else{
-            for(let i of rps){
-                recur(arr.concat(i), count+1)
+            for(let i = 0; i<rps.length; i++){
+                recur(num-1, arr.concat(rps[i]))
             }
         }
     }
 
-    recur([],0)
-    return result;
-
+    recur(num, [])
+    return output;
 }
 
 
 rockPaperScissors(2);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  const rps = ['rock', 'paper', 'scissors'];

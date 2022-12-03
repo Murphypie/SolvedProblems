@@ -11,6 +11,25 @@
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
+    let left = 0;
+    let right = numbers.length-1;
+
+    while(left < right){
+        let sum = numbers[left]+numbers[right];
+        if(sum === target){
+            return [left+1, right+1]
+        }else if(sum > target){
+            right -= 1;
+        }else{
+            left += 1;
+        }
+    }
+    
+};
+twoSum([2,7,11,15], 9)
+// @lc code=end
+
+/*
     // const numberMap = new Map();
     // for(let i = 0; i<numbers.length; i++){
     //   const compliment = target - numbers[i];
@@ -32,8 +51,4 @@ var twoSum = function(numbers, target) {
             right--;
         }
     }
-
-    
-};
-// @lc code=end
-
+*/

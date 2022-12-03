@@ -10,29 +10,41 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-   let numberMap = new Map();
-   for(let i = 0; i<nums.length; i++){
-       let compliment = target - nums[i];
-       if(numberMap.has(compliment)) return [numberMap.get(compliment),i];
-       numberMap.set(nums[i],i)
-   }
+var twoSum = function (nums, target) {
+    let map = new Map();
+    for(let i = 0; i<nums.length; i++){
+        let compliment = target - nums[i];
+        if(!map.has(nums[i])){
+            map.set(compliment, i);
+        }else{
+            return [map.get(nums[i]),i]
+        }
+
+    }
 };
 
-twoSum([2,7,11,15], 9)
+twoSum([2,7,11,15], 9);
 // @lc code=end
 
-  // const numberMap = new Map();
-  // for(let i = 0; i<nums.length; i++){
-  //   const compliment = target - nums[i];
-  //   if(numberMap.has(compliment)) return [numberMap.get(compliment), i];
-  //   numberMap.set(nums[i], i);
-  // }
 
-   // let hashTable = {};
-    // for(let i = 0; i<nums.length; i++){
-    //     let compliment = target - nums[i];
-    //     if(hashTable[nums[i]] !== undefined) return [hashTable[nums[i]], i]
-    //     hashTable[compliment] = i;
-    // }
-    // return false;
+
+
+
+
+
+
+
+// const numberMap = new Map();
+// for(let i = 0; i<nums.length; i++){
+//   const compliment = target - nums[i];
+//   if(numberMap.has(compliment)) return [numberMap.get(compliment), i];
+//   numberMap.set(nums[i], i);
+// }
+
+// let hashTable = {};
+// for(let i = 0; i<nums.length; i++){
+//     let compliment = target - nums[i];
+//     if(hashTable[nums[i]] !== undefined) return [hashTable[nums[i]], i]
+//     hashTable[compliment] = i;
+// }
+// return false;

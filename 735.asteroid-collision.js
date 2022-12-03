@@ -10,18 +10,22 @@
  * @return {number[]}
  */
 var asteroidCollision = function (a) {
-    let i = 0, stack = [];
+    let stack = []
+    let i = 0;
     for(let i = 0; i<a.length;){
-        if(!stack.length || a[i] >= 0 || stack[stack.length - 1] < 0) stack.push(a[i++])
-        else if(Math.abs(stack[stack.length-1]) === Math.abs(a[i])){
-            stack.pop();
+        if(stack.length === 0 || stack[stack.length-1] < 0 || a[i] > 0){
+            stack.push(a[i])
             i++
-        }else if(stack[stack.length-1] + a[i] < 0){
+        }else if(stack[stack.length-1]+a[i] < 0){
             stack.pop();
+        }else if(stack[stack.length-1]+a[i] === 0){
+            stack.pop()
+            i++
         }else{
             i++
         }
     }
+ 
     return stack;
 };
 

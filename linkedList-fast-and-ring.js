@@ -10,6 +10,8 @@ let head = node;
 let counter = 2;
 let joint;
 
+
+// Making ring
 while(counter <= 10){
     head.next = new LinkedList(counter);
     head = head.next;
@@ -22,6 +24,35 @@ while(counter <= 10){
     counter++;
 }
 
+
+
+function checkRinginLinkedList(node){
+    let fast = node;
+    let slow = node;
+    //fast slow pointer (slow will yield mid point)
+    while(fast != null && fast.next != null){
+        fast = fast.next.next;
+        slow = slow.next;
+        // check if there's a ring
+        if(fast === slow) break;
+    }
+    
+    // check if there's a ring
+    slow = node;
+    while (slow !== fast && fast !== null) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    
+    return slow
+
+}
+
+checkRinginLinkedList(node)
+
+
+
+/*
 function fastSlowPointer(node){
     let fast = node;
     let slow = node;
@@ -40,6 +71,4 @@ function fastSlowPointer(node){
     }
     return slow
 }
-
-fastSlowPointer(node)
-
+*/

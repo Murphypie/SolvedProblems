@@ -10,27 +10,26 @@
  * @return {number[]}
  */
 var partitionLabels = function(s) {
-    // Using a loop, find a last occuring index
-    // Store the max last occuring index in a variable
-    // If index from loop and max last occuring index are the same, store it in output
-    // Set previous last occruing index as a anchor point which will be subtracted to get length of next partition
-
-    
-    let output = [];
-    let maxIndex = 0;
-    let anchorPoint = 0;
+    let output = []
+    let anchorPoint = -1;
+    let maxLatestIndex = -Infinity;
     for(let i = 0; i<s.length; i++){
-        maxIndex = Math.max(s.lastIndexOf(s[i]), maxIndex);
-        if(i === maxIndex){
-            output.push(i+1 - anchorPoint)
-            anchorPoint = i+1;
+        maxLatestIndex = Math.max(maxLatestIndex, s.lastIndexOf(s[i]));
+        if(maxLatestIndex === i){
+            output.push(i-anchorPoint)
+            anchorPoint = i;
         }
     }
+
     return output;
 };
 
 partitionLabels("ababcbacadefegdehijhklij")
 // @lc code=end
+
+
+
+
 
 
 /*
@@ -90,3 +89,5 @@ partitionLabels("ababcbacadefegdehijhklij")
 //         }
 //     }
 //     return partition;
+
+

@@ -10,7 +10,14 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-    const output = [];
+ 
+}
+let output = generateParenthesis(3);
+
+// @lc code=end
+
+/*
+  const output = [];
     function go(l,r,str){
         if(l>r) return; // r>l means that paren is not closed
         if(l===0 && r===0) output.push(str)
@@ -19,10 +26,7 @@ var generateParenthesis = function(n) {
     }
     go(n,n,"");
     return output;
-
-}
-generateParenthesis(3);
-// @lc code=end
+*/
 
 /*
    // recursive - take or leave method (open or close)

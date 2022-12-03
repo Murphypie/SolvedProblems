@@ -12,7 +12,50 @@
  * @return {number}
  */
 var maxProfit = function (inventory, orders) {
-    //rangeSum Formula
+    let value = 0;
+    let count = orders;
+    let numCount = 0;
+    inventory = inventory.sort((a,b)=>b-a)
+
+    let rangeSum = (i, j) => {
+        i = BigInt(i), j = BigInt(j)
+        return ((j * ((j + 1n)) / 2n) - (i * (i + 1n) / 2n))
+    }
+
+    if(inventory.length === 1){
+        return rangeSum(inventory[inventory.length-1], inventory[inventory.length-1]-orders) % 1000000007
+    }
+    // 1. Highest until the next element
+    while(numCount < count){
+        if(!inventory[numCount+1]) break;
+        if(inventory[numCount] === inventory[numCount+1]){
+            numCount++
+            continue;
+        }
+        value += (numCount+1) * rangeSum(inventory[numCount],inventory[numCount+1])
+        count -= (numCount+1) * (inventory[numCount]-inventory[numCount+1])
+        numCount++
+        if(numCount+1 > inventory.length) break;
+    }
+ 
+    for(let i = 0; i<count; i++){
+        if(i!== 0 && i%inventory.length === 0){
+            --inventory[numCount]
+        }
+        value += inventory[numCount]
+    }
+ 
+    return value % 1000000007
+};
+
+let inventory = [773160767], orders = 252264991;
+maxProfit(inventory, orders)
+
+
+// @lc code=end
+
+/*
+//rangeSum Formula
     let rangesum = (i, j) => {
         i = BigInt(i), j = BigInt(j)
         return ((j * ((j + 1n)) / 2n) - (i * (i + 1n) / 2n))
@@ -38,10 +81,4 @@ var maxProfit = function (inventory, orders) {
     if (k > 0 && k < n - i)
         result = (result + BigInt(k) * BigInt(A[i])) % mod
     return Number(result)
-};
-
-let inventory = [0, 2, 4, 6, 6, 8, 12], orders = 20;
-maxProfit(inventory, orders)
-
-
-// @lc code=end
+*/

@@ -17,52 +17,54 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
+
+
+
 var addTwoNumbers = function (l1, l2) {
     let node = new ListNode(0);
-    let head = node;
-    let sum = 0;
-    let carry = 0;
-    let count = 0;
-
-    while (l1 !== null || l2 !== null) {
-        let localSum = 0;
-        if (l1 !== null) {
-            localSum += l1.val;
-            l1 = l1.next;
+    let head = node
+    let sum = 0
+    while(l1 !== null || l2 !== null || sum !== 0){
+        let carry = 0;
+        if(l1 !== null){
+            sum += l1.val
+            l1 = l1.next
         }
-        if (l2 !== null) {
-            localSum += l2.val;
+        if(l2 !== null){
+            sum += l2.val;
             l2 = l2.next;
         }
-        localSum += carry;
-        carry = 0;
-        if(localSum >= 10){
+        if(sum>=10){
             carry = 1;
-            localSum = localSum - 10;    
+            sum -= 10;
         }
-        head.next = new ListNode(localSum)
+        head.next = new ListNode(sum);
         head = head.next;
-        sum += localSum*Math.pow(10, count);
-        count = count + 1;
-    }
-    if(carry === 1){
-        head.next = new ListNode(carry);
+        sum = carry;
     }
     return node.next;
 };
+
+
+
 
 function ListNode(val, next) {
     this.val = val === undefined ? 0 : val;
     this.next = next === undefined ? null : next;
 }
 
-let l1 = new ListNode(2);
-l1.next = new ListNode(4);
-l1.next.next = new ListNode(3);
+const listMaker = (arr) =>{
+    let list = new ListNode(0)
+    let head = list;
+    for(let i of arr){
+        head.next = new ListNode(i);
+        head = head.next;
+    }
+    return list.next;
+}
 
-let l2 = new ListNode(5);
-l2.next = new ListNode(6);
-l2.next.next = new ListNode(4);
+let l1 = listMaker([2,4,3])//listMaker([9,9,9,9,9,9,9])
+let l2 = listMaker([5,6,4])//listMaker([9,9,9,9])
 
 addTwoNumbers(l1, l2);
 
@@ -93,3 +95,5 @@ addTwoNumbers(l1, l2);
     }
     return list.next;
 */
+
+

@@ -10,29 +10,10 @@
  * @return {number}
  */
 var largestRectangleArea = function(heights) {
-    //stack
-    let stack = [];
-    stack.push(-1);
-    let max_area = 0;
-    for(let i = 0; i<heights.length; i++){
-        while(stack[stack.length-1] !== -1 && heights[stack[stack.length-1]] >= heights[i]){
-            let current_height = stack.pop();
-            let current_width = i - stack[stack.length-1] -1;
-            max_area = Math.max(max_area, current_height*current_width);
-        }
-        stack.push(i);
-    }
-    stack;
-    while(stack[stack.length-1] !== -1){
-        let current_height = heights[stack[stack.length-1]];
-        stack.pop();
-        let current_width = heights.length - stack[stack.length-1] -1;
-        max_area = Math.max(max_area, current_height*current_width);
-    }
-    return max_area;
+   // do stack and divide/conquer
 };
 
-let heights =  [6, 7, 5, 2, 4, 5, 9, 3]
+let heights = [2,1,0,3,4,2,3,4]//[2,1,2]//[2,4]
 largestRectangleArea(heights)
 // @lc code=end
 
@@ -99,4 +80,28 @@ Thus, we repeat the same process to the left and right of 2.
 }
 
 return calculateArea(heights, 0, heights.length-1);
+*/
+
+/*
+   // Stack
+    let stack = [-1];
+    let maxArea = 0;
+    for(let i = 0; i<heights.length; i++){
+        while(heights[stack[stack.length-1]] > heights[i] && stack[stack.length-1] !== -1){
+            let top = stack.length-1;
+            let current_height = heights[stack.pop()];
+            let current_width = i - stack[top-1] -1
+            maxArea = Math.max(current_height*current_width, maxArea)
+        }
+       stack.push(i)
+   }
+
+   while(stack[stack.length-1] !== -1){
+       let top = stack.length-1;
+       let current_height = heights[stack.pop()];
+       let current_width = heights.length - stack[top-1] -1;
+       maxArea = Math.max(maxArea, current_height * current_width);
+   }
+
+   return maxArea
 */

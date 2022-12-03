@@ -10,6 +10,28 @@
  * @return {number}
  */
 var countBinarySubstrings = function(s) {
+  
+};
+
+
+countBinarySubstrings("00110011")
+// @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     // Since there are only 2 groups, we only need to be concerned with the most recent two groups (curr, prev)
     // curr = current count of the same string, prev = previous count of the same string
     // If s[i] === s[i-1], increase curr+
@@ -26,8 +48,4 @@ var countBinarySubstrings = function(s) {
         }
     }
     return ans + Math.min(prev, curr);
-};
-
-countBinarySubstrings("00110011")
-// @lc code=end
-
+*/

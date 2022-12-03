@@ -10,7 +10,16 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    // It is impossible to sell stock on first day, set -infinity as initial value for curHold
+   
+};
+maxProfit([7,1,5,3,6,4]);
+
+// @lc code=end
+
+
+
+    /*
+        // It is impossible to sell stock on first day, set -infinity as initial value for curHold
     let [curHold, curNotHold] = [-Infinity, 0];
     
     for(const stockPrice of prices){
@@ -26,13 +35,4 @@ var maxProfit = function(prices) {
     
     // Max profit must come from notHold state finally.
     return curNotHold; 
-    
-
-    
-};
-maxProfit([7,1,5,8,3,6,4]);
-
-// @lc code=end
-
-
-    
+    */

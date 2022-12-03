@@ -10,15 +10,20 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-   let buy = Infinity;
-   let profit = 0;
-   for(let i = 0; i<prices.length; i++){
-       buy = Math.min(buy, prices[i]);
-       profit = Math.max(profit, prices[i]-buy)
-   }
-   return profit;
+    let minPrice = Infinity;
+    let maxPrice = 0;
+
+    for(let i =0; i<prices.length; i++){
+        minPrice = Math.min(minPrice, prices[i]);
+        maxPrice = Math.max(maxPrice, prices[i]-minPrice)
+    }
+    return maxPrice
+
 };
 
+let prices = [7,6,4,3,1]
+
+maxProfit(prices)
 
 // @lc code=end
 

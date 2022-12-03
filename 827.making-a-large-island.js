@@ -17,67 +17,66 @@ of the island as value; e.g., (index, area)
 We can do it by checking four directions and using index (if found) to get the area of an island from hash table.
 */
 
-const largestIsland = (grid) =>{
-    let islandArea = new Map();
-    let islandIdx = 2;
-   
-    let maxArea = 0;
-    let area = 0;
+var largestIsland = function(grid) {
+    let islandMap = new Map();
+    let islandIndex = 2;
+    let maxArea = 1;
     for(let i = 0; i<grid.length; i++){
+        let area = 1;
         for(let j = 0; j<grid[0].length; j++){
             if(grid[i][j] === 1){
-                area = dfs(grid, i, j, islandIdx)
-                islandArea.set(islandIdx, area)
-                islandIdx++;
+                area = dfs(grid, i, j, islandIndex)
+                islandMap.set(islandIndex, area)
+                islandIndex++
             }
-            maxArea = Math.max(maxArea, area)
+            maxArea = Math.max(area, maxArea);
         }
     }
-   
+
+
     for(let i = 0; i<grid.length; i++){
         for(let j = 0; j<grid[0].length; j++){
             let seen = new Set();
+            let localArea = 1;
             if(grid[i][j] === 0){
-                let area = 1
-                for(let [newRow, newCol] of directions(i,j)){
-                    if(validIdx(grid, newRow, newCol) 
-                    && grid[newRow][newCol] !== 0
-                    && !seen.has(grid[newRow][newCol])){
-                        area += islandArea.get(grid[newRow][newCol]);
-                        seen.add(grid[newRow][newCol])
+                for(let [newI, newJ] of proximity(i,j)){
+                    if(newI >= 0 && newI<grid.length && newJ >= 0 && 
+                        newJ<grid[0].length && grid[newI][newJ] !== 0&&
+                        !seen.has(grid[newI][newJ])){
+                        localArea += islandMap.get(grid[newI][newJ])
+                        seen.add(grid[newI][newJ])
                     }
-                    maxArea = Math.max(area, maxArea);
                 }
+                maxArea = Math.max(localArea, maxArea)
             }
         }
     }
-    return maxArea
-}
-
-function validIdx(grid, row, col){
-    return row >= 0 && row < grid.length && col >= 0 && col < grid[0].length;
-}
-
-function directions(row, col) {
-    // up, right, down, left
-    return [[row-1,col], [row,col+1], [row+1,col], [row,col-1]];
-}
+   
+    return maxArea;
+};
 
 
 function dfs(grid, i, j, islandIdx){
-    if(grid[i] === undefined || grid[i][j] === undefined || grid[i][j] !== 1) return 0;
+    if(grid[i] === undefined || grid[i][j] === undefined || grid[i][j] !== 1) return 0
     grid[i][j] = islandIdx;
     let area = 1;
-    area += dfs(grid, i+1, j, islandIdx)+
-    dfs(grid, i, j+1, islandIdx)+
-    dfs(grid, i-1, j, islandIdx)+
-    dfs(grid, i, j-1, islandIdx)
-    return area;
+    for([i,j] of proximity(i,j)){
+        area += dfs(grid, i, j, islandIdx)
+    }
+
+    return area
 }
+
+function proximity(i,j){
+    return [[i+1,j], [i-1,j],[i,j+1], [i,j-1]]
+}
+
 
 // @lc code=end
 
-let grid = [[1,1],[1,1]]
+let grid =[[1,1],[1,1]] 
+//[[0,0,0,0,0,0,0],[0,1,1,1,1,0,0],[0,1,0,0,1,0,0],[1,0,1,0,1,0,0],[0,1,0,0,1,0,0],[0,1,0,0,1,0,0],[0,1,1,1,1,0,0]]
+// [[0,1,0,0,0], [0,0,1,0,0], [0,1,1,0,0], [0,0,0,1,1], [0,0,1,1,1]]  
 largestIsland(grid);
 
 
