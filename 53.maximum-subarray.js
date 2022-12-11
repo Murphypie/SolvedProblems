@@ -10,14 +10,16 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-  let sum = -Infinity;
-  let max = -Infinity;
-  for(let i = 0; i<nums.length; i++){
-      sum += nums[i]
-      if(nums[i] > sum) sum = nums[i];
-      max = Math.max(max, sum);
-  }
-  return max;
+    let max = -Infinity;
+    let sum = -Infinity;
+
+    for(let i = 0; i<nums.length; i++){
+        sum += nums[i]
+        if(nums[i] > sum) sum = nums[i];
+        max = Math.max(max, sum);
+    }
+    return max;
+
 };
 
 maxSubArray( [-2,1,-3,4,-1,2,1,-5,4])
@@ -32,4 +34,16 @@ maxSubArray( [-2,1,-3,4,-1,2,1,-5,4])
         max = Math.max(max, prev);
     }
     return max;
+*/
+
+
+/*
+  let sum = -Infinity;
+  let max = -Infinity;
+  for(let i = 0; i<nums.length; i++){
+      sum += nums[i]
+      if(nums[i] > sum) sum = nums[i];
+      max = Math.max(max, sum);
+  }
+  return max;
 */

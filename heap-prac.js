@@ -1,195 +1,137 @@
 
 class minHeap{
+  /*
+    getParentIndex
+    hasParent
+    getParent
+    getLeftChildIndex
+    hasLeftChild
+    getLeftChild
+    getRightChildIndex
+    hasRightChild
+    getRightChild
+    swap
+    heapfyUp
+    heapfyDown
+    insert
+    removeFirstNode
+  */
+
     constructor(){
         this.storage = [];
         this.size = 0;
     }
 
-    getParentIndex(n){
-        return Math.floor((n-1)/2)
+    hasParent(i){
+        return this.getParentIndex(i) >= 0
     }
 
-    hasParent(n){
-        return this.getParentIndex(n) >= 0;
-    }
-    
-    getParent(n){
-        if(this.hasParent(n)) return this.storage[this.getParentIndex(n)]
+    getParentIndex(i){
+        return Math.floor((i-1)/2)
     }
 
-    getLeftChildIndex(n){
-        return 2*n+1;
+    getParent(i){
+        return this.storage[this.getParentIndex(i)];
     }
 
-    hasLeftChild(n){
-        return this.getLeftChildIndex(n) < this.size;
+    getLeftChildIndex(i){
+        return 2*i+1
     }
 
-    getLeftChild(n){
-        if(this.hasLeftChild(n)) return this.storage[this.getLeftChildIndex(n)]
+    hasLeftChild(i){
+       return this.size > this.getLeftChildIndex(i) 
     }
 
-    getRightChildIndex(n){
-        return 2*n+2;
+    getLeftChild(i){
+        if(this.hasLeftChild(i)) return this.storage[this.getLeftChildIndex(i)]
     }
 
-    hasRightChild(n){
-        return this.getRightChildIndex(n) < this.size;
+    getRightChildIndex(i){
+        return 2*i+2
     }
 
-    getRightChild(n){
-        if(this.hasRightChild(n)) return this.storage[this.getRightChildIndex(n)]
+    hasRightChild(i){
+        return this.size > this.getRightChildIndex(i)
     }
 
-    swap(i, j){
-        let temp = this.storage[j];
-        this.storage[j] = this.storage[i];
-        this.storage[i] = temp;
+    getRightChild(i){
+        if(this.hasRightChild(i)) return this.storage[this.getRightChildIndex(i)]
+    }
+
+    swap(i,j){
+        let temp = this.storage[i]
+        this.storage[i] = this.storage[j]
+        this.storage[j] = temp
     }
 
     heapfyUp(){
-        let n = this.size - 1;
-        while(this.hasParent(n) && this.getParent(n) > this.storage[n]){
-            this.swap(this.getParentIndex(n), n)
-            n = this.getParentIndex(n)
-        }
+        // used when adding an element
+      // swap a new element with the parent if a value is bigger(max) or smaller (min)
+      let index = this.size-1;
+      while(this.hasParent(index) && this.getParent(index) > this.storage[index]){
+        this.swap(index, this.getParentIndex(index))
+        index = this.getParentIndex(index);
+      }
+
     }
 
     heapfyDown(){
-        let n = 0;
-        while(this.hasLeftChild(n)){
-            let smallerChildIndex = this.getLeftChildIndex(n);
-            if(this.hasRightChild(n) && this.getLeftChild(n) > this.getRightChild(n)){
-                smallerChildIndex = this.getRightChildIndex(n)
+        // used when removing an element
+      // swap a root element down the tree if a value is smaller(max) or bigger (min)
+        let index = 0;
+        while(this.hasLeftChild(index)){
+            let smallerChildIndex = this.getLeftChildIndex(index)
+            if(this.hasRightChild(index) && this.getRightChild(index) < this.getLeftChild(index)){
+                smallerChildIndex = this.getRightChildIndex(index)
             }
-            if(this.storage[n] < this.storage[smallerChildIndex]){
+            if(this.storage[index] < this.storage[smallerChildIndex]){
                 break;
             }else{
-                this.swap(n, smallerChildIndex)
+                this.swap(index, smallerChildIndex)
             }
-            n = smallerChildIndex;
+            index = smallerChildIndex;
         }
     }
 
     insert(val){
         this.storage[this.size] = val;
         this.size++;
-        this.heapfyUp();
-    }
+        this.heapfyUp()
+    };
 
     removeFirstNode(){
+        if(this.size === 0) throw new Error("Heap is empty");
         let value = this.storage[0];
         this.storage[0] = this.storage.pop();
         this.size--;
         this.heapfyDown();
         return value;
     }
+
 }
 
 const minHeapTest = new minHeap();
-minHeapTest.insert(1);
-minHeapTest.insert(2);
-minHeapTest.insert(5);
-minHeapTest.insert(3);
-minHeapTest.insert(8);
+minHeapTest.insert(10);
+minHeapTest.insert(15);
+minHeapTest.insert(30);
+minHeapTest.insert(40);
+minHeapTest.insert(50);
+minHeapTest.insert(100);
 minHeapTest;
 minHeapTest.removeFirstNode();
-minHeapTest
+minHeapTest;
 
 
 class maxHeap{
-    constructor(){
-        this.storage = [];
-        this.size = 0;
-    }
-
-    getParentIndex(n){
-        return Math.floor((n-1)/2)
-    }
-
-    hasParent(n){
-        return this.getParentIndex(n) >= 0;
-    }
-    
-    getParent(n){
-        if(this.hasParent(n)) return this.storage[this.getParentIndex(n)]
-    }
-
-    getLeftChildIndex(n){
-        return 2*n+1;
-    }
-
-    hasLeftChild(n){
-        return this.getLeftChildIndex(n) < this.size;
-    }
-
-    getLeftChild(n){
-        if(this.hasLeftChild(n)) return this.storage[this.getLeftChildIndex(n)]
-    }
-
-    getRightChildIndex(n){
-        return 2*n+2;
-    }
-
-    hasRightChild(n){
-        return this.getRightChildIndex(n) < this.size;
-    }
-
-    getRightChild(n){
-        if(this.hasRightChild(n)) return this.storage[this.getRightChildIndex(n)]
-    }
-
-    swap(i, j){
-        const temp = this.storage[j];
-        this.storage[j] = this.storage[i];
-        this.storage[i] = temp;
-    }
-
-    heapfyUp(){
-        let n = this.size - 1;
-        while(this.hasParent(n) && this.storage[n] > this.getParent(n)){
-            this.swap(n, this.getParentIndex(n))
-            n = this.getParentIndex(n);
-        }
-    }
-
-    heapfyDown(){
-        let n = 0;
-        while(this.hasLeftChild(n)){
-            let biggerChildIndex = this.getLeftChildIndex(n);
-            if(this.hasRightChild(n) && this.getRightChild(n) > this.getLeftChild(n)){
-                biggerChildIndex = this.getRightChildIndex(n);
-            }
-            if(this.storage[n] > this.storage[biggerChildIndex]){
-                break;
-            }else{
-                this.swap(n, biggerChildIndex);
-            }
-            n = biggerChildIndex
-        }
-    }
-
-    insert(val){
-        this.storage[this.size] = val;
-        this.size++;
-        this.heapfyUp();
-    }
-
-    removeFirstNode(){
-        let value = this.storage[0];
-        this.storage[0] = this.storage.pop();
-        this.size--;
-        this.heapfyDown();
-        return value;
-    }
+  
 }
 
 const maxHeapTest = new maxHeap();
-maxHeapTest.insert(1)
-maxHeapTest.insert(2)
-maxHeapTest.insert(5)
-maxHeapTest.insert(3)
-maxHeapTest.insert(8);
-maxHeapTest;
-maxHeapTest.removeFirstNode();
-maxHeapTest
+// maxHeapTest.insert(1)
+// maxHeapTest.insert(2)
+// maxHeapTest.insert(5)
+// maxHeapTest.insert(3)
+// maxHeapTest.insert(8);
+// maxHeapTest;
+// maxHeapTest.removeFirstNode();
+// maxHeapTest

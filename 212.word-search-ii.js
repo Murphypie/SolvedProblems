@@ -13,47 +13,9 @@
  */
 
  var findWords = function(board, words) {
-    let trie = buildTrie(words);
-    let output = []
-
-    for(let i = 0; i<board.length; i++){
-        for(let j = 0; j<board[0].length; j++){
-            searcher(i,j, board, trie)
-        }
-    }
-
-    function searcher(i,j,board, trie){
-        if(trie.end){
-            output.push(trie.end)
-            trie.end = 0;
-        };
-        if(board[i] === undefined || board[i][j] === undefined) return;
-        let char = board[i][j];
-        if(!trie[char]) return
-        board[i][j] = 0;
-        searcher(i-1, j, board, trie[char])
-        searcher(i+1, j, board, trie[char])
-        searcher(i, j-1, board, trie[char])
-        searcher(i, j+1, board, trie[char])
-        board[i][j] = char;
-    }
-    return output;
+ 
 };
 
-function buildTrie(words){
-    const trie = {};
-    for(let word of words){
-        let head = trie;
-        for(let str of word){
-            if(!head[str]){
-                head[str] = {};
-            }
-            head = head[str];
-        }
-        head.end = word;
-    }
-    return trie;
-}
 
 const board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
 const words = ["oath","over","pea","eat","rain"]
@@ -76,7 +38,7 @@ findWords(board, words)
             node.end = null;
         }
 
-        if(row<0 || row>=board.length || col < 0 || col >= board[0].length) return;
+        if(row<0 || row>=board.length || col < 0 || col >= board[0].length) return; // or use this: if(board[i] === undefined || board[i][j] === undefined) return;
         const c = board[row][col];
         if(!node[c]) return; 
         board[row][col] = 0; // Marking visited

@@ -12,16 +12,18 @@ const { setEmitFlags } = require("typescript");
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    let hashTable = {};
-    for(let i = 0; i<strs.length; i++){
-        let sorted = strs[i].split('').sort().join();
-        if(!hashTable[sorted]){
-            hashTable[sorted] = [strs[i]]
-        }else{
-            hashTable[sorted].push(strs[i])
+    
+    const hashTable = {};
+    for(let str of strs){
+        let sortedChars = str.split('').sort().join();
+        if(!hashTable[sortedChars]){
+            hashTable[sortedChars] = [];
         }
+        hashTable[sortedChars].push(str);
     }
-    return Object.values(hashTable)
+
+    return Object.values(hashTable);
+    
 };
 
 

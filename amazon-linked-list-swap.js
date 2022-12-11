@@ -7,7 +7,21 @@ class LinkedList {
 }
 
 function linkedListSwap(ll, x, y) {
-  let prevX = null
+ 
+}
+
+let ll = new LinkedList(10);
+ll.next = new LinkedList(15);
+ll.next.next = new LinkedList(12);
+ll.next.next.next = new LinkedList(13);
+ll.next.next.next.next = new LinkedList(20);
+ll.next.next.next.next.next = new LinkedList(14);
+
+linkedListSwap(ll, 15, 20);
+
+
+/*
+ let prevX = null
   let currX = null
   let prevY = null;
   let currY = null;
@@ -41,13 +55,4 @@ function linkedListSwap(ll, x, y) {
 
 
   return ll;
-}
-
-let ll = new LinkedList(10);
-ll.next = new LinkedList(15);
-ll.next.next = new LinkedList(12);
-ll.next.next.next = new LinkedList(13);
-ll.next.next.next.next = new LinkedList(20);
-ll.next.next.next.next.next = new LinkedList(14);
-
-linkedListSwap(ll, 15, 20);
+*/
