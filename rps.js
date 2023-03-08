@@ -13,22 +13,24 @@
 
 const rockPaperScissors = (num) =>{
     const rps = ['rock', 'paper', 'scissors'];
-    const output = []
-    const recur = (num, arr) =>{
-        if(num === 0) output.push(arr);
-        else{
-            for(let i = 0; i<rps.length; i++){
-                recur(num-1, arr.concat(rps[i]))
-            }
+    let output = []
+
+    const repeater = (count, tempArr) =>{
+        if(count===num){
+            output.push(tempArr)
+            return;
+        };
+        for(let i = 0; i<rps.length; i++){
+            repeater(count+1, tempArr.concat(rps[i]))
         }
     }
 
-    recur(num, [])
+    repeater(0, [])
     return output;
 }
 
 
-rockPaperScissors(2);
+rockPaperScissors(3);
 
 
 

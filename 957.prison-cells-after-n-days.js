@@ -11,44 +11,66 @@
  * @return {number[]}
  */
 var prisonAfterNDays = function (cells, n) {
-    let firstCell = cells.join('')
-    const pcCache = [firstCell]
-    let repeatIndex = -1;
-    for (let i = 0; i < n; i++) {
-        let lastCell = pcCache[pcCache.length-1];
-        let modifiedCell = ''
-        for(let j = 0; j<8; j++){
-            if(j === 0 || j === 7){
-                modifiedCell += '0'
+    let cacheObj = {};
+    cacheObj[cells.join("")] = 0;
+    
+    function nextDayConf(arr){
+        let tempArr = [...arr]
+        for(let i = 1; i<arr.length-1; i++){
+            if(arr[i-1] !== arr[i+1]){
+                tempArr[i] = 0
             }else{
-                if(lastCell[j-1] === lastCell[j+1]){
-                    modifiedCell += '1'
-                }else{
-                    modifiedCell += '0'
-                }
+                tempArr[i] = 1;
             }
         }
-        if(pcCache.includes(modifiedCell)){
-            let occurence = pcCache.indexOf(modifiedCell)
-            repeatIndex = (n-occurence)%(pcCache.length-occurence) + occurence
+        if(tempArr[0] === 1) tempArr[0] = 0;
+        if(tempArr[tempArr.length-1] === 1) tempArr[tempArr.length-1] = 0;
+        return tempArr;
+    }
+
+    let repeatInx = 0;
+    let lastIndex = n;
+    for(let i = 0; i<n; i++){
+        cells = nextDayConf(cells)
+        let concatCell = cells.join("")
+        if(!isNaN(cacheObj[concatCell])){
+            repeatInx = cacheObj[concatCell];
+            lastIndex = i;
             break;
         }else{
-            pcCache.push(modifiedCell)
+            cacheObj[concatCell] = i+1;
         }
     }
-    if(repeatIndex < 0){
-        return pcCache[pcCache.length-1].split('')
-    }else{
-        return pcCache[repeatIndex].split('')
-    }
+    let keyArr = Object.keys(cacheObj);
+    let finalIdx = (lastIndex===n) ? lastIndex : (n-repeatInx)%(lastIndex-repeatInx+1)+repeatInx
+    let finalArr = keyArr[finalIdx].split("").map(x=>parseInt(x))
+
+    return finalArr
 };
 
 
 
 
-prisonAfterNDays([1,0,1,0,0,0,0,1], 15); // 1000000000)
+prisonAfterNDays([1,0,0,1,0,0,1,0],1000000000); 
 // @lc code=end
 
+let indexarr = [
+    "10010010",
+    "00010010",
+    "01010010",
+    "01110010",
+    "00100010",
+    "00101010",
+    "00111110",
+    "00011100",
+    "01001000",
+    "01001010",
+    "01001110",
+    "01000100",
+    "01010100",
+    "01111100",
+    "00111000",
+];
 
 
 
@@ -113,20 +135,39 @@ let prison = [...cells].join('');
    return prison.split('')
 */
 
-let indexarr = [
-    "10010010",
-    "00010010",
-    "01010010",
-    "01110010",
-    "00100010",
-    "00101010",
-    "00111110",
-    "00011100",
-    "01001000",
-    "01001010",
-    "01001110",
-    "01000100",
-    "01010100",
-    "01111100",
-    "00111000",
-];
+
+
+
+
+/*
+ let firstCell = cells.join('')
+    const pcCache = [firstCell]
+    let repeatIndex = -1;
+    for (let i = 0; i < n; i++) {
+        let lastCell = pcCache[pcCache.length-1];
+        let modifiedCell = ''
+        for(let j = 0; j<8; j++){
+            if(j === 0 || j === 7){
+                modifiedCell += '0'
+            }else{
+                if(lastCell[j-1] === lastCell[j+1]){
+                    modifiedCell += '1'
+                }else{
+                    modifiedCell += '0'
+                }
+            }
+        }
+        if(pcCache.includes(modifiedCell)){
+            let occurence = pcCache.indexOf(modifiedCell)
+            repeatIndex = (n-occurence)%(pcCache.length-occurence) + occurence
+            break;
+        }else{
+            pcCache.push(modifiedCell)
+        }
+    }
+    if(repeatIndex < 0){
+        return pcCache[pcCache.length-1].split('')
+    }else{
+        return pcCache[repeatIndex].split('')
+    }
+*/

@@ -12,7 +12,7 @@
 
 
 var letterCombinations = function(digits) {
-    if(digits.length === 0) return []
+    if(digits === "") return [];
     let letterObj = {
         "2": ['a', 'b', 'c'],
         "3": ['d', 'e', 'f'],
@@ -23,23 +23,36 @@ var letterCombinations = function(digits) {
         "8": ['t', 'u', 'v'],
         "9": ['w', 'x', 'y', 'z']
     };
-    const length = digits.length;
-    let count = 0;
+
     let output = [];
-    const recur = (str, count) =>{
-        if(count === length) output.push(str);
-        else{
-            for(let char of letterObj[digits[count]]){
-                recur(str+char, count+1);
-            }
+    let length = digits.length;
+
+    function recur(count, strs){
+        if(count === length){
+            output.push(strs);
+            return;
         }
+
+        for(let char of letterObj[digits[count]]){
+            recur(count+1, strs+char);
+        }
+
     }
-    recur("",count)
+
+    recur(0, "")
+
     return output;
+
 };
 
-letterCombinations("23")
+letterCombinations("234")
 // @lc code=end
+
+
+
+
+
+
 
 
 

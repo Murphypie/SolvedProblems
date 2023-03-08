@@ -8,16 +8,17 @@
 
 
 var lengthOfLongestSubstring = function(s) {
-    let str = '';
-    let max = 0;
-    for(let i = 0; i<s.length; i++){
-        if(str.indexOf(s[i]) !== -1){
-            str = str.slice(str.indexOf(s[i])+1);
+    let maxStr = ""
+   let output = "";
+   for(let i = 0; i<s.length; i++){
+        let indexOf = output.indexOf(s[i])
+       if(indexOf !== -1){
+            output = output.slice(indexOf+1)
         }
-        str += s[i];
-        max = Math.max(max, str.length);
-    }
-    return max
+        output += s[i]
+        if(output.length >= maxStr.length) maxStr = output;
+   }
+   return maxStr.length;
 };
 
 
@@ -25,7 +26,7 @@ var lengthOfLongestSubstring = function(s) {
 
 
 
-let s = 'pwwkew';
+let s = "abcabcbb";
 lengthOfLongestSubstring(s);
 
 // @lc code=end

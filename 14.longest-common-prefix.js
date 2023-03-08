@@ -10,10 +10,18 @@
  * @return {string}
  */
 var longestCommonPrefix = function(strs) {
-    
+    if (strs === undefined || strs.length === 0) { return ''; }
+    return strs.reduce((prev, next)=>{
+        let temp = "";
+        for(let i = 0; i<next.length; i++){
+            if(prev[i] !== next[i]) break;
+            else temp += next[i];
+        }
+        return temp;
+    })
 };
 
-const strs = ["flower","flow","flight"]//["",""]
+const strs =  ["flower","flow","flight"]
 longestCommonPrefix(strs);
 // @lc code=end
 
@@ -31,3 +39,19 @@ longestCommonPrefix(strs);
 */
 
 
+/*
+    let output = strs[0];
+    for(let i = 1; i<strs.length; i++){
+        let temp = ""
+        for(let j = 0; j<strs[i].length; j++){
+            if(output[j] !== strs[i][j]){
+                break;
+            }else{
+                temp += strs[i][j]
+            }
+        }
+        output = temp;
+    }
+
+    return output;
+*/

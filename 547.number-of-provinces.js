@@ -13,47 +13,44 @@
 
 class UnionFind{
     constructor(n){
-        this.arr = [...new Array(n)].map((_,i)=>i);
-        this.group = n;
+        this.storage = new Array(n).fill(0).map((_, i)=>i)
+        this.total = n;
     }
 
-    find(id) {
-        if(this.arr[id] === id) return id;
-        this.arr[id] = this.find(this.arr[id]);
-        return this.arr[id];
+    find(x){
+        if(x === this.storage[x]) return x;
+        else return this.find(this.storage[x]);
     }
 
-    union(p, q){
-        const rootp = this.find(p);
-        const rootq = this.find(q);
-        if(rootp !== rootq){
-            this.arr[rootq] = rootp;
-            this.group--;
+    union(x,y){
+        let findX = this.find(x);
+        let findY = this.find(y);
+        if(findX!==findY){
+            this.storage[findY] = this.storage[findX]
+            this.total--;
         }
     }
-}
 
+} 
 
 
  var findCircleNum = function(isConnected) {
-     let unionfind = new UnionFind(isConnected.length);
-     
-     for(let i = 0; i<isConnected.length; i++){
+    let total = isConnected.length;
+    let unionfind = new UnionFind(total);
+
+    for(let i = 0; i<isConnected.length; i++){
         for(let j = 0; j<isConnected[0].length; j++){
-            if(isConnected[i][j] === 1 && i !== j){
+            if(i !== j && isConnected[i][j]){
                 unionfind.union(i, j)
             }
         }
     }
-    return unionfind.group
- }
 
- let arr = [[1,0,0,1],[0,1,1,0],[0,1,1,1],[1,0,1,1]]
+    return unionfind.total
+ }
+ let arr = [[1,0,0],[0,1,0],[0,0,1]]//[[1,1,0,0],[1,1,1,0],[0,1,1,0], [0,0,0,1]]
 findCircleNum(arr);
 // @lc code=end
-
-
-
 
 
 
@@ -151,4 +148,42 @@ class UnionFind{
     }
 
     return count;
+*/
+
+
+/*
+var findCircleNum = function(isConnected) {
+    let edges = new Array(isConnected.length).fill(0).map(x=>[])
+    let visited = new Array(isConnected.length).fill(false);
+
+    for(let i = 0; i<isConnected.length; i++){
+        for(let j = 0; j<isConnected[0].length; j++){
+            if(i !== j && isConnected[i][j] !== 0){
+                edges[i].push(j)
+            }
+            
+        }
+    }
+    
+    let count = 0;
+    for(let i = 0; i<isConnected.length; i++){
+        if(!visited[i]){
+            dfs(edges, i)
+            count++
+        }
+    }
+
+    function dfs(edges, start){
+        if(visited[start]) return;
+        visited[start]= true;
+
+        for(let edge of edges[start]){
+            dfs(edges, edge)
+        }
+    }
+
+ 
+    
+    return count;
+}
 */

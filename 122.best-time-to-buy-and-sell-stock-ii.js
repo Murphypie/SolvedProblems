@@ -10,11 +10,45 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-   
+    let [curHold, curNotHold] = [-Infinity, 0];
+    for(let price of prices){
+        let prevHold = curHold;
+        let prevNotHold = curNotHold;
+
+        // Buy - don't have any stock - need to buy or hold
+        curHold = Math.max(prevHold, prevNotHold - price)
+        // Sell - already has stock - need to sell or hold
+        curNotHold = Math.max(prevNotHold, prevHold+price)
+    }
+    return curNotHold
 };
 maxProfit([7,1,5,3,6,4]);
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

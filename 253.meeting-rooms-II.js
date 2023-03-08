@@ -9,7 +9,17 @@ Output: 2
  * @return {number}
  */
  var minMeetingRooms = function(intervals) {
-  if (intervals==null || intervals.length==0){
+ 
+
+};
+
+minMeetingRooms([[0,30],[5,10],[15,20]])
+
+
+
+
+/*
+   if (intervals==null || intervals.length==0){
         return 0
     }
     if (intervals.length==1){
@@ -41,11 +51,4 @@ Output: 2
         r.sort((a,b) => a[1]-b[1])
         return r[0]
     }
-
-};
-
-minMeetingRooms([[0,30],[5,10],[15,20]])
-
-/*
-  
 */

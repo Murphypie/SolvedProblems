@@ -11,38 +11,29 @@
  * @return {boolean}
  */
 var wordBreak = function(s, wordDict) {
-    let dp = new Array(s.length+1).fill(false);
-    dp[0] = true;
-    for(let end = 1; end<=s.length; end++){
-        for(let begin = 0; begin<end; begin++){
-            if(dp[begin] && wordDict.includes(s.slice(begin, end))){
-                dp[end] = true;
-                break;
-            }
-        }
-    }
-    dp;
-    return dp[dp.length-1];
+    // Do it again
 };
 
-const s = "leetcode"
-const wordDict =   ["leet","code"]
+const s = "catsandog"
+const wordDict = ["cats","dog","sand","and","cat", "an"]
 wordBreak(s, wordDict);
 // @lc code=end
 
+
+
+
 /*
-      if (wordDict == null || wordDict.length === 0) return false;
-    const set = new Set(wordDict);
-    const dp = Array(s.length+1).fill(false);
+     if(wordDict === null || wordDict.length === 0) return false;
+    const set = new Set(wordDict)
+    const dp = new Array(s.length+1).fill(false);
     dp[0] = true;
-    for (let end = 1; end <= s.length; end++) {
-        for (let start = 0; start < end; start++) {
-          const w = s.slice(start, end);
-          if (dp[start] === true && set.has(w)) {
-            dp[end] = true;
-            break;
-          }
+    for(let end = 1; end<=s.length; end++){
+        for(let start = 0; start<end; start++){
+            let word = s.slice(start, end);
+            if(dp[start]&&set.has(word)){
+                dp[end] = true;
+            }
         }
-      }
-      return dp[s.length];
+    }
+    return dp[s.length]
 */

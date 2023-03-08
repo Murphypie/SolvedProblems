@@ -13,24 +13,41 @@
  * @return {number[][]}
  */
 var floodFill = function(image, sr, sc, newColor) {
-    let originColor = image[sr][sc];
-
-    function dfs(sr, sc){
-        if(image[sr] === undefined || image[sr][sc] === undefined || image[sr][sc] !== originColor || image[sr][sc] === newColor) return;
+    let dfs = (sr, sc, originalColor, newColor) =>{
+        if(image[sr] === undefined || image[sr][sc] === undefined || image[sr][sc] !== originalColor) return
         image[sr][sc] = newColor;
-        dfs(sr+1, sc);
-        dfs(sr-1, sc);
-        dfs(sr, sc+1);
-        dfs(sr, sc-1);
+        dfs(sr+1, sc, originalColor, newColor)
+        dfs(sr, sc+1, originalColor, newColor)
+        dfs(sr-1, sc, originalColor, newColor)
+        dfs(sr, sc-1, originalColor, newColor)
     }
+    
+    let originalColor = image[sr][sc]
+    if(originalColor !== newColor){
+        dfs(sr, sc, originalColor, newColor)
+    };
 
-    dfs(sr, sc)
+    
+   
+    
+   
+
    return image;
+
 };
 let image = [[0,0,0],[0,1,1]], sr = 1, sc = 1, newColor = 1
 floodFill(image, sr, sc, newColor)
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
 
 
 

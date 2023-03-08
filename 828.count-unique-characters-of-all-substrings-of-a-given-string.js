@@ -11,24 +11,8 @@
  */
 
 var uniqueLetterString = function (s) {
+    
 
-    let res = 0;
-    if(s.length === 0) return res;
-    let lastPosition  = new Array(26).fill(0)
-    let contribution  = new Array(26).fill(0)
-   
-    for(let i = 0; i<s.length; i++){
-        let x = s.charCodeAt(i) - 65
-        let substrEnding = i+1;
-        contribution[x] = substrEnding - lastPosition[x];
-        let cur = 0;
-        for(let j = 0; j<26; j++){
-            cur += contribution[j]
-        } 
-        res+=cur;
-        lastPosition[x] = i + 1;
-    }
-    return res;
    
 };
 
@@ -44,6 +28,17 @@ uniqueLetterString("ABAB");
 // If we fix the left part, then we can have 5 different ways of right part ("", "C", "CO", "COD", "CODE")
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   let result = 0;
@@ -72,6 +67,26 @@ uniqueLetterString("ABAB");
         result += lastRange * (n - lastIdx);  // don't forget the last calcution 
     }
     return result;
+*/
+
+/*
+    let res = 0;
+    if(s.length === 0) return res;
+    let lastPosition  = new Array(26).fill(0)
+    let contribution  = new Array(26).fill(0)
+   
+    for(let i = 0; i<s.length; i++){
+        let x = s.charCodeAt(i) - 65
+        let substrEnding = i+1;
+        contribution[x] = substrEnding - lastPosition[x];
+        let cur = 0;
+        for(let j = 0; j<26; j++){
+            cur += contribution[j]
+        } 
+        res+=cur;
+        lastPosition[x] = i + 1;
+    }
+    return res;
 */
 
 

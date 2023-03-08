@@ -17,6 +17,12 @@ var sortedSquares = function(nums) {
 sortedSquares([-4,-1,0,3,10])
 // @lc code=end
 
+
+
+
+
+
+
 /*
     // 1. use two pointers (start and end)
     // 2. Whichever greater will be pushed to output arr with its value squred

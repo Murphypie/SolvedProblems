@@ -10,29 +10,74 @@
  * @return {number[]}
  */
 var asteroidCollision = function (a) {
-    let stack = []
-    let i = 0;
-    for(let i = 0; i<a.length;){
-        if(stack.length === 0 || stack[stack.length-1] < 0 || a[i] > 0){
-            stack.push(a[i])
-            i++
-        }else if(stack[stack.length-1]+a[i] < 0){
-            stack.pop();
-        }else if(stack[stack.length-1]+a[i] === 0){
-            stack.pop()
-            i++
+    let stack = [];
+
+    for(let i = 0; i<a.length; i++){
+        if(stack[stack.length-1] > 0 && a[i] < 0){
+            while(stack.length &&  stack[stack.length-1] > 0 && stack[stack.length-1] <= Math.abs(a[i])){
+                if(Math.abs(a[i]) === stack[stack.length-1]){
+                    stack.pop();
+                    break;
+                }else if(Math.abs(a[i]) > stack[stack.length-1]){
+                    stack.pop();
+                }
+                if(stack[stack.length-1] < 0 || stack.length === 0){
+                    stack.push(a[i])
+                }
+            }
+            
+
         }else{
-            i++
+            stack.push(a[i])
         }
     }
- 
+
     return stack;
 };
 
-let asteroids = [-1, 2, 1, -2];
+let asteroids =   [10,2,-5]//[-2,-2,1,-2] 
 asteroidCollision(asteroids);
 
 // @lc code=end
+
+
+
+
+/*
+   let stack = [];
+
+    for(let i = 0; i<a.length; i++){
+        if(stack.length === 0 || stack[stack.length-1] < 0 || stack[stack.length-1]*a[i]>0) stack.push(a[i]);
+   
+        while(stack[stack.length-1]>0 && a[i] < 0 && stack[stack.length-1] <= Math.abs(a[i])){
+            if(stack[stack.length-1] === Math.abs(a[i])){
+                stack.pop();
+                break;
+            }
+            stack.pop();
+        }
+    }
+
+    return stack;
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
     let i = 0, stack = [];

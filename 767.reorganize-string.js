@@ -11,44 +11,42 @@
  */
 
 
+
 var reorganizeString = function (s) {
-    let charMap = new Map();
-    for(let i = 0; i<s.length; i++){
-        if(!charMap.has(s[i])){
-            charMap.set(s[i], 1)
-        }else{
-            let number = charMap.get(s[i]);
-            charMap.set(s[i], number+1)
-        }
-    }
-    let charMapSorted = [...charMap.entries()].sort((a,b)=>{
-        return b[1] - a[1]
-    })
-
-    if(charMapSorted[0][1] > s.length - charMapSorted[0][1]+1){
-        return "";
-    }
-
-    let output = new Array(s.length);
-    let i = 0;
- 
-    while(charMapSorted.length){
-        let charset = charMapSorted.shift();
-        while(charset[1] !== 0){
-            output[i] = charset[0];
-            charset[1]--;
-            i = (i+2)%s.length;
-            if(i === 0) i = i+1;
-        }
-   }
-
-   return output.join('')
+   // again
+   
 };
 
-let s = "abbabbaaab";
+let s =  "vvvlo"
 
 reorganizeString(s);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

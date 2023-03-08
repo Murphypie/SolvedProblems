@@ -20,18 +20,54 @@
  * @return {number}
  */
 var rangeSumBST = function(root, low, high) {
-    let sum = 0;
+    let output = 0;
 
-    function bst(tree){
-        if(tree.val > low && tree.val < high || tree.val === high || tree.val === low) sum+= tree.val
-        if(tree.left) bst(tree.left)
-        if(tree.right) bst(tree.right)
+    let node = root
+
+    let dfs = (node) =>{
+        if(!node) return
+        if(node.val <= high && node.val >= low) output += node.val;
+        if(node.left) dfs(node.left)
+        if(node.right) dfs(node.right)
     }
 
-    bst(root)
-    return sum;
+    dfs(node)
+
+    return output;
 };
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

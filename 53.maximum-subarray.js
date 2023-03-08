@@ -10,20 +10,32 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-    let max = -Infinity;
-    let sum = -Infinity;
-
-    for(let i = 0; i<nums.length; i++){
-        sum += nums[i]
-        if(nums[i] > sum) sum = nums[i];
-        max = Math.max(max, sum);
+    let dp = new Array(nums.length).fill(-Infinity);
+    dp[0] = nums[0];
+    let max = nums[0];
+    for(let i = 1; i<nums.length; i++){
+        dp[i] = (dp[i-1]+nums[i] > nums[i]) ? dp[i-1]+nums[i] : nums[i];
+        max = Math.max(max, dp[i])
     }
+    
     return max;
 
 };
 
-maxSubArray( [-2,1,-3,4,-1,2,1,-5,4])
+maxSubArray( [1])
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   let prev = 0;

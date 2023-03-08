@@ -10,22 +10,46 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let minPrice = Infinity;
-    let maxPrice = 0;
 
-    for(let i =0; i<prices.length; i++){
-        minPrice = Math.min(minPrice, prices[i]);
-        maxPrice = Math.max(maxPrice, prices[i]-minPrice)
-    }
-    return maxPrice
 
-};
 
-let prices = [7,6,4,3,1]
+}
+
+
+let prices =  [7,1,5,3,6,4]
 
 maxProfit(prices)
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    // DP
+    let dp = new Array(prices.length);
+    let minNumber = prices[0];
+    dp[0] = 0;
+    for(let i = 1; i<prices.length; i++){
+        dp[i] = Math.max(dp[i-1], prices[i]-minNumber)
+        minNumber = Math.min(minNumber, prices[i])
+    }
+    return dp[dp.length-1];
+
+*/
+
+
+
+
 
 /*
  let buy = Infinity;

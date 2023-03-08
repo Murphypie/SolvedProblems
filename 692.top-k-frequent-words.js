@@ -11,62 +11,36 @@
  * @return {string[]}
  */
 
-class MinHeap{
-    constructor(){
-        this.heap = []
-    }
 
-    push(obj){
-        this.heap.push(obj);
-        this.heap.sort((a,b)=>{
-            if(a[1] === b[1]){
-                return a[0]>b[0] === false ? -1 : 1
-            }else{
-                return b[1]-a[1]
-            }
-        })
-    }
-    pop(){
-        return this.heap.pop();
-    }
-    size(){
-        return this.heap.length;
-    }
-    getTop(){
-        return this.heap[this.size()-1]
-    }
-    getResult(){
-        let arr = [];
-        while(this.heap.length){
-            arr.push(this.heap.shift()[0])
-        }
-        return arr;
-    }
-}
 
 
  var topKFrequent = function(words, k) {
-    const hashTable = {};
-    for(word of words){
-        if(!hashTable[word]) hashTable[word] = 1;
-        else hashTable[word]++;
-    }
-    const minHeap = new MinHeap();
-    const hashArr = Object.entries(hashTable);
-    for(let i = 0; i<hashArr.length; i++){
-        if(minHeap.size() < k || minHeap.getTop()[1] <= hashArr[i][1]){
-            minHeap.push(hashArr[i])
-        }
-        if(minHeap.size() > k) minHeap.pop();
-    }
-  
-   return minHeap.getResult()
-
+    //again
 };
 
 
 topKFrequent(["i","love","leetcode","i","love","coding", "coding", "i"], 2)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
       let hash = {};

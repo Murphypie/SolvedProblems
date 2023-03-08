@@ -10,22 +10,59 @@
  * @return {number[]}
  */
 var partitionLabels = function(s) {
-    let output = []
-    let anchorPoint = -1;
-    let maxLatestIndex = -Infinity;
+    let output = [];
+    let str = "";
+    let startIndex = 0;
+    let localMaxIndex = -Infinity;
     for(let i = 0; i<s.length; i++){
-        maxLatestIndex = Math.max(maxLatestIndex, s.lastIndexOf(s[i]));
-        if(maxLatestIndex === i){
-            output.push(i-anchorPoint)
-            anchorPoint = i;
+        let lastIndex = s.lastIndexOf(s[i])
+        localMaxIndex = Math.max(localMaxIndex, lastIndex);
+        if(i === localMaxIndex){
+            output.push(localMaxIndex+1-startIndex)
+            startIndex = i+1
         }
+        
     }
 
     return output;
-};
 
-partitionLabels("ababcbacadefegdehijhklij")
+};
+let s = "ababcbacadefegdehijhklij"
+partitionLabels(s)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -10,19 +10,7 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-    for(let i = nums.length-1; i>=0; i--){
-        if(nums[i] === 0){
-            let movingIndex = i;
-            while(movingIndex < nums.length-1){
-                if(nums[movingIndex+1] !== 0){
-                    nums[movingIndex] = nums[movingIndex+1];
-                    nums[movingIndex+1] = 0;
-                }
-                movingIndex++
-            }
-        }
-    }
-    return nums;
+   
 };
 
 moveZeroes([0,0,1])
@@ -42,4 +30,21 @@ moveZeroes([0,0,1])
         right++
     }
     return nums
+*/
+
+
+/*
+ for(let i = nums.length-1; i>=0; i--){
+        if(nums[i] === 0){
+            let movingIndex = i;
+            while(movingIndex < nums.length-1){
+                if(nums[movingIndex+1] !== 0){
+                    nums[movingIndex] = nums[movingIndex+1];
+                    nums[movingIndex+1] = 0;
+                }
+                movingIndex++
+            }
+        }
+    }
+    return nums;
 */

@@ -10,46 +10,42 @@
  * @return {number[]}
  */
 
- class UnionFind{
-    constructor(n){
-        this.parent = [...Array(n)].map((_, i) => i);
-        this.rank = new Array(n).fill(1)
-        this.redundant = null;
-    }
-    find(i){
-       if(this.parent[i] !== i) this.parent[i] = this.find(this.parent[i]);
-       return this.parent[i]
-    }
-    union(p, q){
-        let rootP = this.find(p);
-        let rootQ = this.find(q);
-        if(rootP === rootQ){
-            return false
-        }else if(this.rank[rootP] < this.rank[rootQ]){
-            this.parent[rootP] = rootQ;
-            this.rank[rootQ] += this.rank[rootP]
-        }else{
-            this.parent[rootQ] = rootP;
-            this.rank[rootP] += this.rank[rootQ]
-        }
-        return true;
-  
-    }
-}
+
 
 
 var findRedundantConnection = function(edges) {
-    let maxEdge = 1000;
-    const dsu = new UnionFind(maxEdge+1)
-    for([u,v] of edges){
-        if(!dsu.union(u, v)) return [u,v];
-    }
-    
+   //again 
+   
+
 };
 
-let edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]
+
+let edges = [[1,2],[1,3],[2,3]]// [[1,2],[2,3],[3,4],[1,4],[1,5]] 
+//[[2,7],[7,8],[3,6],[2,5],[6,8],[4,8],[2,8],[1,8],[7,10],[3,9]] // [2,8]
 findRedundantConnection(edges);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
     //DFS

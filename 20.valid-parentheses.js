@@ -10,26 +10,23 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    const brakets = {
-        "(" : ")",
-        "{" : "}",
-        "[" : "]"
-    };
+    
 
-    let stack = [];
-    for(let i = 0; i<s.length; i++){
-        if(brakets[s[i]]){
-            stack.push(s[i]);
-        }
-        if(Object.values(brakets).includes(s[i])){
-            if(brakets[stack.pop()] !== s[i]) return false;
-        }
-    }
-    return stack.length === 0 ? true : false;
+  
 };
 
 isValid("(")
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
 
 /*
 let bracketObj = {

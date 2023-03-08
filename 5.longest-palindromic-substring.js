@@ -6,21 +6,7 @@
 
 // @lc code=start
 function longestPalindrome(s) {
-    let lt = 0, rt = 0;
-    let max = 0;
-    for(let i = 0; i<s.length; i++){
-        for(let j of [i, i+1]){
-            for(let l = i, r = j; s[l] && s[l]===s[r]; l--, r++){
-                if(r-l > max){
-                    lt = l;
-                    rt = r;
-                    max = r-l
-                }
-            }
-        }
-    }
-    
-   return s.slice(lt,rt+1)
+
 }
  
 let s = "racecar";

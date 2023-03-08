@@ -1,3 +1,4 @@
+
 /*
  * @lc app=leetcode id=380 lang=javascript
  *

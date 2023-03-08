@@ -21,10 +21,10 @@ LRUCache.prototype.get = function(key) {
     if(!this.stack.has(key)){
         return -1
     }else{
-        let tempValue = this.stack.get(key);
+        let tempval = this.stack.get(key)
         this.stack.delete(key);
-        this.stack.set(key, tempValue);
-        return tempValue
+        this.stack.set(key, tempval)
+        return tempval
     }
 };
 
@@ -36,11 +36,14 @@ LRUCache.prototype.get = function(key) {
 LRUCache.prototype.put = function(key, value) {
     if(this.stack.has(key)){
         this.stack.delete(key);
-    }
-    if(this.stack.size === this.capacity){
-        this.stack.delete(this.stack.keys().next().value);
+    }else{
+        if(this.stack.size < this.capacity){
+        }else{
+            this.stack.delete(this.stack.keys().next().value)
+        }
     }
     this.stack.set(key, value);
+    
 };
 
 let lRUCache = new LRUCache(2);

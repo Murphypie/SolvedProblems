@@ -16,13 +16,36 @@
 // [0] - true
 
 var canJump = function(nums) {
-    
+    // Greedy
+    // Do it again
    
 };
 
-let arr = [2,0,0]
+
+let arr = [3,2,1,0,4]
 canJump(arr);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -13,9 +13,10 @@
 
 
 var trap = function(height) {
-  // do stack and two pointer
-
- 
+    // do stack, tp and dp
+    // stack failed
+    // TP failed - kind of - but approached it wrong - it worked though
+    // DP that easy? no way
 
 
 
@@ -32,8 +33,18 @@ var trap = function(height) {
 // 3. Stack (time - O(n), space - O(n))
 // 4. Two Pointers (time - O(n), space - O(1))
 // https://leetcode.com/problems/trapping-rain-water/discuss/400555/Clean-JavaScript-solutions-(brute-force-dynamic-programming-stack-two-pointers)
-trap([0,1,0,2,1,0,1,3,2,1,2,1])
+trap([0,1,0,2,1,0,1,3,2,1,2,1]);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
 
 /*
  let left = [];
@@ -92,5 +103,59 @@ trap([0,1,0,2,1,0,1,3,2,1,2,1])
         i++
     }
     return res;
+
+*/
+
+
+/*
+// TP failed - kind of - but approached it wrong // it works though
+
+
+    let left = 0;
+    let right = height.length-1;
+    let output = 0;
+    let leftLocalMax = height[left];
+    let rightLocalMax = height[right];
+
+    while(left < right){
+        if(height[left]<height[right]){
+            left += 1;
+            leftLocalMax = Math.max(leftLocalMax, height[left])
+            output += leftLocalMax-height[left];
+        }else{
+            right -= 1
+            rightLocalMax = Math.max(rightLocalMax, height[right])
+            output += rightLocalMax-height[right];
+        }
+    }
+    return output;
+*/
+
+
+/* dyanamic
+function trap(height) {
+  if (height == null || height.length === 0) return 0;
+
+  let res = 0;
+  let l = height.length;
+  let lMax = {};
+  let rMax = {};
+
+  lMax[0] = height[0];
+  for (let i = 1; i < l; i++) {
+    lMax[i] = Math.max(height[i], lMax[i - 1]);
+  }
+
+  rMax[l - 1] = height[l - 1];
+  for (let i = l - 2; i >= 0; i--) {
+    rMax[i] = Math.max(height[i], rMax[i + 1]);
+  }
+
+  for (let i = 0; i < height.length; i++) {
+    res += Math.min(lMax[i], rMax[i]) - height[i];
+  }
+
+  return res;
+}
 
 */

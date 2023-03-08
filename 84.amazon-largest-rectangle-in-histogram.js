@@ -10,12 +10,68 @@
  * @return {number}
  */
 var largestRectangleArea = function(heights) {
-   // do stack and divide/conquer
+    // do stack and divide/conquer
+    
+ 
+ 
 };
 
-let heights = [2,1,0,3,4,2,3,4]//[2,1,2]//[2,4]
+let heights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+//[2,1,0,3,4,2,3,4]//[2,1,2]//[2,4]
 largestRectangleArea(heights)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+/* Failed Divide and Conquer
+   let max = 0;
+    if(heights.length === 1) return heights[0]
+
+    let findLowestHeights = (arr)=> {
+        let temp = 0;
+        for(let i = 0; i<arr.length; i++){
+            if(i === 0){
+                temp = i
+            }else if(arr[temp]>arr[i]){
+                temp = i
+            }
+        }
+        return temp;
+    }
+
+    let divide = (arr) =>{
+        if(arr.length === 0) return 0
+        if(arr.length === 1) return arr[0]
+        let localMin = findLowestHeights(arr);
+        let localMinHeight = arr[localMin]
+        let area = localMinHeight*arr.length
+        let leftArr = arr.slice(0, localMin);
+        let rightArr = arr.slice(localMin+1);
+        let localmax = Math.max(area, max, divide(leftArr), divide(rightArr))
+        max = Math.max(max, localmax)
+        return area;
+    }
+
+    divide(heights)
+
+    return max;
+*/
+
+
+
+
+
+
+
+
+
+
 
 /*
 // 1. Calculate area - minimum values * base(length of stack)

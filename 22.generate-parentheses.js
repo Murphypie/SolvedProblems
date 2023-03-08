@@ -10,11 +10,54 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
- 
+    let output = [];
+    let left = 0;
+    let right = 0;
+    let recur = (left, right, n, str) =>{
+        if(right>left || left > n || right > n) return;
+        if(left === n && right === n) output.push(str);
+        recur(left+1, right, n, str+"(")
+        recur(left, right+1, n, str+")")
+
+    }
+    recur(left, right, n, "")
+
+
+    return output;
 }
 let output = generateParenthesis(3);
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   const output = [];

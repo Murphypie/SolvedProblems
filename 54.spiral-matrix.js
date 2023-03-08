@@ -10,32 +10,10 @@
  * @return {number[]}
  */
 var spiralOrder = function(matrix) {
-    if (matrix.length === 0) return [];
-    if (matrix[0].length === 0) return [];
+    // Do it again with Concat
 
-    let output = [];
-
-    // top
-     output.push(...matrix.shift())
- 
-    // right
-    for(let i = 0; i<matrix.length; i++){
-        output.push(matrix[i].pop())
-    }
-    
-    // bottom
-    const lastRow = matrix.pop();
-    if(lastRow) output = output.concat(lastRow.reverse());
-
-    // left
-    for(let i = 0; i<matrix.length; i++){
-        output.push(matrix[i].shift())
-    }
-  
-    return output.concat(spiralOrder(matrix));
-   
 };
-let matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+let matrix = [[1,2,3],[4,5,6],[7,8,9]]
 spiralOrder(matrix)
 // @lc code=end
 
@@ -49,18 +27,42 @@ spiralOrder(matrix)
 
 
 
+/*
+    let output = [];
+    
+    function topRow(matrix){
+        output.push(...matrix.shift())
+    }
+   
+    function rightCol(matrix){
+        for(let i = 0; i<matrix.length; i++){
+            let temp = matrix[i].pop();
+            if(temp !== undefined) output.push(temp)
+        }
+    }
 
+    function bottomRow(matrix){
+        output.push(...matrix.pop().reverse())
+    }
 
+    function leftCol(matrix){
+        for(let i = matrix.length-1; i>=0 ; i--){
+            let temp = matrix[i].shift();
+            if(temp !== undefined) output.push(temp)
+        }
+    }
+    
 
+    while(matrix.length){
+        if(matrix.length) topRow(matrix);
+        if(matrix.length) rightCol(matrix)
+        if(matrix.length) bottomRow(matrix)
+        if(matrix.length) leftCol(matrix)
 
+    }
 
-
-
-
-
-
-
-
+    return output;
+*/
 
 
 

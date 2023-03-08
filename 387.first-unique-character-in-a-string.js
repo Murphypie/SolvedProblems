@@ -10,7 +10,62 @@
  * @return {number}
  */
 var firstUniqChar = function (s) {
-    const hashTable = {};
+    
+    for(let i = 0; i<s.length; i++){
+        if(s.lastIndexOf(s[i]) === s.indexOf(s[i])){
+            return i;
+        }
+    }
+    return -1
+};
+
+firstUniqChar("leetcode");
+// @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ for(let i = 0; i<s.length; i++){
+        if(s.indexOf(s[i]) === s.lastIndexOf(s[i])){
+            return i;
+        }
+    }
+    return -1;
+*/
+
+/*
+  const hashTable = {};
 
     let left = 0;
     let right = s.length-1;
@@ -31,16 +86,4 @@ var firstUniqChar = function (s) {
     }
 
     return s.indexOf(index);
-};
-
-firstUniqChar("loveleetcode");
-// @lc code=end
-
-/*
- for(let i = 0; i<s.length; i++){
-        if(s.indexOf(s[i]) === s.lastIndexOf(s[i])){
-            return i;
-        }
-    }
-    return -1;
 */

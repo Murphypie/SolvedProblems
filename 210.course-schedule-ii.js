@@ -11,50 +11,12 @@
  * @return {number[]}
  */
 
-
-var findOrder = function(numCourses, prerequisites) {
-    let edges = new Array(numCourses).fill([])
-    let numOfClass = new Array(numCourses).fill(0)
-    let took = new Array(numCourses).fill(false);
-    for(let [a,b] of prerequisites){
-        if(!edges[b].length){
-            edges[b] = [];
-        }
-        edges[b].push(a)
-        numOfClass[a] += 1;
-    }
-
-    let queue = [];
-    for(let i = 0; i<numOfClass.length; i++){
-        if(numOfClass[i] === 0){
-            queue.push(i);
-        }
-    }
-    let output = [];
-    
-    function dfs(queue){
-        while(queue.length){
-            let q = queue.shift();
-            output.push(q);
-            for(let cls of edges[q]){
-                numOfClass[cls]--;
-                if(numOfClass[cls] === 0) queue.push(cls);
-            }
-        }
-    }
-
-    dfs(queue)
-
-    for(let i = 0; i<numOfClass.length; i++){
-        if(numOfClass[i] !== 0) return []
-    }
-    return output;
+var findOrder = function (numCourses, prerequisites) {
+   // again
 };
 
-let numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
-findOrder(numCourses, prerequisites)
-
-
+let numCourses = 2, prerequisites = [];
+findOrder(numCourses, prerequisites);
 
 // @lc code=end
 

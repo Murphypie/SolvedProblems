@@ -10,38 +10,50 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    let max = 1;
-    let isThereZero = false;
-    let isThereMorethanOneZero = false;
-    let outputArr = new Array(nums.length).fill(0);
+    let zeroCounter = 0;
+    let maxMulti = 1;
+    let output = new Array(nums.length).fill(0)
     for(let i = 0; i<nums.length; i++){
-        if(nums[i] !== 0) max *= nums[i]
-        else if(!isThereZero){
-            isThereZero = true;
-        }else if(isThereZero){
-            isThereMorethanOneZero = true;
-        }
-    }
-
-    for(let i = 0; i<nums.length; i++){
-        if(isThereZero && !isThereMorethanOneZero){
-            if(nums[i] === 0){
-                outputArr[i] = max 
-            }
-        }else if(isThereMorethanOneZero){
-            outputArr[i] = 0;
+        if(nums[i] === 0){
+            zeroCounter++;
         }else{
-            outputArr[i] = max / nums[i]
+            maxMulti *= nums[i]
         }
     }
-    return outputArr;
+    
+    if(zeroCounter > 1) return output;
+    for(let i = 0; i<nums.length; i++){
+        if(zeroCounter === 1 && nums[i] === 0){
+            output[i] = maxMulti
+        }else if(zeroCounter === 0){
+            output[i] = maxMulti/nums[i]
+        }
+    }
+    return output;
 };
 
-productExceptSelf([-1,1,0,-3,3])
+productExceptSelf([0,0])
 
 
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
     let sum = 1;

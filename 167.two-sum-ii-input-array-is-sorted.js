@@ -15,19 +15,20 @@ var twoSum = function(numbers, target) {
     let right = numbers.length-1;
 
     while(left < right){
-        let sum = numbers[left]+numbers[right];
+        let sum = numbers[left] + numbers[right];
         if(sum === target){
             return [left+1, right+1]
-        }else if(sum > target){
-            right -= 1;
+        }else if(sum < target){
+            left++;
         }else{
-            left += 1;
+            right--;
         }
     }
-    
 };
 twoSum([2,7,11,15], 9)
 // @lc code=end
+
+
 
 /*
     // const numberMap = new Map();

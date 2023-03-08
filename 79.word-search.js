@@ -11,44 +11,69 @@
  * @return {boolean}
  */
 
-function checkoutofBound(i,j, board){
-    if(i < 0 || j < 0 || board.length <= i || board[0].length <= j){
-        return true
-    }
-    return false;
-}
 
-function finder(i,j, board, word){
-    if(!word.length) return true;
-    if(checkoutofBound(i,j,board)) return
-    let currentWord = word[0]
-    if(currentWord !== board[i][j]) return;
-    word = word.slice(1)
-    board[i][j] = 0;
-    let output = finder(i+1, j, board, word) ||
-    finder(i, j+1, board, word) ||
-    finder(i-1, j, board, word) ||
-    finder(i, j-1, board, word)
-    board[i][j] = currentWord;
-    return output;
-}
+
+
+
 
 var exist = function(board, word) {
+    
+    let dfs = (i,j,board, word) =>{
+        if(word.length === 0) return true
+        if(board[i] === undefined || board[i][j] === undefined || board[i][j] !== word[0]) return false;
+        let tempChar = board[i][j]
+        board[i][j] = "0"
+        let result = dfs(i+1, j, board, word.slice(1)) ||
+        dfs(i-1, j, board, word.slice(1)) ||
+        dfs(i, j+1, board, word.slice(1)) ||
+        dfs(i, j-1, board, word.slice(1))
+        board[i][j] = tempChar
+        return result;
+    }
+    
     for(let i = 0; i<board.length; i++){
-        for(let j = 0; j<board[0].length; j++){
+        for(let j = 0; j<board[i].length; j++){
             if(board[i][j] === word[0]){
-                if(finder(i,j,board,word)) return true;
+                if(dfs(i,j,board,word)) return true;
             }
         }
     }
     return false;
+
+
 }
 
-const board = [["a"]]
-const word = "a"
+const board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+const word = "SEE"
 exist(board, word);
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //  function isOutOfBound(board, row, col){
 //     return row <0 || row >= board.length || col<0 || col >= board[0].length;
@@ -81,3 +106,31 @@ exist(board, word);
 //     }
 //     return false;
 // };
+
+/*
+function dfs(i,j,board, word){
+		if(!word.length) return true;
+		if(board[i] === undefined || board[i][j] === undefined || board[i][j] === 0) return false;
+		if(board[i][j] !== word[0]) return false;
+
+		const newWord = word.substr(1);
+		let tempStrg = board[i][j]
+		board[i][j] = 0;
+		let result = 
+		dfs(i+1, j, board, newWord) ||
+		dfs(i, j+1, board, newWord) ||
+		dfs(i-1, j, board, newWord) ||
+		dfs(i, j-1, board, newWord)
+		board[i][j] = tempStrg
+		return result
+   } 
+
+   for(let i = 0; i<board.length; i++){
+    	for(let j = 0; j<board[0].length; j++){
+        	if(board[i][j] === word[0]){
+            	return dfs(i,j,board, word)
+        	}
+    	}
+   }
+   return false;
+*/

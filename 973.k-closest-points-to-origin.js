@@ -11,47 +11,54 @@
  * @return {number[][]}
  */
 
-class PriorityQueue{
-    constructor(n){
+class PriorQueue{
+    constructor(k){
         this.storage = [];
-        this.size = 0;
-        this.length = n
+        this.size = 0
+        this.length = k;
     }
 
     insert(arr){
+        let x = arr[0];
+        let y = arr[1];
+        let distance = x*x + y*y;
         if(this.size < this.length){
-            this.storage.push(arr);
-            this.size++;
+            this.storage.push([[x,y], distance])
+            this.size++
         }else{
-            this.storage = this.storage.sort((a,b)=>{
-                return a[1]-b[1]
-            })
-
-            if(this.storage[this.size-1][1] > arr[1]){
+            if(this.storage[this.storage.length-1][1] > distance){
                 this.storage.pop();
-                this.storage.push(arr)
+                this.storage.push([[x,y], distance])
             }
         }
+        this.sort();
+    }
+
+    sort(){
+        this.storage = this.storage.sort((a,b)=>{
+            return a[1]>b[1] ? 1 : -1
+        })
     }
 }
+
 
 
 var kClosest = function(points, k) {
-    let pq = new PriorityQueue(k);
+   let pq = new PriorQueue(k)
+   
+   for(let i = 0; i<points.length; i++){
+        pq.insert(points[i])
+   }
+  
+   let output = [];
+   for(let i = 0; i<k; i++){
+        output.push(pq.storage[i][0])
+   }
 
-    for(let i =0; i<points.length; i++){
-        let distance = points[i][1] * points[i][1] + points[i][0] * points[i][0]
-        pq.insert([points[i], distance])
-    }
-
-    const result = []
-    for(let i = 0; i<pq.storage.length; i++){
-        result.push(pq.storage[i][0])
-    }
-    return result
+   return output
 }
 
-kClosest([[1,3],[-2,2]],1);
+kClosest([[1,3],[-2,2]], 1);
 // @lc code=end
 
 
@@ -148,4 +155,47 @@ kClosest([[1,3],[-2,2]],1);
 };
 
 kClosest([[10,5], [3,5], [7,4], [3,3],[5,-1],[-2,4]], 3);
+*/
+
+
+/*
+class PriorityQueue{
+    constructor(n){
+        this.storage = [];
+        this.size = 0;
+        this.length = n
+    }
+
+    insert(arr){
+        if(this.size < this.length){
+            this.storage.push(arr);
+            this.size++;
+        }else{
+            this.storage = this.storage.sort((a,b)=>{
+                return a[1]-b[1]
+            })
+
+            if(this.storage[this.size-1][1] > arr[1]){
+                this.storage.pop();
+                this.storage.push(arr)
+            }
+        }
+    }
+}
+
+
+var kClosest = function(points, k) {
+    let pq = new PriorityQueue(k);
+
+    for(let i =0; i<points.length; i++){
+        let distance = points[i][1] * points[i][1] + points[i][0] * points[i][0]
+        pq.insert([points[i], distance])
+    }
+
+    const result = []
+    for(let i = 0; i<pq.storage.length; i++){
+        result.push(pq.storage[i][0])
+    }
+    return result
+}
 */

@@ -7,19 +7,7 @@
 // @lc code=start
 
 function maxArea(height){
-    let low = 0;
-    let high = height.length-1
-    let maxArea = 0;
-    while(low < high){
-        let area = Math.min(height[low], height[high])*(high-low);
-        maxArea = Math.max(maxArea, area);
-        if(height[low] > height[high]){
-            high--
-        }else{
-            low++
-        }
-    }
-    return maxArea
+ 
 };
 
 maxArea([1,8,6,2,5,4,8,3,7])
@@ -38,3 +26,18 @@ maxArea([1,8,6,2,5,4,8,3,7])
    return area;
 */
 
+/*
+   let low = 0;
+    let high = height.length-1
+    let maxArea = 0;
+    while(low < high){
+        let area = Math.min(height[low], height[high])*(high-low);
+        maxArea = Math.max(maxArea, area);
+        if(height[low] > height[high]){
+            high--
+        }else{
+            low++
+        }
+    }
+    return maxArea
+*/

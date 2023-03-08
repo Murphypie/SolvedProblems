@@ -19,39 +19,20 @@
  * @return {boolean}
  */
 
-
-var isSubtree = function(root, subRoot) {
-
-    const areEqual = (node1, node2) => {
-        if(!node1 || !node2) return !node1 && !node2
-        if(node1.val !== node2.val) return false;
-        return areEqual(node1.left, node2.left) && areEqual(node1.right, node2.right)
-    }
-
-    const dfs = (node) => {
-        if(!node) return false;
-        if(node.val === subRoot.val && areEqual(node, subRoot)){
-            return true;
-        }
-        return dfs(node.left) || dfs(node.right)
-    }
-
-    return dfs(root)
+var isSubtree = function (root, subRoot) {
+    // again
 };
-
-
 
 // @lc code=end
 
-
- function TreeNode(val, left, right) {
-     this.val = (val===undefined ? 0 : val)
-     this.left = (left===undefined ? null : left)
-     this.right = (right===undefined ? null : right)
+function TreeNode(val, left, right) {
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
 }
 
 let root = new TreeNode(3);
-root.left = new TreeNode(4)
+root.left = new TreeNode(4);
 root.right = new TreeNode(5);
 root.left.left = new TreeNode(1);
 root.left.right = new TreeNode(2);
@@ -62,6 +43,15 @@ subRoot.left = new TreeNode(1);
 subRoot.right = new TreeNode(2);
 
 isSubtree(root, subRoot);
+
+
+
+
+
+
+
+
+
 
 
 

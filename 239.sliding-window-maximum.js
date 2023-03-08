@@ -11,39 +11,118 @@
  * @return {number[]}
  */
 
-
 var maxSlidingWindow = function(nums, k) {
-    let n = nums.length
-    let leftdp = new Array(n).fill(0);
-    leftdp[0] = nums[0];
-    let rightdp = new Array(n).fill(0);
-    rightdp[n-1] = nums[n-1];
-    
-    let output = [];
+    // Do dp
+    // Do Dequeue
 
-    for(let i = 0; i<nums.length; i++){
-         // from left to right
-      if (i % k == 0) leftdp[i] = nums[i];  // block_start
-      else leftdp[i] = Math.max(leftdp[i - 1], nums[i]);
-
-      // from right to left
-      let j = n - i - 1;
-      j
-      if ((j + 1) % k == 0) rightdp[j] = nums[j];  // block_end
-      else if(j !== n-1) rightdp[j] = Math.max(rightdp[j + 1], nums[j]);
-    }
-    leftdp;
-    rightdp
-
-    for(let i = 0; i<leftdp.length-k+1; i++){
-        output.push(Math.max(rightdp[i],leftdp[i+k-1]))
-    }
-    return output;
+   
 };
+
 
 maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)
 
 // @lc code=end
+
+
+
+
+// Solve with heap
+/*
+var maxSlidingWindow = function(nums, k) {
+    
+    let heap = new maxHeap();
+    let output = [];
+    for(let i = 0; i<nums.length; i++){
+        heap.insert(i, nums[i])
+
+        if(i>=k-1){
+            while(heap.max().index < i-k+1){
+                heap.remove();
+            }
+            
+            output.push(heap.max().value)
+        }
+        
+
+    }
+   
+    return output;
+    
+   
+};
+
+class maxHeap{
+    constructor(){
+        this.storage = [];
+        this.size = 0;
+    }
+
+    insert(index, value){
+        this.storage.push({index,value});
+        this.size++;
+        this.heapifyUp(this.size-1)
+    }
+
+    heapifyUp(heapIndex){
+      let temp = this.storage[heapIndex];
+      while(heapIndex>=0){
+        let parentIndex = Math.floor((heapIndex-1)/2);
+        if(heapIndex >= 1 && this.storage[parentIndex].value<temp.value){
+            this.storage[heapIndex] = this.storage[parentIndex]
+        }else{
+            break;
+        }
+        heapIndex = parentIndex;
+      }
+      this.storage[heapIndex] = temp;
+    }
+
+    remove(){
+        let removed = this.storage[0];
+        let popped = this.storage.pop();
+        if(this.storage.length > 0){
+            this.storage[0] = popped;
+            this.heapifyDown(0)
+        }
+        this.size--;
+        return removed;
+    }
+
+    heapifyDown(heapIndex){
+        let temp = this.storage[heapIndex];
+        while(heapIndex*2+1 < this.size-1){
+            let childIndex = heapIndex*2+1 // Left
+            if(this.storage[childIndex+1] && this.storage[childIndex+1].value > this.storage[childIndex].value){
+                childIndex = childIndex+1;
+            }
+            if(this.storage[childIndex].value > temp.value){
+                this.storage[heapIndex] = this.storage[childIndex];
+                heapIndex = childIndex;
+            }else{
+                break;
+            }
+        }
+        this.storage[heapIndex] = temp;
+    }
+
+    max(){
+        return this.storage[0]
+    }
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
     // const dequeue = []; 
     // const output = [];
@@ -85,3 +164,34 @@ maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)
     // }
     
     // return output;
+
+
+
+    /*
+     let n = nums.length
+    let leftdp = new Array(n).fill(0);
+    leftdp[0] = nums[0];
+    let rightdp = new Array(n).fill(0);
+    rightdp[n-1] = nums[n-1];
+    
+    let output = [];
+
+    for(let i = 0; i<nums.length; i++){
+         // from left to right
+      if (i % k == 0) leftdp[i] = nums[i];  // block_start
+      else leftdp[i] = Math.max(leftdp[i - 1], nums[i]);
+
+      // from right to left
+      let j = n - i - 1;
+      j
+      if ((j + 1) % k == 0) rightdp[j] = nums[j];  // block_end
+      else if(j !== n-1) rightdp[j] = Math.max(rightdp[j + 1], nums[j]);
+    }
+    leftdp;
+    rightdp
+
+    for(let i = 0; i<leftdp.length-k+1; i++){
+        output.push(Math.max(rightdp[i],leftdp[i+k-1]))
+    }
+    return output;
+    */

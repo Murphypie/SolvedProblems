@@ -11,16 +11,45 @@
  * @return {number}
  */
 var longestValidParentheses = function(s) {
-    // Do it again
- 
+    let stack = [-1];
+    let max = 0;
+    for(let i = 0; i<s.length; i++){
+        if(s[i] === "("){
+            stack.push(i)
+        }else{
+            stack.pop();
+            if(!stack.length) stack.push(i)
+            max = Math.max(max, i-stack[stack.length-1])
+        }
+        stack;
+    }
+    return max;
 };
 
 
 
 
-let s = ")(())"//"((())()"
+let s =  ")()"//"()(())"
 longestValidParentheses(s)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
     let stack = [-1];
@@ -58,5 +87,23 @@ DP
         }
     }
     return output;
+
+*/
+
+/* DP -1 
+    let output = 0;
+    let dp = new Array(s.length).fill(0);
+    for(let i = 0; i<s.length; i++){
+        if(s[i] === ")" && s[i-1] === "("){
+            dp[i] = 2;
+        }else if(s[i] === ")" && s[i-dp[i-1]-1] === "("){
+            dp[i] = dp[i-1]+2
+        }
+        let temp = dp[i-dp[i]] 
+        if(temp)  dp[i] += temp;
+        output = Math.max(output, dp[i])
+    }
+    return output;
+
 
 */
