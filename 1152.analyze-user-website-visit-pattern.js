@@ -39,7 +39,42 @@ No user visits two websites at the same time
  */
 
 function maxVisited(username, timestamp, website) {
-  // Create a map of entries and sort it based on timestamps
+
+
+}
+
+const username = [
+  "joe",
+  "joe",
+  "joe",
+  "james",
+  "james",
+  "james",
+  "james",
+  "mary",
+  "mary",
+  "mary",
+];
+const timestamp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const website = [
+  "home",
+  "about",
+  "career",
+  "home",
+  "cart",
+  "maps",
+  "home",
+  "home",
+  "about",
+  "career",
+];
+maxVisited(username, timestamp, website);
+
+
+
+
+/*
+// Create a map of entries and sort it based on timestamps
   // O(n log n)
   const entriesMap = timestamp
     .map((item, i) => [username[i], timestamp[i], website[i]])
@@ -85,31 +120,4 @@ function maxVisited(username, timestamp, website) {
   });
 
   return max[0].split("|");
-}
-
-const username = [
-  "joe",
-  "joe",
-  "joe",
-  "james",
-  "james",
-  "james",
-  "james",
-  "mary",
-  "mary",
-  "mary",
-];
-const timestamp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const website = [
-  "home",
-  "about",
-  "career",
-  "home",
-  "cart",
-  "maps",
-  "home",
-  "home",
-  "about",
-  "career",
-];
-maxVisited(username, timestamp, website);
+*/

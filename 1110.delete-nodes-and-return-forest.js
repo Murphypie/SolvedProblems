@@ -19,7 +19,20 @@
  * @return {TreeNode[]}
  */
 var delNodes = function(root, to_delete) {
- 
+    let output = [];
+
+    let dfs = (root, isRoot) =>{
+        if(!root) return null;
+        let shouldDelete = to_delete.includes(root.val)
+        if(isRoot && !shouldDelete) output.push(root)
+        root.left = dfs(root.left, shouldDelete)
+        root.right = dfs(root.right, shouldDelete)
+        return shouldDelete ? null : root
+    }
+
+    dfs(root, true)
+
+    return output;
 };
 
  function TreeNode(val, left, right) {
@@ -33,6 +46,24 @@ root.left = new TreeNode(2, new TreeNode(4), new TreeNode(5));
 root.right = new TreeNode(3, new TreeNode(6), new TreeNode(7));
 delNodes(root, [3,5])
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

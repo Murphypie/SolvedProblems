@@ -150,23 +150,28 @@ class BinarySearchTree{
     }
 }
 
-const node = new BinarySearchTree(20);
-node.add(8);
-node.add(22);
+const node = new BinarySearchTree(8);
+node.add(3);
+node.add(10);
+node.add(1);
+node.add(6);
+node.add(14);
 node.add(4);
-node.add(12);
-node.add(21);
-node.add(25);
+node.add(7);
+node.add(13);
+
+
+
+
 
 
 
 const callbackFn = (val) => console.log(val)
 
-console.log(node.height());
 
 
 
-
+node.breadthFirst(callbackFn)
 
 
 

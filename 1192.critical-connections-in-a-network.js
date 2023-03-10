@@ -12,13 +12,49 @@
  */
 
 var criticalConnections = function (n, connections) {
-  
+    
+
 
 };
 
-criticalConnections(4,
-    [[0,1],[1,2],[2,0],[1,3]]
+// criticalConnections(4,
+//     [[0,1],[1,2],[2,0],[1,3]]
+// );
+
+criticalConnections(5,
+    [[0,1],[1,2],[2,0],[2,3], [3,0], [1,4]]
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   let nodes = new Graph(n);
