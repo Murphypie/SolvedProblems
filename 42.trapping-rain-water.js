@@ -17,7 +17,7 @@ var trap = function(height) {
     // stack failed
     // TP failed - kind of - but approached it wrong - it worked though
     // DP that easy? no way
-
+    
 
 
 };

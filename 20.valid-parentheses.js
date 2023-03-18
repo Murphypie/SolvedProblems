@@ -10,13 +10,50 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    
+    const bracketObj = {
+        "(": ")",
+        "[": "]",
+        "{": "}"
+    }
 
-  
+
+    let queue = [];
+
+    for(let i = 0; i<s.length; i++){
+        if(s[i] === "(" || s[i] === "[" || s[i] === "{"){
+            queue.push(s[i]);
+        }else if(bracketObj[queue[queue.length-1]] === s[i]){
+            queue.pop();
+        }else{
+            queue.push(s[i])
+        }
+    }
+
+    return queue.length === 0 ? true : false;
 };
 
-isValid("(")
+isValid("]")
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

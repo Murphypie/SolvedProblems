@@ -11,13 +11,25 @@
  * @return {number}
  */
 var search = function(nums, target) {
- 
+    // do it again
+
 };
 
-let nums = [3,4,5,6,1,2]
-let target = 2;
+let nums = [4,5,6,7,8,1,2,3]//[4,5,6,7,0,1,2]// [3,4,5,6,1,2] // [1,3]
+let target = 8 // 5 //2 // 2
 search(nums, target);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
 
 
 

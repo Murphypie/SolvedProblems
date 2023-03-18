@@ -24,18 +24,8 @@
 // list2 and list1.next(3) // 1->2->3
 
 var mergeTwoLists = function(list1, list2) {
-    if(!list1 || !list2){
-        return !list1? list2:list1;
-    }
+    // again
     
-    if(list1.val < list2.val){
-        list1.next = mergeTwoLists(list1.next, list2);
-        return list1;
-    }
-
-    list2.next = mergeTwoLists(list1, list2.next);
-    return list2;
-
 };
 
 function ListNode(val, next) {

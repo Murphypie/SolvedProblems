@@ -18,7 +18,30 @@
  * @return {number}
  */
 var maxProduct = function (root) {
+    let head = root
+    let total = 0;
+    let sumsArr = [];
 
+    let postOrderDFS = (root) =>{
+        if(!root) return 0;
+        let sum = root.val;
+        if(root.left) sum += postOrderDFS(root.left)
+        if(root.right) sum += postOrderDFS(root.right)
+        total += root.val;
+        sumsArr.push(sum)
+        return sum;
+    }
+
+    postOrderDFS(head)
+
+    let max = 0;
+
+    for(let i = 0; i<sumsArr.length; i++){
+        max = Math.max(max, (total-sumsArr[i])*sumsArr[i])
+    }
+
+    
+    return max%(1000000000+7);
 };
 
 
@@ -28,17 +51,32 @@ function TreeNode(val, left, right) {
     this.right = right === undefined ? null : right;
 }
 
-let root = new TreeNode(1);
-root.left = new TreeNode(2);
-root.right = new TreeNode(3);
-root.left.left = new TreeNode(4);
-root.left.right = new TreeNode(5);
-root.right.left = new TreeNode(6);
+
+let arr = [1,null,2,3,4,null,null,5,6]
+
+
+let root = new TreeNode(arr[0])
+let queue = [root]
+let idx = 1;
+while(queue.length){
+    let tempQueue = []
+    let node = queue.shift();
+    if(arr[idx] && arr[idx] !== null){
+        node.left = new TreeNode(arr[idx])
+        tempQueue.push(node.left)
+    }
+    if(arr[idx+1] && arr[idx+1] !== null){
+        node.right = new TreeNode(arr[idx+1])
+        tempQueue.push(node.right)
+    }
+    idx += 2
+    queue.push(...tempQueue)
+}
+
 
 maxProduct(root);
 
 // @lc code=end
-
 
 
 
