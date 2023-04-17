@@ -11,14 +11,69 @@
  * @return {boolean}
  */
 var searchMatrix = function (matrix, target) {
- 
+    if(!matrix || !matrix.length) return false;
 
+    const rows = matrix.length;
+    const columns = matrix[0].length;
 
+    const dfs = (startRow, endRow, startCol, endCol)=>{
+        if(startRow > endRow || startCol > endCol) return false;
+        const middleCol = Math.floor((startCol+endCol)/2)
+        const middleRow = Math.floor((startRow+endRow)/2)
 
+        if(matrix[middleRow][middleCol] === target) return true;
+
+        if(matrix[middleRow][middleCol] < target){
+            return dfs(middleRow+1, endRow, startCol, endCol) || dfs(startRow, endRow, middleCol+1, endCol)
+        }else{
+            return dfs(startRow, middleRow-1, startCol, endCol) || dfs(startRow, endRow, startCol, middleCol-1)
+        }
+    }
+
+    return dfs(0, rows-1, 0, columns-1)
 };
 
-searchMatrix( [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], 5)
+searchMatrix( [[1,1]], 2)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
       if(!matrix || !matrix.length) return false;

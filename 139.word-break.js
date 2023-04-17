@@ -12,12 +12,60 @@
  */
 var wordBreak = function(s, wordDict) {
     // Do it again
+    let dp = new Array(s.length+1).fill(0)
+    dp[0] = 1;
+
+    for(let end = 1; end<=s.length; end++){
+        for(let start = 0; start<=end; start++){
+            if(dp[start]){
+                const newWord = s.slice(start, end)
+                if(wordDict.includes(newWord)){
+                    dp[end] = 1;
+                }
+            }
+        }
+    }
+  ;
+    return dp[dp.length-1] === 1 ? true: false
+
+    
 };
 
 const s = "catsandog"
-const wordDict = ["cats","dog","sand","and","cat", "an"]
+const wordDict = ["cats","dog","sand","and","cat"]
 wordBreak(s, wordDict);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -10,40 +10,75 @@
  * @return {number}
  */
 var minDeletions = function(s) {
-    let charObj = {};
-    let output = 0;
-
+    let wordHash = {};
     for(let i = 0; i<s.length; i++){
-        if(!charObj[s[i]]){
-            charObj[s[i]] = 0;
-        }
-        charObj[s[i]]++
+        if(!wordHash[s[i]]) wordHash[s[i]] = 0;
+        wordHash[s[i]]++
     }
-    charObj
+    
+    let wordArr = Object.entries(wordHash).sort((a,b)=>{
+        return b[1]-a[1]
+    })
 
-    let dupTable = {};
-
-    for(let key in charObj){
-        if(!dupTable[charObj[key]]) dupTable[charObj[key]] = key
-        else{
-            while(dupTable[charObj[key]]){
-                charObj[key]--
-                output++
-            }
-            dupTable[charObj[key]] = key
+    let dupHash = {};
+    let unusedArr = [];
+    let max = 0;
+    for(let i = 0; i<wordArr.length; i++){
+        if(!dupHash[wordArr[i][1]]){
+            dupHash[wordArr[i][1]] = wordArr[i][0];
+            max = Math.max(max, wordArr[i][1])
+        }else{
+            unusedArr.push(wordArr[i])
         }
     }
 
-    dupTable
+    let output = 0;
+    for(let i = 0; i<unusedArr.length; i++){
+        let tempCount = unusedArr[i][1];
+        while(dupHash[tempCount] && tempCount > 0){
+            tempCount--
+            output++
+        }
+        dupHash[tempCount] = unusedArr[i][0]
+    }
 
-    
-    
-   return output;
-
+    return output;
 };
 
-minDeletions("abcabc")
+minDeletions("bbcebab")
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

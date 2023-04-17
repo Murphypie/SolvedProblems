@@ -10,19 +10,9 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let [curHold, curNotHold] = [-Infinity, 0];
-    for(let price of prices){
-        let prevHold = curHold;
-        let prevNotHold = curNotHold;
-
-        // Buy - don't have any stock - need to buy or hold
-        curHold = Math.max(prevHold, prevNotHold - price)
-        // Sell - already has stock - need to sell or hold
-        curNotHold = Math.max(prevNotHold, prevHold+price)
-    }
-    return curNotHold
+  
 };
-maxProfit([7,1,5,3,6,4]);
+maxProfit( [7,1,5,3,6,4]);
 
 // @lc code=end
 
@@ -51,8 +41,29 @@ maxProfit([7,1,5,3,6,4]);
 
 
 
+/* greedy
+  let min = prices[0];
+    let profit = 0;
+    
+    for (let i = 1; i < prices.length; i++) {
+        const price = prices[i];
+        if (price > min) {
+            profit += price - min;
+            min = price;
+        } else {
+            min = Math.min(min, price);
+        }
+    } 
+    
+    return profit;
+*/
 
-    /*
+
+
+
+
+    /* bottom-up DP + iteration
+    
         // It is impossible to sell stock on first day, set -infinity as initial value for curHold
     let [curHold, curNotHold] = [-Infinity, 0];
     

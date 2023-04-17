@@ -14,7 +14,9 @@
 
 var reorganizeString = function (s) {
    // again
-   
+
+
+
 };
 
 let s =  "vvvlo"

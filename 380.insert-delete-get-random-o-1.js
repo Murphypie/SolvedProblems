@@ -18,8 +18,8 @@ var RandomizedSet = function() {
  */
 RandomizedSet.prototype.insert = function(val) {
     if(!this.set.has(val)){
-        this.set.add(val);
-        return true
+        this.set.add(val)
+        return true;
     }
     return false;
 };
@@ -30,18 +30,19 @@ RandomizedSet.prototype.insert = function(val) {
  */
 RandomizedSet.prototype.remove = function(val) {
     if(this.set.has(val)){
-        this.set.delete(val);
+        this.set.delete(val)
         return true;
     }
     return false;
+    
 };
 
 /**
  * @return {number}
  */
 RandomizedSet.prototype.getRandom = function() {
-    let randIndex = Math.floor(Math.random() * this.set.size);
-    return Array.from(this.set)[randIndex];
+    let randNum = Math.floor(Math.random()*this.set.size);
+    return Array.from(this.set)[randNum]
 };
 
 /** 
@@ -53,17 +54,82 @@ RandomizedSet.prototype.getRandom = function() {
  */
 // @lc code=end
 
+let inputStr = ["RandomizedSet", "insert", "remove", "insert", "getRandom", "remove", "insert", "getRandom"];
+let inputArr = [[], [1], [2], [2], [], [1], [2], []]
+let obj;
+let output = [];
+for(let i = 0; i<inputStr.length; i++){
+    let str = inputStr[i];
+    switch(str){
+        case "RandomizedSet":
+            obj = new RandomizedSet();
+            output.push(null)
+            break;
+        case "insert":
+            output.push(obj.insert(inputArr[i][0]))
+            break;
+        case "remove":
+            output.push(obj.remove(inputArr[i][0]))
+            break;
+        case "getRandom":
+            output.push(obj.getRandom())
+            break;
+    }
+}
+output;
 
-var obj = new RandomizedSet()
-obj.insert(1);
-obj.remove(2);
-obj.insert(3);
-obj.insert(4);
-obj.insert(5);
-obj.insert(6);
-obj.insert(7);
-obj.insert(8);
-obj.insert(9);
-obj.insert(2);
+// var obj = new RandomizedSet()
+// obj.insert(1);
+// obj.remove(2);
+// obj.insert(3);
+// obj.insert(4);
+// obj.insert(5);
+// obj.insert(6);
+// obj.insert(7);
+// obj.insert(8);
+// obj.insert(9);
+// obj.insert(2);
 
-obj.getRandom();
+// obj.getRandom();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+RandomizedSet.prototype.insert = function(val) {
+    if(!this.set.has(val)){
+        this.set.add(val);
+        return true
+    }
+    return false;
+};
+
+
+RandomizedSet.prototype.remove = function(val) {
+    if(this.set.has(val)){
+        this.set.delete(val);
+        return true;
+    }
+    return false;
+};
+
+
+RandomizedSet.prototype.getRandom = function() {
+    let randIndex = Math.floor(Math.random() * this.set.size);
+    return Array.from(this.set)[randIndex];
+};
+
+*/

@@ -11,28 +11,23 @@
  * @return {boolean}
  */
 var checkInclusion = function (s1, s2) {
-    const s1Obj = {"count": 0};
+    const s1Obj = {"count":0};
     for(let i = 0; i<s1.length; i++){
-        if(!s1Obj[s1[i]]){
-            s1Obj[s1[i]] = 1;
-        }else{
-            s1Obj[s1[i]]++
-        }
+        if(!s1Obj[s1[i]]) s1Obj[s1[i]] = 0;
+        s1Obj[s1[i]]++;
         s1Obj["count"]++
     }
-
-    for(let i = s1.length; i<=s2.length; i++){
-        let tempStr = s2.slice(i-s1.length, i);
-        let temps1Obj = JSON.parse(JSON.stringify(s1Obj));
-        for(let j = 0; j<tempStr.length; j++){
-            if(temps1Obj[tempStr[j]] && temps1Obj[tempStr[j]] !== 0){
-                temps1Obj[tempStr[j]]--
-                temps1Obj["count"]--
+    
+    for(let i = 0; i<s2.length; i++){
+        let str = s2.slice(i, i+s1.length);
+        let tempObj = JSON.parse(JSON.stringify(s1Obj))
+        for(let s of str){
+            if(tempObj[s] > 0){
+                tempObj[s]--
+                tempObj["count"]--
             }
         }
-        if(temps1Obj["count"] === 0){
-            return true;
-        }
+        if(tempObj["count"]===0) return true
     }
 
     return false;
@@ -42,6 +37,27 @@ let s1 = "ab"
 let s2 = "eidbaooo"
 checkInclusion(s1, s2);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

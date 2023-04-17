@@ -18,30 +18,7 @@
  * @return {number}
  */
 var maxProduct = function (root) {
-    let head = root
-    let total = 0;
-    let sumsArr = [];
-
-    let postOrderDFS = (root) =>{
-        if(!root) return 0;
-        let sum = root.val;
-        if(root.left) sum += postOrderDFS(root.left)
-        if(root.right) sum += postOrderDFS(root.right)
-        total += root.val;
-        sumsArr.push(sum)
-        return sum;
-    }
-
-    postOrderDFS(head)
-
-    let max = 0;
-
-    for(let i = 0; i<sumsArr.length; i++){
-        max = Math.max(max, (total-sumsArr[i])*sumsArr[i])
-    }
-
-    
-    return max%(1000000000+7);
+   // again
 };
 
 
@@ -52,7 +29,7 @@ function TreeNode(val, left, right) {
 }
 
 
-let arr = [1,null,2,3,4,null,null,5,6]
+let arr = [1,2,3,4,5,6]//[1,null,2,3,4,null,null,5,6]
 
 
 let root = new TreeNode(arr[0])
@@ -78,6 +55,36 @@ maxProduct(root);
 
 // @lc code=end
 
+
+
+
+
+/*
+let head = root
+    let total = 0;
+    let sumsArr = [];
+
+    let postOrderDFS = (root) =>{
+        if(!root) return 0;
+        let sum = root.val;
+        if(root.left) sum += postOrderDFS(root.left)
+        if(root.right) sum += postOrderDFS(root.right)
+        total += root.val;
+        sumsArr.push(sum)
+        return sum;
+    }
+
+    postOrderDFS(head)
+
+    let max = 0;
+
+    for(let i = 0; i<sumsArr.length; i++){
+        max = Math.max(max, (total-sumsArr[i])*sumsArr[i])
+    }
+
+    
+    return max%(1000000000+7);
+*/
 
 
 

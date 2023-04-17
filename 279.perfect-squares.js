@@ -11,33 +11,24 @@
  */
 var numSquares = function(n) {
     // Do it again with DP
-    let dp = new Array(n+1);
-    dp[0] = 0;
-
-       // --- 1 2 3 4 5 6 7 8 9 10 11 12
-    // 1^2 1 2 3 4 5 6 7 8 9 10 11 12 <-
-    // 2^2 - - - 1 2 3 4 2 3  4  5  3 <-
-    // 3^2 - - - - - - - - 1  2  3  3 <-
-
-    for(let i = 1; i*i<=n; i++){
-        for(let j = i*i; j<=n; j++){
-            if(i === 1){
-                dp[j] = j
-            }else{
-                let before = dp[j];
-                let quotient = Math.floor(j/(i*i));
-                let remainder = j % (i*i);
-                let current = quotient+ dp[remainder];
-                dp[j] = Math.min(before, current)
-            }
-        }
-    }
-
-    dp;
+ 
+    
 };
 
 numSquares(13)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

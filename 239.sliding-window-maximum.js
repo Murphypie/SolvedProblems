@@ -11,11 +11,13 @@
  * @return {number[]}
  */
 
-var maxSlidingWindow = function(nums, k) {
-    // Do dp
-    // Do Dequeue
 
-   
+
+
+var maxSlidingWindow = function(nums, k) {
+    // Do dp, dequeue, priority queue
+
+ 
 };
 
 
@@ -26,7 +28,24 @@ maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)
 
 
 
-// Solve with heap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// PriorityQueue 
 /*
 var maxSlidingWindow = function(nums, k) {
     
@@ -124,9 +143,8 @@ class maxHeap{
 
 
 
-    // const dequeue = []; 
-    // const output = [];
-    //     /*
+
+    //     /* dequeue
     //  * The goal is to maintain a decreasing monotonic queue and register 
     //  * max value as the window shifts.
     //  * 
@@ -143,6 +161,8 @@ class maxHeap{
     //  * 7        [7]             [3, 3, 5, 5, 6, 7]
     //  */
 
+    // const dequeue = []; 
+    // const output = [];
     // for (let i = 0; i < nums.length; i++) {
     //     // add the number at the right position queue
     //     while (nums[i] > dequeue[dequeue.length - 1]) {
@@ -167,7 +187,7 @@ class maxHeap{
 
 
 
-    /*
+    /* dp
      let n = nums.length
     let leftdp = new Array(n).fill(0);
     leftdp[0] = nums[0];
@@ -195,3 +215,5 @@ class maxHeap{
     }
     return output;
     */
+
+ 

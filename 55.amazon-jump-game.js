@@ -19,10 +19,11 @@ var canJump = function(nums) {
     // Greedy
     // Do it again
    
+   
 };
 
 
-let arr = [3,2,1,0,4]
+let arr = [2,3,1,1,4]//[3,2,1,0,4]
 canJump(arr);
 // @lc code=end
 
@@ -41,6 +42,22 @@ canJump(arr);
 
 
 
+
+/* Also greedy
+ if(nums.length === 1) return true;
+
+    let stepLeft = nums[0]
+
+    for(let i = 1; i<nums.length-1; i++){
+        if(stepLeft === 0) return false
+        stepLeft = stepLeft -1;
+        if(stepLeft < nums[i]){
+            stepLeft = nums[i]
+        }
+    }
+
+    return stepLeft > 0 ? true : false
+*/
 
 
 

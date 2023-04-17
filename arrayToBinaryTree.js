@@ -7,7 +7,7 @@ function TreeNode(val, left, right) {
 }
 
 
-let arr = [1,2,3,4,5,6];
+let arr = [1,2,null,4,5,6,7];
 
 let firstNode = new TreeNode(arr[0]);
 let queue = [firstNode]
@@ -29,4 +29,3 @@ while(queue.length){
     queue.push(...tempQueue)
 }
 
-firstNode

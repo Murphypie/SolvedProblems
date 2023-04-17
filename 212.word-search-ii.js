@@ -13,14 +13,37 @@
  */
 
  var findWords = function(board, words) {
- 
+    
 };
 
 
+
+
 const board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
-const words = ["oath","over","pea","eat","rain"]
+const words = ["oath","pea","eat","rain"]
 findWords(board, words)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  let output = [];
@@ -120,5 +143,65 @@ function buildTrie(words){
     return obj;;
 }
 
+
+*/
+
+
+
+
+
+/*
+const output = new Set();
+
+    const trieBuilder = (words) =>{
+        let trie = {};
+        for(let i = 0; i<words.length; i++){
+            let head = trie;
+            for(let word of words[i]){
+                if(!head[word]){
+                    head[word] = {};
+                }
+                head = head[word]
+            }
+            head["final"] = words[i]
+        }
+        return trie
+    }
+
+    const dfs = (i, j, board, trie) =>{
+        if(board[i] === undefined || board[i][j] === undefined || board[i][j] === 0 ) return;
+        trie = trie[board[i][j]]
+
+        if(trie && trie['final']){
+            if(!output.has(trie['final'])){
+                output.add(trie['final'])
+            }
+        }
+        
+        if(!trie) return
+
+        let temp = board[i][j]; 
+        board[i][j] = 0
+        dfs(i+1, j, board, trie);
+        dfs(i, j+1, board, trie);
+        dfs(i-1, j, board, trie);
+        dfs(i, j-1, board, trie);
+        board[i][j] = temp;
+
+    }
+
+    let trie = trieBuilder(words)
+
+
+    for(let i = 0; i<board.length; i++){
+        for(let j = 0; j<board[0].length; j++){
+            if(trie[board[i][j]]){
+                dfs(i,j, board, trie)
+            }
+        }
+    }
+
+    
+    return [...output];
 
 */

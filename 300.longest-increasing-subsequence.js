@@ -10,7 +10,64 @@
  * @return {number}
  */
 var lengthOfLIS = function (nums) {
-    let dp = [];
+    // do it again with binary search
+
+    let dp = new Array(nums.length).fill(1);
+    let max = 1;
+
+    for(let i = 0; i<nums.length; i++){
+        for(let j = 0; j<i; j++){
+            if(nums[i]>nums[j]){
+                dp[i] = Math.max(dp[j]+1, dp[i])
+                max = Math.max(max, dp[i])
+            }
+        }
+    }
+
+    return max;
+};
+
+let nums = [7,7,7,7,7,7,7] //[3,5,6,2,5,4,19,5,6,7,12]
+lengthOfLIS(nums);
+// @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  let dp = [];
     dp[0] = nums[0];
 
     for (let i = 0; i < nums.length; i++) {
@@ -40,28 +97,7 @@ var lengthOfLIS = function (nums) {
     }
     
     return dp.length
-};
-
-let nums = [3,5,6,2,5,4,19,5,6,7,12]
-lengthOfLIS(nums);
-// @lc code=end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 

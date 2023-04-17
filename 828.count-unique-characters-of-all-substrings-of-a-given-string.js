@@ -11,12 +11,69 @@
  */
 
 var uniqueLetterString = function (s) {
-    
-
+    // Understand this before solving
+    let res = 0;
+    if(s.length === 0) return res;
+    let lastPosition  = new Array(26).fill(0)
+    let contribution  = new Array(26).fill(0)
+   
+    for(let i = 0; i<s.length; i++){
+        let x = s.charCodeAt(i) - 65
+        let substrEnding = i+1;
+        contribution[x] = substrEnding - lastPosition[x];
+        contribution
+        let cur = 0;
+        for(let j = 0; j<26; j++){
+            cur += contribution[j]
+        } 
+        res+=cur;
+        lastPosition[x] = i + 1;
+    }
+    return res;
    
 };
 
-uniqueLetterString("ABAB");
+uniqueLetterString("ABB");
+
+// @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //For Example, "LEETCODE", we can notice that "E" present multiple times and only the substrings contains one "E" can help "E" to be counted in.
 // "LE", "ET", "ETCOD" are good, but "LEE", "ETCODE" are not.
 
@@ -26,13 +83,6 @@ uniqueLetterString("ABAB");
 // Take a look at "2E", it has zero letter on the left, and four on the right, (1+leftLength(=1))*(1+rightLength(=4))=5
 // For T, if we fix the right part, then therer are 4 different ways of left part (Left has "", "E", "EE", "LEE")
 // If we fix the left part, then we can have 5 different ways of right part ("", "C", "CO", "COD", "CODE")
-
-// @lc code=end
-
-
-
-
-
 
 
 
@@ -91,34 +141,3 @@ uniqueLetterString("ABAB");
 
 
 
-
-/* fail
- // let dp = [[s[0], 1]];
-    // let output = 1;
-    // for (let i = 1; i < s.length; i++) {
-    //     let lastDP = dp[dp.length-1]
-    //     let str = lastDP[0]
-    //     let uniqCount = lastDP[1] 
-    //     if(!lastDP[0].includes(s[i])){
-    //        uniqCount += i+1
-    //     }else{ 
-    //         for(let j = 0; j<str.length; j++){
-    //             let sliced = str.slice(j,str.length)
-    //             if(sliced.indexOf(s[i]) !== -1 &&
-    //             sliced.lastIndexOf(s[i]) !== sliced.indexOf(s[i])){
-    //                 uniqCount;
-    //             }else if(sliced.indexOf(s[i]) !== -1){
-    //                 uniqCount -= 1
-    //             }else{
-    //                 uniqCount += 1
-    //             }
-    //         }
-    //         uniqCount += 1
-    //     }
-    //     dp.push([str+ s[i], uniqCount])
-    //     output += uniqCount
-    // }
-
-
-    // return output;
-*/

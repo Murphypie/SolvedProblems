@@ -10,7 +10,69 @@
  * @return {number[][]}
  */
 var merge = function(intervals) {
+    let output = [];
+    
     intervals = intervals.sort((a,b)=>{
+        if(a[0]>b[0]) return 1
+        else return -1
+    })
+
+    for(let i = 0; i<intervals.length; i++){
+        if(output.length === 0) output.push(intervals[i]);
+        let lastEl = output[output.length-1];
+        let curr = intervals[i];
+        
+        if(lastEl[1] >= curr[0] && lastEl[1] <= curr[1]){
+            output[output.length-1] = [lastEl[0], curr[1]]
+        }
+
+        if(lastEl[1] < curr[0]){
+            output.push(curr)
+        }
+     
+    }
+
+    return output;
+};
+
+let intervals =  [[1,3],[0,6]]
+merge(intervals)
+// @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  intervals = intervals.sort((a,b)=>{
         if(a[0]>b[0]) return 1
         else return -1
     })
@@ -33,31 +95,7 @@ var merge = function(intervals) {
     }
 
     return output;
-
-};
-
-let intervals = [[1,3],[0,6]]
-merge(intervals)
-// @lc code=end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 /*

@@ -18,14 +18,12 @@ var LRUCache = function(capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function(key) {
-    if(!this.stack.has(key)){
-        return -1
-    }else{
-        let tempval = this.stack.get(key)
-        this.stack.delete(key);
-        this.stack.set(key, tempval)
-        return tempval
-    }
+    let value = this.stack.get(key);
+    if(value === undefined) return -1
+    this.stack.delete(key);
+    this.stack.set(key, value);
+
+    return value;
 };
 
 /** 
@@ -34,24 +32,49 @@ LRUCache.prototype.get = function(key) {
  * @return {void}
  */
 LRUCache.prototype.put = function(key, value) {
-    if(this.stack.has(key)){
+     if(this.stack.has(key)){
         this.stack.delete(key);
-    }else{
-        if(this.stack.size < this.capacity){
-        }else{
-            this.stack.delete(this.stack.keys().next().value)
-        }
+    }
+    if(this.stack.size === this.capacity){
+        this.stack.delete(this.stack.keys().next().value);
     }
     this.stack.set(key, value);
-    
 };
 
-let lRUCache = new LRUCache(2);
-lRUCache.put(1, 1); // cache is {1=1}
-lRUCache.put(2, 2); // cache is {1=1, 2=2}
-lRUCache.get(1);    // return 1
-lRUCache.put(3, 3); 
-lRUCache.stack;
+
+let lRUCache
+
+let strArr = ["LRUCache","put","put","get","put","get","put","get","get","get"]//["LRUCache","get","put","get","put","put","get","get"]
+let valueArr = [[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]// [[2],[2],[2,6],[1],[1,5],[1,2],[1],[2]]
+let output = [];
+
+for(let i = 0; i<strArr.length; i++){
+    if(strArr[i] === "LRUCache"){
+        lRUCache = new LRUCache(...valueArr[i])
+        output.push(null)
+    }
+    if(strArr[i] === "put"){
+        lRUCache.put(valueArr[i][0], valueArr[i][1])
+        output.push(null)
+    }
+    if(strArr[i] === 'get'){
+        output.push(lRUCache.get(...valueArr[i]))
+    }
+    lRUCache
+}
+
+lRUCache
+output;
+
+
+
+
+
+// lRUCache.put(1, 1); // cache is {1=1}
+// lRUCache.put(2, 2); // cache is {1=1, 2=2}
+// lRUCache.get(1);    // return 1
+// lRUCache.put(3, 3); 
+// lRUCache.stack;
 
 /** 
  * Your LRUCache object will be instantiated and called as such:
@@ -59,6 +82,15 @@ lRUCache.stack;
  * obj.put(key,value)
  */
 // @lc code=end
+
+
+
+
+
+
+
+
+
 
 
 /*

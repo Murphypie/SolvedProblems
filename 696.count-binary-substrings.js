@@ -10,11 +10,20 @@
  * @return {number}
  */
 var countBinarySubstrings = function(s) {
-  
+    let curr = 1, prev = 0, ans = 0;
+    for(let i = 1; i<s.length; i++){
+        if(s[i]===s[i-1]) curr++;
+        else{
+            ans += Math.min(prev, curr);
+            prev = curr;
+            curr = 1;
+        }
+    }
+    return ans+Math.min(prev, curr);
 };
 
 
-countBinarySubstrings("00110011")
+countBinarySubstrings("00110") //"00110"
 // @lc code=end
 
 
@@ -23,6 +32,44 @@ countBinarySubstrings("00110011")
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    let output = 0;
+    for(let i = 1; i<s.length; i++){
+        let str = "";
+        let curr = i;
+        let prev = i-1;
+        let subCount = 0;
+        while(s[curr+subCount] !== s[prev-subCount]){
+            if(!s[curr+subCount] || !s[prev-subCount] || s[curr+subCount] === str[0] || s[prev-subCount] === str[s.length-1]) break;
+            str = s[prev-subCount] + str + s[curr+subCount]
+            output++
+            subCount++
+        }
+    }
+    return output;
+*/
 
 
 

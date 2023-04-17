@@ -11,9 +11,26 @@
  */
 var largestRectangleArea = function(heights) {
     // do stack and divide/conquer
+
+
+    function calculateArea(heights, start, end){
+        if(start>end){
+            return 0;
+        }
+        let min_index = start;
+        for(let i = start; i<=end; i++){
+            if(heights[min_index] > heights[i]){
+                min_index = i;
+            }
+        }
+        
+        return Math.max(heights[min_index]*(end-start+1),
+            calculateArea(heights, start, min_index-1),
+            calculateArea(heights, min_index+1, end)
+        )
+    }
     
- 
- 
+    return calculateArea(heights, 0, heights.length-1);
 };
 
 let heights = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
@@ -23,6 +40,58 @@ largestRectangleArea(heights)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* it works but takes too long
+    
+    if(heights.length === 0) return 0;
+    if(heights.length === 1) return heights[0]
+
+    function lowestFinder(arr){
+        let min = Infinity;
+        let lowInd = 0;
+        for(let i = 0; i<arr.length; i++){
+            if(min>arr[i]){
+                min = arr[i]
+                lowInd = i;
+            }
+        }
+        return lowInd;
+    }
+
+    let lowInd = lowestFinder(heights);
+    let leftArr = heights.slice(0, lowInd);
+    let rightArr = heights.slice(lowInd+1)
+    let maxArea = Math.max(heights[lowInd]*heights.length, largestRectangleArea(leftArr), largestRectangleArea(rightArr));
+    return maxArea
+*/
 
 
 

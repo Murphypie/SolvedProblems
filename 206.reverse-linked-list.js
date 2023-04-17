@@ -17,9 +17,11 @@
  * @return {ListNode}
  */
 var reverseList = function (head) {
+    if (head === null || head.next === null) return head; 
+    let prev = null
     let curr = head;
-    let prev = null;
     let next = null;
+
     while(curr){
         next = curr.next;
         curr.next = prev;
@@ -41,6 +43,29 @@ node.next.next = new ListNode(3);
 node.next.next.next = new ListNode(4);
 node.next.next.next.next = new ListNode(5);
 reverseList(node);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
  if (head === null || head.next === null) return head; 

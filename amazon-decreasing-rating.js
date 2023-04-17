@@ -1,5 +1,6 @@
 /*
-There is a new product launched and its customer ratings are being recorded in an array. The ratings are being monitored and analyzed if there is any decrease in the ratings.
+There is a new product launched and its customer ratings are being recorded in an array. 
+The ratings are being monitored and analyzed if there is any decrease in the ratings.
 Find the number of periods in which the rating is consecutively decreasing.
 
 Example - Ratings = [4,3,5,4,3]
@@ -15,8 +16,22 @@ https://leetcode.com/discuss/interview-question/1554594/amazon-oa-oct-2021-sde2
 */
 
 function periodsOfDecreaseRating(ratings){
-  
+    let output = 0;
+
+    let localHighInd = 0;
+    for(let i = 0; i<ratings.length; i++){
+        if(ratings[i]>ratings[localHighInd]){
+            localHighInd = i;
+        }
+        output++
+        if(i>=1 && ratings[i]<ratings[i-1]){
+            output += i-localHighInd
+        }
+    }
+    return output;
+
 }
+
 // 4 - 1
 // 4,3 = 2
 // 5 - 1
@@ -24,8 +39,32 @@ function periodsOfDecreaseRating(ratings){
 // 5,4,3 - 3
 // 5,4,3,2 - 4 
 
-let ratings = [4,3,5,4,3,2];
+let ratings = [4,3,5,4,3]
 periodsOfDecreaseRating(ratings);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   let i = 0;

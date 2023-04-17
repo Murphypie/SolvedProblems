@@ -12,13 +12,49 @@
  */
 
 var findOrder = function (numCourses, prerequisites) {
-   // again
+    // again
+
+
+    
 };
 
-let numCourses = 2, prerequisites = [];
+let numCourses = 2, prerequisites = [[0,1]]
 findOrder(numCourses, prerequisites);
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 const inDegrees = Array(numCourses).fill(0);

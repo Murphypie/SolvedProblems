@@ -37,8 +37,6 @@ var maxProfit = function (inventor, orders) {
                 
             }
 
-
-    
             let numToAddStart = BigInt(inventory[0])
             let numToAddEnd = BigInt(inventory[end])
             let endPoint = Math.min(end, orders)

@@ -19,7 +19,10 @@
  * @return {TreeNode}
  */
 var mergeTrees = function (root1, root2) {
-  
+    // Do it again with dfs method
+
+
+
 };
 
 function TreeNode(val, left, right) {
@@ -42,6 +45,21 @@ mergeTrees(root, subRoot);
 
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
    // dfs, merge over to root1
     // base case
@@ -57,4 +75,71 @@ mergeTrees(root, subRoot);
     root1.left = mergeTrees(root1.left, root2.left);
     root1.right = mergeTrees(root1.right, root2.right);
     return root1
+*/
+
+
+/* long but bfs
+    const root1arr = [root1.val];
+    const root2arr = [root2.val];
+
+    function treeToArr(tree, arr){
+        let queue = [tree];
+        while(queue.length > 0){
+            const node = queue.shift();
+            if(!node.left && !node.right) return
+            if(node.left){
+                queue.push(node.left)
+                arr.push(node.left.val)
+            }else{
+                arr.push(null)
+            }
+            if(node.right){
+                queue.push(node.right)
+                arr.push(node.right.val)
+            }else{
+                arr.push(null)
+            }
+        }
+    }
+
+    treeToArr(root1, root1arr)
+    treeToArr(root2, root2arr)
+
+    let arr = [];
+    let maxLength = Math.max(root1arr.length, root2arr.length);
+
+    for(let i = 0; i<maxLength; i++){
+        let sum = 0;
+        if(!root1arr[i] && !root2arr[i]){
+            arr[i] = null;
+            continue;
+        }
+        if(root1arr[i]) sum+= root1arr[i]
+        if(root2arr[i]) sum+= root2arr[i]
+    
+        arr[i] = sum
+    }
+
+    let firstNode = new TreeNode(root1arr[0] + root2arr[0]);
+    let queue = [firstNode]
+    
+    let idx = 1;
+    
+    while(queue.length){
+        let tempQueue = []
+        let node = queue.shift();
+        if(arr[idx] && arr[idx] !== null){
+            node.left = new TreeNode(arr[idx])
+            tempQueue.push(node.left)
+        }
+        if(arr[idx+1] && arr[idx+1] !== null){
+            node.right = new TreeNode(arr[idx+1])
+            tempQueue.push(node.right)
+        }
+        idx += 2
+        queue.push(...tempQueue)
+    }
+    
+    firstNode
+
 */
