@@ -39,7 +39,7 @@ function periodsOfDecreaseRating(ratings){
 // 5,4,3 - 3
 // 5,4,3,2 - 4 
 
-let ratings = [4,3,5,4,3]
+let ratings = [8,6,7,7]
 periodsOfDecreaseRating(ratings);
 
 

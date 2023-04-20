@@ -18,9 +18,38 @@ So answer is true.
 */
 
 function flipGridToZero(grid){
-   
-
+    // Do it again
 }
+
+
+let grid = [[0,1,0],[1,0,1],[0,1,0]]
+flipGridToZero(grid)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -46,21 +75,21 @@ Brute force
     return output;
 */
 
-function rowFlip(grid, i){
-    for(let k = 0; k<grid[i].length; k++){
-        if(grid[i][k] === 0) grid[i][k] = 1
-        else grid[i][k] = 0
-    }
-}
-function columnFlip(grid, j){
-    for(let k = 0; k<grid.length; k++){
-        if(grid[k][j] === 0) grid[k][j] = 1
-        else grid[k][j] = 0
-    }
-}
+// function rowFlip(grid, i){
+//     for(let k = 0; k<grid[i].length; k++){
+//         if(grid[i][k] === 0) grid[i][k] = 1
+//         else grid[i][k] = 0
+//     }
+// }
+// function columnFlip(grid, j){
+//     for(let k = 0; k<grid.length; k++){
+//         if(grid[k][j] === 0) grid[k][j] = 1
+//         else grid[k][j] = 0
+//     }
+// }
 
-let grid = [[0,1,0],[1,0,1],[0,1,0]]
-flipGridToZero(grid)
+// let grid = [[0,1,0],[1,0,1],[0,1,0]]
+// flipGridToZero(grid)
 
 /*
   

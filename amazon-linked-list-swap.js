@@ -7,7 +7,39 @@ class LinkedList {
 }
 
 function linkedListSwap(ll, x, y) {
- 
+    let dummyload = new LinkedList(0);
+    dummyload.next = ll;
+    let node = dummyload;
+
+    let firstPrevNode;
+    let secondPrevNode;
+
+    while(node){
+        if(!node.next){
+            if(!secondPrevNode) secondPrevNode = node;
+            break;
+        }
+        if(node.next.val === x || node.next.val === y){
+            if(!firstPrevNode){
+                firstPrevNode = node
+            }else{
+                secondPrevNode = node;
+            }
+        }
+
+        node = node.next
+    }
+
+    let firstNode = firstPrevNode.next
+    let secondNode = secondPrevNode.next
+    let temp = secondNode.next
+
+    firstPrevNode.next = secondNode
+    secondNode.next = firstNode.next
+
+    secondPrevNode.next = firstNode
+    firstNode.next = temp;
+    return dummyload.next;
 }
 
 let ll = new LinkedList(10);
@@ -17,7 +49,41 @@ ll.next.next.next = new LinkedList(13);
 ll.next.next.next.next = new LinkedList(20);
 ll.next.next.next.next.next = new LinkedList(14);
 
-linkedListSwap(ll, 15, 20);
+linkedListSwap(ll, 10, 20);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*

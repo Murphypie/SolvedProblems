@@ -36,8 +36,40 @@ weight 5
 
 */
 
-function droneDelivery(arr, n, d1, d2){
-    // dp[i][j] denotes weight i is carried by the first drone and weight j is carried by the second drone
+function droneDelivery(w, n, d1, d2){
+    // Do it again
+  
+}
+
+
+const d1 = 25, d2 = 13, n = 5
+const w = [2, 5, 7, 10, 17]
+
+
+
+droneDelivery(w, n, d1, d2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+// dp[i][j] denotes weight i is carried by the first drone and weight j is carried by the second drone
     let dp = new Array(d1+1).fill(false).map(()=>new Array(d2+1).fill(false));
     dp[0][0] = true;
     let total = 0;
@@ -64,10 +96,4 @@ function droneDelivery(arr, n, d1, d2){
         }
     }
     return ans;
-}
-
-
-const d1 = 25, d2 = 13, n = 5
-const w = [2, 5, 7, 10, 17]
-
-droneDelivery(w, n, d1, d2)
+*/

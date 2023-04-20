@@ -35,14 +35,15 @@ result = {
 */
 
 function mergeTwoMaps(map1, map2){
-    for(let item in map2){
-        if(!map1[item]){
-            map1[item] = map2[item]
-        }else if(map1[item] && typeof map2[item] === 'object'){
-            mergeTwoMaps(map1[item], map2[item]);
+    for(let key in map2){
+        if(!map1[key]){
+            map1[key] = map2[key]
+        }
+        if(typeof map1[key] === 'object'){
+            mergeTwoMaps(map1[key], map2[key])
         }
     }
-    return map1;
+    return map1
 }
 
 let map1 = {
@@ -64,3 +65,35 @@ let map2 = {
 }
 
 mergeTwoMaps(map1, map2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ for(let item in map2){
+        if(!map1[item]){
+            map1[item] = map2[item]
+        }else if(map1[item] && typeof map2[item] === 'object'){
+            mergeTwoMaps(map1[item], map2[item]);
+        }
+    }
+    return map1;
+*/

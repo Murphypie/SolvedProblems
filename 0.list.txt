@@ -4,11 +4,31 @@ Hash
 Trie
 1268
 
+DP
+Amazon-Bin-binPackingProblem, amazon-mario
+
+
 Binary tree
-1110, 1339, amazon-best-expression
+1110, 1339, amazon-best-expression, amazon-minimumGroups
 
 Graph | union-find | dfs
 210, 547, 684, 1192
 
 Array
-2104
+2104, amazon-elementsAdduptoK, amazon-flip-grid-to-zero
+
+DP
+amazon-droneDelivery, amazon-mario
+
+PriorityQueue
+amazon-find-k-maximumPriority
+
+DFS
+amazon-interview-exchange
+
+Linked LinkedList
+amazon-linked-list-swap
+
+Object
+Amazon-merge-two-maps
+

@@ -41,34 +41,42 @@ The second group can contain [6, 8]. The maximum difference is 2.
 The third group can contain [13, 9]. The maximum difference is 4.
 */
 
-function minimumGroup(awards, k){
-   awards.sort((a,b)=>a-b);
-    let count = 0;
-    let start = 0;
-    while(start < awards.length){
-        start = binarySearch(awards, start, awards[start]+k) + 1
-        count++
-    }
-    
-   function binarySearch(awards, idx, max){
-       let low = idx;   
-       let high = awards.length - 1;
-       let res = idx;
-       let mid = 0;
-       while(low < high){
-           mid = Math.floor(low + (high-low)/2 + 1);
-           if(awards[mid] > max){
-                high = mid-1;
-           }else{
-               res = mid;
-               low = mid+1;
-           }
-      }
-       return res;
-   }
 
-   return count;
+
+function minimumGroup(awards, k){
+    awards = awards.sort((a,b)=>a-b)
+    awards
+    let outputArr = [];
+    while(awards.length){
+        let lowNum = awards[0]+k;
+        let highNum = binarySearch(awards, lowNum)
+        outputArr.push(awards.slice(0,highNum+1))
+        awards = awards.slice(highNum+1)
+  
+    }
+    outputArr
+    return outputArr.length;
+
 }
+
+function binarySearch(arr, target){
+    let left = 0;
+    let right = arr.length-1
+    while(left <= right){
+        let mid = Math.floor((left+right)/2)
+        if(arr[mid] === target){
+            return mid;
+        }
+        if(arr[mid]<target){
+            left = mid+1
+        }else{
+            right = mid-1
+        }
+    }
+    return right
+}
+
+
 const awards = [1, 13, 6, 8, 9, 3, 5]
 const k = 4
 minimumGroup(awards, k)
@@ -86,3 +94,33 @@ minimumGroup(awards, k)
         
 
 */
+
+
+// function minimumGroup(awards, k){
+//    awards.sort((a,b)=>a-b);
+//     let count = 0;
+//     let start = 0;
+//     while(start < awards.length){
+//         start = binarySearch(awards, start, awards[start]+k) + 1
+//         count++
+//     }
+    
+//    function binarySearch(awards, idx, max){
+//        let low = idx;   
+//        let high = awards.length - 1;
+//        let res = idx;
+//        let mid = 0;
+//        while(low < high){
+//            mid = Math.floor(low + (high-low)/2 + 1);
+//            if(awards[mid] > max){
+//                 high = mid-1;
+//            }else{
+//                res = mid;
+//                low = mid+1;
+//            }
+//       }
+//        return res;
+//    }
+
+//    return count;
+// }
