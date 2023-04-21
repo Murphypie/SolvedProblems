@@ -82,14 +82,11 @@ mergeTwoMaps(map1, map2)
 
 
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
->>>>>>> 3392afb8bb6637280a00bf0185f701ce8afe503e
 /*
  for(let item in map2){
         if(!map1[item]){
