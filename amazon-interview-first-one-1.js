@@ -17,38 +17,43 @@ output: [1, 2, 3, 4, 5]
 
 */
 
-const parking_space = [1,1,2]
-const actions =  [["arrival", "small"], ["arrival", "large"], ["arrival", "medium"], ["arrival", "large"], ["depart", 3], ["arrival", "medium"]];
 
-function parking(parking_space, actions){
-    const sizeEnum = {
-        "small":0,
-        "medium": 1,
-        "large": 2
-    }   
 
-    let parkedCars = [];
-    let output = [];
-    let count = 0;
+function parking(spaces, actions) {
+    let output = {};
+    let counter = 1;
 
-    for(let i = 0; i<actions.length; i++){
-        let size = actions[i][1]
-
-        if(actions[i][0] === "depart"){
-            let departSize = parkedCars[actions[i][1]-1];
-            parking_space[departSize]++
-        }else{
-            if(parking_space[sizeEnum[size]] > 0){
-                parking_space[sizeEnum[size]]--
-                count += 1;
-                output.push(count)
-                parkedCars.push(sizeEnum[size])
+    for (let i = 0; i < actions.length; i++) {
+        const carSize = actions[i][1]
+        if (actions[i][0] === 1) { // If arrival
+            if(spaces[carSize] === 0){
+                output["reject"] = false
             }else{
-                output.push("reject")
+                output[counter++] = carSize
+                spaces[carSize]--
             }
+        } else { // If depart
+            const issuedTicker = actions[i][1];
+            const parkingSize = output[issuedTicker]
+            spaces[parkingSize]++
         }
     }
-    return output;
+
+    return Object.keys(output).map(Number)
 }
 
-parking(parking_space, actions);
+const parkSpace = [1, 1, 2]
+
+const depart = 0;
+const arrival = 1;
+
+const small = 0;
+const medium = 1;
+const large = 2;
+
+
+const actions =  [[arrival, small], [arrival, large], [arrival, medium], [arrival, large], [depart, 3], [arrival, medium]]
+
+//[[arrival, small], [arrival, large], [arrival, medium], [arrival, large], [arrival, medium]]
+
+parking(parkSpace, actions)

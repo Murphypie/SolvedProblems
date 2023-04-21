@@ -41,6 +41,8 @@ The second group can contain [6, 8]. The maximum difference is 2.
 The third group can contain [13, 9]. The maximum difference is 4.
 */
 
+
+
 function minimumGroup(awards, k){
     awards = awards.sort((a,b)=>a-b)
     awards
@@ -74,36 +76,10 @@ function binarySearch(arr, target){
     return right
 }
 
-const awards = [1,5,4,6,8,9,2]//[1, 13, 6, 8, 9, 3, 5]
+
+const awards = [1, 13, 6, 8, 9, 3, 5]
 const k = 4
 minimumGroup(awards, k)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* Complexity analysis:
@@ -120,31 +96,31 @@ minimumGroup(awards, k)
 */
 
 
-/*
-  awards.sort((a,b)=>a-b);
-    let count = 0;
-    let start = 0;
-    while(start < awards.length){
-        start = binarySearch(awards, start, awards[start]+k) + 1
-        count++
-    }
+// function minimumGroup(awards, k){
+//    awards.sort((a,b)=>a-b);
+//     let count = 0;
+//     let start = 0;
+//     while(start < awards.length){
+//         start = binarySearch(awards, start, awards[start]+k) + 1
+//         count++
+//     }
     
-   function binarySearch(awards, idx, max){
-       let low = idx;   
-       let high = awards.length - 1;
-       let res = idx;
-       let mid = 0;
-       while(low < high){
-           mid = Math.floor(low + (high-low)/2 + 1);
-           if(awards[mid] > max){
-                high = mid-1;
-           }else{
-               res = mid;
-               low = mid+1;
-           }
-      }
-       return res;
-   }
+//    function binarySearch(awards, idx, max){
+//        let low = idx;   
+//        let high = awards.length - 1;
+//        let res = idx;
+//        let mid = 0;
+//        while(low < high){
+//            mid = Math.floor(low + (high-low)/2 + 1);
+//            if(awards[mid] > max){
+//                 high = mid-1;
+//            }else{
+//                res = mid;
+//                low = mid+1;
+//            }
+//       }
+//        return res;
+//    }
 
-   return count;
-*/
+//    return count;
+// }

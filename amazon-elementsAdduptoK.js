@@ -31,8 +31,42 @@ function elementsAdduptoK(nums, k){
         if(sum === k) return true
         else return false;
     }
+    
 }
 
 let nums = [1, 5, 19, 20];
 let k = 25;
 elementsAdduptoK(nums, k);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+   nums.sort((a,b)=>a-b);
+    for(let i = 2; i<nums.length; i++){
+        let sum = nums[i-2]+nums[i-1]+nums[i];
+        if(sum === k) return true
+        else return false;
+    }
+*/

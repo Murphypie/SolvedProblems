@@ -29,18 +29,13 @@ function binPackingProblem(weight, binCapacity){
     }
 
     return binPacker(weight, binCapacity)
+    
+
 }
 
-const weight = [4,8,1,4,2,1,2];
+const weight = [4,8,1,4,2,1];
 const binCapacity = 10;  
 binPackingProblem(weight, binCapacity) // output = 2 : [8,1,1], [4,4,2] 
-
-
-
-
-
-
-
 
 
 
@@ -84,9 +79,8 @@ binPackingProblem(weight, binCapacity) // output = 2 : [8,1,1], [4,4,2]
 
 
 
-
 /*
- // When processing next item, check if it fits in the same bin as the last item. Use a new bin only if it does not. 
+// When processing next item, check if it fits in the same bin as the last item. Use a new bin only if it does not. 
     function nextFit(weight, n ,c){
         let output = 0;
         let bin_rem = c;

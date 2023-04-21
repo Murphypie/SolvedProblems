@@ -16,6 +16,28 @@ Constraints -
 1 <= k <= min(2000,2^n)
 */
 
+
+
+function maximumPriority(nums, k){
+   // Do it again
+}
+
+const nums = [3,5,-2,10,-5];
+const k = 3;
+maximumPriority(nums, k)
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 class PriorityQueue{
     constructor(){
         this.values = [];
@@ -62,10 +84,7 @@ function maximumPriority(nums, k){
             }
         }
     }
-
+    
     return result;
 }
-
-const nums = [3,5,-2,10];
-const k = 3;
-maximumPriority(nums, k)
+*/

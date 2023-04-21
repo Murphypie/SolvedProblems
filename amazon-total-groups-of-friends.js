@@ -32,7 +32,59 @@ be formed = 3
 // 2
 
 class Graph{
-    constructor(n){
+    
+}
+
+
+let node = new Graph(6);
+node.addEdge(1,2);
+node.addEdge(3,4);
+node.addEdge(5,6);
+node.adjList;
+node.countGroups();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+constructor(n){
         this.n = n;
         this.adjList = new Array(n);
         this.adjList = Array.from(this.adjList, ()=>[])
@@ -72,15 +124,4 @@ class Graph{
         if(existing_group === 1) new_groups = 0;
         return [existing_group, new_groups]
     }
-}
-
-
-let node = new Graph(6);
-node.addEdge(1,2);
-node.addEdge(3,4);
-node.addEdge(5,6);
-node.adjList;
-node.countGroups();
-
-
-
+*/

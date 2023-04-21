@@ -15,7 +15,62 @@ swap 10 with 3 and swap 19 with 5.
 */
 
 function minSwaps(arr){
-    let n = arr.length;
+    
+}
+
+let arr = [4, 3, 2,1];
+minSwaps(arr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+let n = arr.length;
     let visited = new Array(n).fill(false);
     let arrPos = [];
     let output = 0;
@@ -38,10 +93,7 @@ function minSwaps(arr){
         }
     }
     return output;
-}
-
-let arr = [4, 3, 2,1];
-minSwaps(arr);
+ */
 
 /*
     let n = arr.length;

@@ -36,8 +36,58 @@ function calculateMinimumJumps(map){
 
 */
 
+
+
 function calculateMinimumJumps(peach, spot){
-    spot.sort((a,b)=>{
+    spot = spot.concat([peach])
+    let dp = new Array(spot.length).fill(0)
+    
+    for(let i = 0; i<spot.length; i++){
+        if(spot[i][0]*spot[i][0] + spot[i][1]*spot[i][1] <= 25){
+            dp[i] = 1;
+        }else{
+            let localMin = Infinity;
+            for(let j = 0; j<i; j++){
+                let distance = Math.pow(spot[i][0]-spot[j][0], 2) + Math.pow(spot[i][1]-spot[j][1],2)
+                if(distance<=25){
+                    localMin = Math.min(localMin, dp[j]+1)
+                }
+            }
+            dp[i] = localMin
+        }
+        if(dp[i]===0) return false;
+    }
+   
+    return dp[dp.length-1]
+}
+
+const peach = [10,0];
+const spot = [[0,4],[0,5],[5,5],[10,5]]
+
+calculateMinimumJumps(peach, spot)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+spot.sort((a,b)=>{
         if(a[0] > b[0]) return 1;
         else if(a[0] === b[0]){
             if(a[1] > b[1]) return 1;
@@ -64,9 +114,4 @@ function calculateMinimumJumps(peach, spot){
         return distance <= 25 ? true : false
     }
     return dp[dp.length-1] === Infinity ? -1 : output;
-}
-
-const peach = [10,0];
-const spot = [[0,4],[0,5],[5,5],[10,5]]
-
-calculateMinimumJumps(peach, spot)
+*/
