@@ -42,7 +42,86 @@ The third group can contain [13, 9]. The maximum difference is 4.
 */
 
 function minimumGroup(awards, k){
-   awards.sort((a,b)=>a-b);
+    awards = awards.sort((a,b)=>a-b)
+    awards
+    let outputArr = [];
+    while(awards.length){
+        let lowNum = awards[0]+k;
+        let highNum = binarySearch(awards, lowNum)
+        outputArr.push(awards.slice(0,highNum+1))
+        awards = awards.slice(highNum+1)
+  
+    }
+    outputArr
+    return outputArr.length;
+
+}
+
+function binarySearch(arr, target){
+    let left = 0;
+    let right = arr.length-1
+    while(left <= right){
+        let mid = Math.floor((left+right)/2)
+        if(arr[mid] === target){
+            return mid;
+        }
+        if(arr[mid]<target){
+            left = mid+1
+        }else{
+            right = mid-1
+        }
+    }
+    return right
+}
+
+const awards = [1,5,4,6,8,9,2]//[1, 13, 6, 8, 9, 3, 5]
+const k = 4
+minimumGroup(awards, k)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Complexity analysis:
+
+        Sorting: O(NlogN)
+        Binary search: O(logN)
+        The worst case occurs when each movie is in its own group
+        Example: [1,5,9,13,17,21] and k = 3
+
+        Total = O(NlogN + logN) = O(NlogN)
+        Space Complexity = O(logN) for Java's internal quicksort. O(1) if sort complexity is ignored.
+        
+
+*/
+
+
+/*
+  awards.sort((a,b)=>a-b);
     let count = 0;
     let start = 0;
     while(start < awards.length){
@@ -68,21 +147,4 @@ function minimumGroup(awards, k){
    }
 
    return count;
-}
-const awards = [1, 13, 6, 8, 9, 3, 5]
-const k = 4
-minimumGroup(awards, k)
-
-
-/* Complexity analysis:
-
-        Sorting: O(NlogN)
-        Binary search: O(logN)
-        The worst case occurs when each movie is in its own group
-        Example: [1,5,9,13,17,21] and k = 3
-
-        Total = O(NlogN + logN) = O(NlogN)
-        Space Complexity = O(logN) for Java's internal quicksort. O(1) if sort complexity is ignored.
-        
-
 */
