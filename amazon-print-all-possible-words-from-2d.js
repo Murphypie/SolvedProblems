@@ -8,6 +8,54 @@ Output: ["MY","MAN","AN","ANY","MANY"]
 
 
 function printAllPossible(words){
+
+}
+
+const words = [["M","Y"],["N","A"]];
+printAllPossible(words)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     // 1. Trie structure - need to contain (Start with) each element in the given array
     // 1-a. Nested For loop
 
@@ -39,7 +87,4 @@ function printAllPossible(words){
         return trie;
     }
     trie;
-}
-
-const words = [["M","Y"],["N","A"]];
-printAllPossible(words)
+*/
