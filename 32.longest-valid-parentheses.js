@@ -11,14 +11,13 @@
  * @return {number}
  */
 var longestValidParentheses = function(s) {
-    // Do stack again
 
 };
 
 
 
 
-let s = ")))))()()(("//"((()))"
+let s = "()(())"
 longestValidParentheses(s)
 // @lc code=end
 

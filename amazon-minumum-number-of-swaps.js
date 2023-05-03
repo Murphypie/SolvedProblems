@@ -15,10 +15,24 @@ swap 10 with 3 and swap 19 with 5.
 */
 
 function minSwaps(arr){
-    
+    let count = 0;
+    const swapper = (count) =>{
+        let low = Infinity
+        let high = -Infinity
+        let tempArr = arr.slice(count, arr.length-count)
+        
+        for(let i = 0; i<tempArr.length; i++){
+            if(low>tempArr[i]) low = tempArr[i]
+            if(high<tempArr[i]) high = tempArr[i]
+        }
+        low
+        high
+    }
+
+    swapper(0)
 }
 
-let arr = [4, 3, 2,1];
+let arr = [4, 3, 2, 5, 1];
 minSwaps(arr);
 
 

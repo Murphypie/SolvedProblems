@@ -21,28 +21,36 @@
 
 
 var addTwoNumbers = function (l1, l2) {
-    let node = new ListNode(0);
-    let head = node
-    let sum = 0
-    while(l1 !== null || l2 !== null || sum !== 0){
-        let carry = 0;
-        if(l1 !== null){
-            sum += l1.val
-            l1 = l1.next
+    // 1. Use while loop to traverse l1 and l2
+    // 2. Add two numbers as I traverse and if it exceeds 10, then add 1 to next step
+    // 3. As I traverse, create add a node to a new list for output.
+
+    let anchor = 0;
+    let output = new ListNode(0);
+    let node = output;
+    while(l1 || l2){
+        sum = anchor;
+        anchor = 0;
+        if(l1){
+            sum += l1.val;
+            l1 = l1.next;
         }
-        if(l2 !== null){
+        if(l2){
             sum += l2.val;
             l2 = l2.next;
         }
-        if(sum>=10){
-            carry = 1;
+        if(sum >= 10){
             sum -= 10;
+            anchor = 1;
         }
-        head.next = new ListNode(sum);
-        head = head.next;
-        sum = carry;
+        node.next = new ListNode(sum);
+        node = node.next;
     }
-    return node.next;
+    if(anchor === 1){
+        node.next = new ListNode(1)
+    }
+
+    return output.next;
 };
 
 
@@ -63,12 +71,39 @@ const listMaker = (arr) =>{
     return list.next;
 }
 
-let l1 = listMaker([2,4,3])//listMaker([9,9,9,9,9,9,9])
-let l2 = listMaker([5,6,4])//listMaker([9,9,9,9])
+let l1 = listMaker([9,9,9,9,9,9,9])
+let l2 = listMaker([9,9,9,9])
 
 addTwoNumbers(l1, l2);
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
     let list = new ListNode(0);

@@ -10,29 +10,22 @@
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-    let output = [];
+   // 1. Recursion
+   // 2. Number for ( and ). Add parenthesis as long as number of ( is less than the number of )
 
-    let left = 0;
-    let right = 0;
+   const output = [];
 
-    let recur = (left, right, str) =>{
-        if(left === n && right === n){
-            output.push(str)
-        }
-        if(right>left){
-            return
-        }
-        if(left >n || right > n) return
-        let leftAdd = recur(left+1, right, str.concat("("))
-        let rightAdd = recur(left, right+1, str.concat(")"))
-    }
-
-    recur(left, right, "")
-
-    return output;
+   const repeat = (paren, left, right) =>{
+        if(left === 0 && right === 0) output.push(paren)
+        if(left > right || left < 0 || right < 0) return
+        repeat(paren+"(", left-1, right)
+        repeat(paren+")", left, right-1)
+   }
+   repeat("", n, n)
+   return output;
 }
 
-let output = generateParenthesis(3);
+let output = generateParenthesis(1);
 
 // @lc code=end
 
@@ -115,3 +108,4 @@ let output = generateParenthesis(3);
 
     return output;
 */
+

@@ -11,20 +11,55 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-    let map = new Map();
+    const hashMap = new Map();
     for(let i = 0; i<nums.length; i++){
-        let compliment = target - nums[i];
-        if(!map.has(nums[i])){
-            map.set(compliment, i);
+        if(!hashMap.has(nums[i])){
+            let compliment = target - nums[i];
+            hashMap.set(compliment, i);
         }else{
-            return [map.get(nums[i]),i]
+            return [hashMap.get(nums[i]), i]
         }
-
-    }
+    }  
+    return false;
 };
 
 twoSum([2,7,11,15], 9);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

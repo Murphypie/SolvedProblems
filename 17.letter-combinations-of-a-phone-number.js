@@ -12,7 +12,6 @@
 
 
 var letterCombinations = function(digits) {
-    if(digits === "") return [];
     let letterObj = {
         "2": ['a', 'b', 'c'],
         "3": ['d', 'e', 'f'],
@@ -24,25 +23,51 @@ var letterCombinations = function(digits) {
         "9": ['w', 'x', 'y', 'z']
     };
 
-    let output = [];
-  
-    const recur = (digits, idx, str) =>{
-        if(str.length === digits.length){ //idx === digits.length){
-            output.push(str)
+    const output = [];
+
+    const repeat = (comb, digits, count) =>{
+        if(count === digits.length){
+            output.push(comb);
+            return;
         }
-        if(idx < digits.length){
-            for(let char of letterObj[digits[idx]]){
-                recur(digits, idx+1, str.concat(char));
-            }
+        for(let char of letterObj[digits[count]]){
+            repeat(comb+char, digits, count+1)
         }
     }
-    recur(digits, 0, "")
-
-    return output;
+    repeat("", digits, 0)
+    return output
 };
 
-letterCombinations("43346")
+letterCombinations("23")
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
