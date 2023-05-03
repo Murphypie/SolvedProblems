@@ -1,24 +1,23 @@
 Hash
-1647
+1647, 1.two-sum
 
 Trie
 1268
 
 DP
 Amazon-Bin-binPackingProblem, amazon-mario
-
+amazon-droneDelivery
 
 Binary tree
-1110, 1339, amazon-best-expression, amazon-minimumGroups
+1110, 1339, amazon-best-expression, amazon-minimumGroups,
+4.median-of-two-sorted-arrays
+33.search-in-rotated-sorted-array
 
 Graph | union-find | dfs
 210, 547, 684, 1192
 
 Array
 2104, amazon-elementsAdduptoK, amazon-flip-grid-to-zero
-
-DP
-amazon-droneDelivery, amazon-mario
 
 PriorityQueue
 amazon-find-k-maximumPriority
@@ -27,8 +26,29 @@ DFS
 amazon-interview-exchange
 
 Linked LinkedList
-amazon-linked-list-swap
+amazon-linked-list-swap, 2.add-two-numbers
+19.remove-nth-node-from-end-of-list
+21. merge-two-sorted-lists
 
 Object
 Amazon-merge-two-maps
 
+Two-Pointers
+11.container-with-most-water
+
+String
+3.longest-substring-wihtout
+5.longest-palindromic-substring
+8. string-to-interger-atoi
+13.roman-to-integer
+
+Recursion
+17.letter-combinations-of-a-phone-number
+22.generate-parentheses
+
+Queue
+20.valid-parenthesis
+
+Unknown
+15.3-sum
+29.divide-two-integers

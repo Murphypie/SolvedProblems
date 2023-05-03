@@ -1,21 +1,83 @@
 /*
- * @lc app=leetcode id=5 lang=typescript
+ * @lc app=leetcode id=5 lang=javascript
  *
  * [5] Longest Palindromic Substring
  */
 
 // @lc code=start
 function longestPalindrome(s) {
+    // For loop through stirng.
+    // Case for even or odd. If even, start with two characters, if odd, one
+    // For each character, go left and right and check if the chars are the same.
+    // If same, add to output, If different, save the result and move on to next char.
+    
+    let output = ""
+    for(let i = 0; i<s.length; i++){
+        for(let j of [i, i+1]){
+            let tempStr = "";
+            for(let ll = i, rr = j; ll>0, rr<s.length; ll--, rr++){
+                if(s[ll] !== s[rr]) break;
+                tempStr = s.slice(ll, rr+1)
+            }
+            output = output.length < tempStr.length ? tempStr : output
+        }
+    }
 
+    return output;
 }
  
-let s = "racecar";
+let s = "aacabdkacaa";
 
 longestPalindrome(s);
 
 
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,27 +8,34 @@
 
 // @lc code=start
 function threeSum(nums){
-    nums = nums.sort((a,b)=>a-b);
-    let output = [];
-    for(let i = 0; i<nums.length-2; i++){
+    nums.sort((a,b)=> a-b);
+
+    if(nums.length < 3) return [];
+    let result = [];
+    let target = 0;
+    for(let i = 0; i<nums.length - 2; i++){
+        if(nums[i]>target) break;
         if(i>0 && nums[i] === nums[i-1]) continue;
-        let left = i+1;
-        let right = nums.length-1;
-        while(left<right){
-            if(nums[left]+nums[right]+nums[i] > 0){
-                right--
-            }else if(nums[left]+nums[right]+nums[i] === 0){
-                output.push([nums[left], nums[i], nums[right]])
-                while(nums[left] === nums[left+1]) left++;
-                while(nums[right]=== nums[right-1]) right--;
-                left++
-                right--;
+        let j = i+1;
+        let k = nums.length - 1;
+        while(j<k){
+            let sum = nums[i] + nums[j] + nums[k];
+            if(sum === target){
+                result.push([nums[i], nums[j], nums[k]])
+                while(nums[j] === nums[j+1]) j++;
+                while(nums[k] === nums[k-1]) k--;
+                j++;
+                k--;
+            }else if(sum<target){
+                j++
             }else{
-                left++
+                k--
             }
+            
         }
     }
-    return output;
+    return result;
+    
 };
 
 
@@ -36,6 +43,44 @@ var nums = [-1,0,1,2,-1,-4]
 threeSum(nums);
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   nums.sort((a,b)=> a-b);
@@ -65,4 +110,27 @@ threeSum(nums);
         }
     }
     return result;
+*/
+
+/*
+const output = {};
+
+    for(let i = 0; i<nums.length-1; i++){
+        const target = nums[i];
+        let hashMap = {};
+        for(let j = i+1; j<nums.length; j++){
+            let compliment = 0-(target + nums[j])
+            if(hashMap[nums[j]]){
+                let arr = [target, nums[j], compliment].sort((a,b)=>a-b);
+                let arrStr = arr.join().toString()
+                if(!output[arrStr]) output[arrStr] = true
+            }else{
+                hashMap[compliment] = true;
+            }
+        }
+    }
+    let objArr = Object.keys(output).map((a)=>{
+        return a.split(",").map(Number)
+    })
+    return objArr
 */

@@ -11,7 +11,61 @@
  * @return {number}
  */
 var divide = function(dividend, divisor) {
-    const retIsNegative = divisor > 0 ^ dividend > 0
+    let negativeBool = false;
+    if(dividend*divisor < 0) negativeBool = true;
+    let absDividend = Math.abs(dividend);
+    let absDivisor = Math.abs(divisor);
+    let output = 0;
+    while(absDividend - absDivisor >= 0){
+        absDividend -= absDivisor
+        output++
+    }
+    
+    if(negativeBool) output *= -1
+    return output;
+};
+
+
+
+divide(10, -3)
+// @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+  const retIsNegative = divisor > 0 ^ dividend > 0
     dividend = Math.abs(dividend)
     divisor = Math.abs(divisor)
     
@@ -31,10 +85,4 @@ var divide = function(dividend, divisor) {
         return retIsNegative ? -(2**31) : 2**31 - 1
     }
     return retIsNegative ? -ret : ret
-};
-
-
-
-divide(10, 2)
-// @lc code=end
-
+*/

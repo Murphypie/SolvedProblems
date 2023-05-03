@@ -1,5 +1,5 @@
 /*
- * @lc app=leetcode id=19 lang=typescript
+ * @lc app=leetcode id=19 lang=javascript
  *
  * [19] Remove Nth Node From End of List
  */
@@ -16,20 +16,20 @@ class ListNode {
 
 
 function removeNthFromEnd(head, n){
-  
-    let fast = head;
-    let slow = head;
- 
-    for (let i = 0; i < n; i++) fast = fast.next
-    if (fast === null) return head.next
+    let fastNode = head;
+    let slowNode = head;
 
-    while (fast.next){
-        fast = fast.next
-        slow = slow.next
+    for(let i = 0; i<n; i++){
+        fastNode = fastNode.next;
     }
-
-    slow.next = slow.next.next
-
+    if(fastNode === null){
+        return slowNode.next;
+    }
+    while(fastNode.next){
+        fastNode = fastNode.next;
+        slowNode = slowNode.next;
+    }
+    slowNode.next = slowNode.next.next === null ? null : slowNode.next.next
     return head;
 };
 
@@ -38,14 +38,20 @@ function removeNthFromEnd(head, n){
 
 
 let node = new ListNode(1);
-//node.next = new ListNode(2);
-// node.next.next = new ListNode(3);
-// node.next.next.next = new ListNode(4);
-// node.next.next.next.next = new ListNode(5);
-removeNthFromEnd(node, 1)
+node.next = new ListNode(2);
+node.next.next = new ListNode(3);
+node.next.next.next = new ListNode(4);
+node.next.next.next.next = new ListNode(5);
+removeNthFromEnd(node, 2)
 
 
 // @lc code=end
+
+
+
+
+
+
 
 
 
