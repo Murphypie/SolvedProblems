@@ -10,32 +10,36 @@
  * @return {number[][]}
  */
 var merge = function(intervals) {
+    intervals = intervals.sort((a,b)=>a[0]-b[0])
     let output = [];
-    
-    intervals = intervals.sort((a,b)=>{
-        if(a[0]>b[0]) return 1
-        else return -1
-    })
-
     for(let i = 0; i<intervals.length; i++){
-        if(output.length === 0) output.push(intervals[i]);
-        let lastEl = output[output.length-1];
-        let curr = intervals[i];
+        let lastEntry = output[output.length-1]
+        if(output.length === 0 || intervals[i][0]>lastEntry[1]){
+            output.push(intervals[i])
+            continue;
+        };
+        // Curr interval in between two numbers
+        if(intervals[i][0] <= lastEntry[1]){
+            if(intervals[i][1] > lastEntry[1]) lastEntry[1] = intervals[i][1]
+        }
+        // Curr interval bigger than last Entry[1]
+        if(intervals[i][0] > lastEntry[1]){
+            output.push(intervals[i])
+        }
+        // Curr interval small than last Entry[0]
+        if(intervals[i][0] < lastEntry[0]){
+            if(intervals[i][1] < lastEntry[0]){
+                output.push(intervals[i])
+            }else if(intervals[i][1] < lastEntry[1]){
+                lastEntry[0] = intervals[i][0]
+            }
+        }
         
-        if(lastEl[1] >= curr[0] && lastEl[1] <= curr[1]){
-            output[output.length-1] = [lastEl[0], curr[1]]
-        }
-
-        if(lastEl[1] < curr[0]){
-            output.push(curr)
-        }
-     
     }
-
     return output;
 };
 
-let intervals =  [[1,3],[0,6]]
+let intervals =  [[1,4],[4,5]]
 merge(intervals)
 // @lc code=end
 

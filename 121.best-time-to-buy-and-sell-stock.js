@@ -10,17 +10,13 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let dp = new Array(prices.length);
-    let min = prices[0];
-    dp[0] = 0;
-
-    for(let i = 1; i<prices.length; i++){
-        dp[i] = Math.max(dp[i-1], prices[i]-min)
-        min = Math.min(min, prices[i])
+    let low = Infinity;
+    let output = 0;
+    for(let i = 0; i<prices.length; i++){
+        low = Math.min(low, prices[i]);
+        output = Math.max(output, prices[i]-low)
     }
-    dp;
-
-
+    return output;
 }
 
 

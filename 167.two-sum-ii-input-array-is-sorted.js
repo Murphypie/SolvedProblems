@@ -11,19 +11,39 @@
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-    const hashMap = new Map();
-    for(let i = 0; i<numbers.length; i++){
-        const compliment = target-numbers[i];
-        if(!hashMap.has(compliment)){
-            hashMap.set(numbers[i], i+1)
+    let left = 0;
+    let right = numbers.length-1;
+    while(left<right){
+        const sum = numbers[left]+numbers[right]
+        if(sum === target){
+            return [left+1, right+1]
+        }
+        if(sum < target){
+            left++;
         }else{
-            return [hashMap.get(compliment), i+1]
+            right--;
         }
     }
-
+    return false;
 };
-twoSum([2,7,11,15], 9)
+twoSum([2,3,4], 6)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

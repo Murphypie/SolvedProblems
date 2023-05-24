@@ -13,38 +13,43 @@
 
 
 
-
-
-
 var exist = function(board, word) {
-    
-    let dfs = (i,j,board, word) =>{
-        if(word.length === 0) return true
-        if(board[i] === undefined || board[i][j] === undefined || board[i][j] !== word[0]) return false;
-        let tempChar = board[i][j]
-        board[i][j] = "0"
-        let result = dfs(i+1, j, board, word.slice(1)) ||
-        dfs(i-1, j, board, word.slice(1)) ||
-        dfs(i, j+1, board, word.slice(1)) ||
-        dfs(i, j-1, board, word.slice(1))
-        board[i][j] = tempChar
+    // 1. Go through board and locate the first char of word in the given board
+    // 2. When found, initiate DFS
+    // 3. In DFS function
+        // a. Set termination condition
+        // b. Set current char to 0 or something that wouldn't interfere with the next search
+        // c. If word length is at an end, return true;
+        // d. Go through DFS for left, right, up and down
+        // e. After recursive DFS, put back the original char
+
+
+    const dfs = (board, i, j, count, word) =>{
+        if(!board[i] || !board[i][j] || board[i][j] === 0 || board[i][j] !== word[count]) return;
+        if(word.length-1 === count) return true;
+        let temp = board[i][j] 
+        board[i][j] = 0;
+        let result = dfs(board, i+1, j, count+1, word) ||
+        dfs(board, i, j+1, count+1, word) ||
+        dfs(board, i-1, j, count+1, word) ||
+        dfs(board, i, j-1, count+1, word);
+        board[i][j] = temp;
         return result;
-    }
-    
+    }    
+
+
     for(let i = 0; i<board.length; i++){
-        for(let j = 0; j<board[i].length; j++){
-            if(board[i][j] === word[0]){
-                if(dfs(i,j,board,word)) return true;
+        for(let j = 0; j<board[0].length; j++){
+            if(dfs(board,i,j,0,word)){
+                return true;
             }
         }
     }
     return false;
-
-
 }
 
 const board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
-const word = "SEE"
+const word = "SEEDA"
 exist(board, word);
 
 // @lc code=end

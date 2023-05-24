@@ -18,28 +18,34 @@ function TreeNode(val, left, right) {
  * @return {number[][]}
  */
 var zigzagLevelOrder = function (root) {
-    if(root === null) return [];
-    let output = [];
+    if(!root) return [];
+    let output = [[root.val]];
     let queue = [root];
-    let counter = 0;
-    while(queue.length > 0){
-        const size = queue.length;
-        const level = [];
-        for(let i = 0; i<size; i++){
-            const node = queue.shift();
-            if(counter % 2 === 0) level.push(node.val);
-            else level.unshift(node.val);
-
-            if(node.left) queue.push(node.left)
-            if(node.right) queue.push(node.right)
+    let counter = 1;
+    while(queue.length){
+        let tempArr = [];
+        let queueLength = queue.length;
+        for(let i = 0; i<queueLength; i++){
+            let node = queue.shift();
+            if(node.left){
+                queue.push(node.left)
+                tempArr.push(node.left.val)
+            }
+            if(node.right){
+                queue.push(node.right)
+                tempArr.push(node.right.val)
+            }
         }
-        output.push(level);
-        counter++;
+        if(counter % 2 === 0 && tempArr.length !== 0){
+            output.push(tempArr)
+        }else if(tempArr.length !== 0){
+            output.push(tempArr.reverse())
+        }
+        counter++
     }
+
     return output;
 };
-
-
 
 
 let root = new TreeNode(3, new TreeNode(9), new TreeNode(20));

@@ -1,5 +1,6 @@
 Hash
 1647, 1.two-sum
+49.group-anagrams
 
 Trie
 1268
@@ -7,23 +8,35 @@ Trie
 DP
 Amazon-Bin-binPackingProblem, amazon-mario
 amazon-droneDelivery
+32.longest-valid-parentheses
+42.trapping-rain-water
+122.best-time-to-buy-and-sell-stock-ii
+139.word-break
 
 Binary tree
 1110, 1339, amazon-best-expression, amazon-minimumGroups,
 4.median-of-two-sorted-arrays
 33.search-in-rotated-sorted-array
+35.search-insert-position
 
 Graph | union-find | dfs
 210, 547, 684, 1192
 
 Array
 2104, amazon-elementsAdduptoK, amazon-flip-grid-to-zero
+33.search-in-rotated-sorted-array
+53.maximum-subarray
+54.spiral-matrix
+56.merge-intervals
+189.rotate-array
 
 PriorityQueue
 amazon-find-k-maximumPriority
 
 DFS
 amazon-interview-exchange
+79.word-search
+200.number-of-islands
 
 Linked LinkedList
 amazon-linked-list-swap, 2.add-two-numbers
@@ -35,6 +48,8 @@ Amazon-merge-two-maps
 
 Two-Pointers
 11.container-with-most-water
+42.trapping-rain-water
+167.two-sum-ii-input-array-is-sorted
 
 String
 3.longest-substring-wihtout
@@ -48,7 +63,18 @@ Recursion
 
 Queue
 20.valid-parenthesis
+103.binary-tree-zigzag-level-order-traversal
+127.word-ladder
+
+Greedy
+55.amazon-jump-game
+122.best-time-to-buy-and-sell-stock-ii
+
+Divide and Conquer
+84.amazon-largest-rectangle-in-histogram
 
 Unknown
 15.3-sum
 29.divide-two-integers
+50.pow-x-n
+121.best-time-to-buy-and-sell-stock

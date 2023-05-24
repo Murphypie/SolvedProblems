@@ -18,14 +18,23 @@
 var canJump = function(nums) {
     // Greedy
     // Do it again
-   
-   
+    let lgi = nums.length-1;
+    for(let i = nums.length-1; i>=0; i--){
+        if(i+nums[i] >= lgi) lgi = i;
+    }
+    return lgi === 0 ? true:false;
 };
 
 
-let arr = [2,3,1,1,4]//[3,2,1,0,4]
+let arr = [3,2,1,0,4]
 canJump(arr);
 // @lc code=end
+
+
+
+
+
+
 
 
 

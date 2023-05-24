@@ -13,14 +13,62 @@
  */
 
  var findWords = function(board, words) {
-    
+    let wordSet = new Set(words)
+    let trie = trieBuilder(words);
+    let head = trie;
+    const output = {}
+
+    const dfs = (board, i, j, head) =>{
+        if(head["word"]){
+            output[head["word"]] = head["word"] 
+        }
+        if(!board[i] || !board[i][j]) return;
+        if(!head[board[i][j]]){
+            return;
+        }
+
+        let temp = board[i][j] 
+        board[i][j] = 0;
+        dfs(board, i+1, j, head[temp])
+        dfs(board, i-1, j, head[temp])
+        dfs(board, i, j+1, head[temp])
+        dfs(board, i, j-1, head[temp])
+        board[i][j] = temp;
+    }
+
+    for(let i = 0; i<board.length; i++){
+        for(let j = 0; j<board[0].length; j++){
+            if(trie[board[i][j]]){
+                head = trie;
+                dfs(board, i, j, head)
+            }
+        }
+    }
+
+    return Object.values(output);
 };
 
 
+function trieBuilder(words){
+    let trie = {};
+    
+    for(let word of words){
+        let head = trie;
+        for(let i = 0; i<word.length; i++){
+            if(!head[word[i]]){
+                head[word[i]] = {}
+            }
+            head = head[word[i]]
+        }
+        head["word"] = word
+    }
+    
+    return trie;
+}
 
 
-const board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
-const words = ["oath","pea","eat","rain"]
+const board =  [["a"]]//[["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
+const words = ["a"]//["oath","pea","eat","rain"]
 findWords(board, words)
 // @lc code=end
 

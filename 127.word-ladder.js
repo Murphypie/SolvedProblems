@@ -18,11 +18,36 @@ var ladderLength = function (beginWord, endWord, wordList) {
             String.fromCharCode(j + 97)
         }
     */
+
+    let queue = [beginWord]
+    const wordSet = new Set(wordList);
+    let output = 0;
+
+    for(let i = 0; i<wordList.length; i++){
+        let queueSize = queue.length;
+        output++
+        for(let i = 0; i<queueSize; i++){
+            let word = queue.shift();
+            for(let j = 0; j<word.length; j++){
+                for(let k = 0; k<26; k++){
+                    let str = word.slice(0, j)+String.fromCharCode(k+97)+word.slice(j+1)
+                    if(str === endWord && wordSet.has(str)){
+                        return output+1;
+                    }else if(wordSet.has(str)){
+                        queue.push(str);
+                        wordSet.delete(str);
+                    }
+                }
+            }
+        }
+    }
+
+    return 0;
 };
 
 let beginWord = "hit";
 let endWord = "cog";
-let wordList = ["hot","dot","dog","lot","log"]
+let wordList = ["hot","dot","dog","lot","log","cog"]
 
 ladderLength(beginWord, endWord, wordList);
 // @lc code=end

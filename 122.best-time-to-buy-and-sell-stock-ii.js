@@ -11,10 +11,20 @@
  */
 var maxProfit = function(prices) {
   
+    
 };
-maxProfit( [7,1,5,3,6,4]);
+maxProfit([1,2,3,4,5]);
 
 // @lc code=end
+
+
+
+
+
+
+
+
+
 
 
 
@@ -56,6 +66,20 @@ maxProfit( [7,1,5,3,6,4]);
     } 
     
     return profit;
+
+
+
+
+    let output = 0;
+    if(prices.length>0){
+        prices.reduce((acc,next)=>{
+            if(next>acc){
+                output += next-acc
+            }
+            return next;
+        })
+    }
+    return output;
 */
 
 

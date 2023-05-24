@@ -11,37 +11,56 @@
  */
 var numIslands = function(grid) {
     let output = 0;
+
+    const dfs = (i,j) =>{
+        if(!grid[i] || !grid[i][j] || grid[i][j] === "0") return;
+        grid[i][j] = "0";
+        dfs(i+1,j)
+        dfs(i,j+1)
+        dfs(i-1,j)
+        dfs(i,j-1)
+    }
+    
     for(let i = 0; i<grid.length; i++){
         for(let j = 0; j<grid[0].length; j++){
-            if(grid[i][j] === "1") {
-                dfs(i,j,grid)
+            if(grid[i][j] === "1"){
+                dfs(i,j);
                 output++;
             }
         }
     }
-
-    function dfs(i,j,grid){
-        if(grid[i] === undefined || grid[i][j] === undefined ||  grid[i][j] === "0") return;
-        grid[i][j] = "0";
-        dfs(i+1, j, grid);
-        dfs(i, j+1, grid);
-        dfs(i-1, j, grid);
-        dfs(i, j-1, grid);
-    }
-
     return output;
-
 }
 
 
-let grid = [
+let grid =  [
+    ["1","1","1","1","0"],
+    ["1","1","0","1","0"],
     ["1","1","0","0","0"],
-    ["1","1","0","0","0"],
-    ["0","0","1","0","0"],
-    ["0","0","0","1","1"]
-]
+    ["0","0","0","0","0"]
+  ]
 numIslands(grid);
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
