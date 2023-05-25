@@ -49,7 +49,6 @@ minMeetingRooms([[0,30],[5,10],[15,20]])
 
 
 
-
 /*
    if (intervals==null || intervals.length==0){
         return 0

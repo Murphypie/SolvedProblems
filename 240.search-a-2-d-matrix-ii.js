@@ -14,26 +14,25 @@ var searchMatrix = function (matrix, target) {
     if(!matrix || !matrix.length) return false;
 
     const rows = matrix.length;
-    const columns = matrix[0].length;
+    const cols = matrix[0].length;
 
-    const dfs = (startRow, endRow, startCol, endCol)=>{
+      const hasTarget = (startRow, endRow, startCol, endCol) =>{
         if(startRow > endRow || startCol > endCol) return false;
-        const middleCol = Math.floor((startCol+endCol)/2)
-        const middleRow = Math.floor((startRow+endRow)/2)
+        const middleRow = Math.floor((endRow - startRow) / 2) + startRow;
+        const middleCol = Math.floor((endCol - startCol) / 2) + startCol;
 
         if(matrix[middleRow][middleCol] === target) return true;
 
         if(matrix[middleRow][middleCol] < target){
-            return dfs(middleRow+1, endRow, startCol, endCol) || dfs(startRow, endRow, middleCol+1, endCol)
+            return hasTarget(middleRow+1, endRow, startCol, endCol) || hasTarget(startRow, middleRow, middleCol +1, endCol);
         }else{
-            return dfs(startRow, middleRow-1, startCol, endCol) || dfs(startRow, endRow, startCol, middleCol-1)
+            return hasTarget(startRow, endRow, startCol, middleCol - 1) || hasTarget(startRow, middleRow - 1, middleCol, endCol);
         }
     }
-
-    return dfs(0, rows-1, 0, columns-1)
+    return hasTarget(0, rows-1, 0, cols-1);
 };
 
-searchMatrix( [[1,1]], 2)
+searchMatrix( [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], 14)
 // @lc code=end
 
 
@@ -76,7 +75,7 @@ searchMatrix( [[1,1]], 2)
 
 
 /*
-      if(!matrix || !matrix.length) return false;
+    if(!matrix || !matrix.length) return false;
 
     const rows = matrix.length;
     const cols = matrix[0].length;

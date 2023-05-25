@@ -12,12 +12,34 @@
 
 
 var maximalSquare = function(matrix) {
+    let output = 0;
+    for(let i = 0; i<matrix.length; i++){
+        for(let j = 0; j<matrix[0].length; j++){
+            if(i === 0 || j === 0){
+                output = Math.max(output, matrix[i][j])
+                continue;
+            }
+            if(matrix[i][j] !== "0"){
+                matrix[i][j] = Math.min(matrix[i-1][j], matrix[i-1][j-1], matrix[i][j-1]) + 1
+            }
+            output = Math.max(output, matrix[i][j])
+        }
+    }
 
+    return output*output;
 };
 
-let matrix = [["0","1"],["1","0"]]
+let matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
 maximalSquare(matrix);
 // @lc code=end
+
+
+
+
+
+
+
+
 
 
 

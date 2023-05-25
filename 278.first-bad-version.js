@@ -26,17 +26,17 @@ var solution = function(isBadVersion) {
      */
     return function(n){
         let left = 0;
-        let right = n;
+        let right = n-1;
         while(left<=right){
             let mid = Math.floor((left+right)/2);
-            let versionCheck = isBadVersion(mid);
-            if(versionCheck){
-                right = mid-1
+            let badBool = isBadVersion(mid);
+            if(badBool){
+                right = mid-1;
             }else{
-                left = mid+1
+                left = mid+1;
             }
         }
-        return left;
+        return left; 
     }
 };
 // @lc code=end

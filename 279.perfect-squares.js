@@ -11,8 +11,17 @@
  */
 var numSquares = function(n) {
     // Do it again with DP
- 
-    
+    let maxN = Math.floor(Math.sqrt(n));
+    let dp = new Array(n+1).fill(0).map((_,i)=>i)
+
+    for(let i = 2; i<=maxN; i++){
+        for(let j = 0; j<dp.length; j++){
+            let divi = Math.floor(j/(i*i))
+            let divided = j - divi*(i*i)
+            dp[j] = Math.min(dp[j], divi+dp[divided])
+        }
+    }
+    return dp[dp.length-1]
 };
 
 numSquares(13)
@@ -62,7 +71,7 @@ numSquares(13)
         if(nextInt*nextInt > remaining) return
 
         let takesame = backtracking(remaining-(nextInt*nextInt), count+1, nextInt);
-        let taketonext = backtracking(remaining-((nextInt+1)*(nextInt+1)), count+1, nextInt+1);
+        //let taketonext = backtracking(remaining-((nextInt+1)*(nextInt+1)), count+1, nextInt+1);
         let leave = backtracking(remaining, count, nextInt+1)
 
     }
