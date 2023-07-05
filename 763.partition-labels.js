@@ -11,21 +11,16 @@
  */
 var partitionLabels = function(s) {
     let output = [];
-    let str = "";
-    let startIndex = 0;
-    let localMaxIndex = -Infinity;
+    let localMax = -1;
+    let anchor = 0;
     for(let i = 0; i<s.length; i++){
-        let lastIndex = s.lastIndexOf(s[i])
-        localMaxIndex = Math.max(localMaxIndex, lastIndex);
-        if(i === localMaxIndex){
-            output.push(localMaxIndex+1-startIndex)
-            startIndex = i+1
+        localMax = Math.max(s.lastIndexOf(s[i]), localMax)
+        if(localMax === i){
+            output.push(i + 1 - anchor)
+            anchor = i+1;
         }
-        
     }
-
     return output;
-
 };
 let s = "ababcbacadefegdehijhklij"
 partitionLabels(s)

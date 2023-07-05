@@ -63,9 +63,6 @@ for(let i = 0; i<strArr.length; i++){
     lRUCache
 }
 
-lRUCache
-output;
-
 
 
 

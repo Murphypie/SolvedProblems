@@ -20,19 +20,17 @@
  * @return {number}
  */
 var rangeSumBST = function(root, low, high) {
+    let node = root;
     let output = 0;
-
-    let node = root
-
-    let dfs = (node) =>{
-        if(!node) return
-        if(node.val <= high && node.val >= low) output += node.val;
+    let dfs = (node) => {
+        if(!node) return;
+        if(node.val >= low && node.val <=high){
+            output += node.val;
+        }
         if(node.left) dfs(node.left)
         if(node.right) dfs(node.right)
     }
-
     dfs(node)
-
     return output;
 };
 // @lc code=end
@@ -85,4 +83,21 @@ var rangeSumBST = function(root, low, high) {
     }
     recur(node)
     return sum;
+*/
+
+
+/*
+    let output = 0;
+    let node = root
+
+    let dfs = (node) =>{
+        if(!node) return
+        if(node.val <= high && node.val >= low) output += node.val;
+        if(node.left) dfs(node.left)
+        if(node.right) dfs(node.right)
+    }
+
+    dfs(node)
+
+    return output;
 */

@@ -10,36 +10,7 @@
  * @return {number}
  */
 var maxAreaOfIsland = function(grid) {
-
-    let count = 0;
-    let localCount = 0;
-
-    const dfs = (i,j) =>{
-        if(!grid[i] || !grid[i][j] || grid[i][j] === 0) return;
-        if(grid[i][j] === 1){
-            [i,j]
-            localCount = localCount+1;
-        }
-        count = Math.max(localCount, count); 
-        grid[i][j] = 0
-        dfs(i+1, j)
-        dfs(i-1, j)
-        dfs(i, j+1)
-        dfs(i, j-1)
-    }
-
-    for(let i = 0; i<grid.length; i++){
-        for(let j = 0; j<grid[0].length; j++){
-            if(grid[i][j] === 1){
-                localCount = 0;
-                dfs(i,j)
-            }
-        }
-    }
-
- 
     
-    return count;
 };
 
 

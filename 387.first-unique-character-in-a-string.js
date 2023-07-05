@@ -10,16 +10,23 @@
  * @return {number}
  */
 var firstUniqChar = function (s) {
+    let output = 0;
     for(let i = 0; i<s.length; i++){
-        if(s.lastIndexOf(s[i]) === i && s.indexOf(s[i]) === i){
-            return i;
+        if(s.lastIndexOf(s[i]) === s.indexOf(s[i])){
+            output = i;
+            return output;
         }
     }
     return -1;
 };
 
-firstUniqChar("leetcode");
+firstUniqChar("z");
 // @lc code=end
+
+
+
+
+
 
 
 

@@ -25,11 +25,11 @@ var addTwoNumbers = function (l1, l2) {
     // 2. Add two numbers as I traverse and if it exceeds 10, then add 1 to next step
     // 3. As I traverse, create add a node to a new list for output.
 
-    let anchor = 0;
     let output = new ListNode(0);
-    let node = output;
+    let head = output;
+    let anchor = 0;
     while(l1 || l2){
-        sum = anchor;
+        let sum = anchor;
         anchor = 0;
         if(l1){
             sum += l1.val;
@@ -40,16 +40,15 @@ var addTwoNumbers = function (l1, l2) {
             l2 = l2.next;
         }
         if(sum >= 10){
-            sum -= 10;
             anchor = 1;
+            sum -= 10;
         }
-        node.next = new ListNode(sum);
-        node = node.next;
+        head.next = new ListNode(sum);
+        head = head.next;
     }
     if(anchor === 1){
-        node.next = new ListNode(1)
+        head.next = new ListNode(anchor)
     }
-
     return output.next;
 };
 

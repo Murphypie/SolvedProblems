@@ -10,44 +10,38 @@
  * @return {number}
  */
 var orangesRotting = function (grid) {
-
-    let orangeHash = {};
-
-    let queue = []
+    let queue = [];
+    let count = 0;
     for(let i = 0; i<grid.length; i++){
         for(let j = 0; j<grid[0].length; j++){
-            if(grid[i][j] === 1){
-                let key = `${i}`+`${j}`
-                orangeHash[key] = 1
-            }
             if(grid[i][j] === 2){
                 queue.push([i,j])
             }
+            if(grid[i][j] === 1){
+                count++;
+            }
         }
     }
-    
-    let minute = 0;
 
+    let output = 0;
     while(queue.length){
-        let tempQueue = [];
-        for([i,j] of queue){
-            let fourDir = directions(i,j)
-            for(let arr of fourDir){
-                if(validAndFresh(grid, arr)){
-                    let strKey = `${arr[0]}` + `${arr[1]}`
-                    grid[arr[0]][arr[1]] = 2
-                    tempQueue.push([arr[0], arr[1]])
-                    if(orangeHash[strKey]) delete orangeHash[strKey]
+        let size = queue.length;
+        for(let i = 0; i<size; i++){
+            let currOrg = queue.shift();
+            let possibleDir = directions(currOrg[0], currOrg[1]);
+            for(let [x,y] of possibleDir){
+                if(validAndFresh(grid, [x,y])){
+                    grid[x][y] = 2;
+                    queue.push([x,y])
+                    count--;
                 }
             }
         }
-        if(!tempQueue.length) break;
-        queue = tempQueue
-        minute++
-    }
-
-    return !Object.keys(orangeHash).length ? minute : -1
-
+        if(queue.length !== 0) output++;
+        
+   }
+   
+   return count === 0 ? output : -1;
 };
 
 function directions(i,j){
@@ -65,6 +59,7 @@ function validAndFresh(grid, arr){
         return false
     }
 }
+
 
 orangesRotting([[2,1,1],[1,1,0],[0,1,1]]);
 

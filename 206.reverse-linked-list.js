@@ -17,16 +17,19 @@
  * @return {ListNode}
  */
 var reverseList = function (head) {
-    if (head === null || head.next === null) return head; 
-    let prev = null
+    // 1. Traverse through given linked list
+    // 2. Flip the pointer to the previous node as you traverse
+
+    //let node = head;
+    let prev = null;
     let curr = head;
     let next = null;
-
+    
     while(curr){
         next = curr.next;
         curr.next = prev;
         prev = curr;
-        curr = next;
+        curr = next
     }
     return prev;
 };

@@ -10,8 +10,8 @@
  * @return {number}
  */
 var numPairsDivisibleBy60 = function(time) {
-   
-  
+
+    
  
 
 };

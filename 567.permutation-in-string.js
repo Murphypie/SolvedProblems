@@ -11,25 +11,24 @@
  * @return {boolean}
  */
 var checkInclusion = function (s1, s2) {
-    const s1Obj = {"count":0};
-    for(let i = 0; i<s1.length; i++){
-        if(!s1Obj[s1[i]]) s1Obj[s1[i]] = 0;
-        s1Obj[s1[i]]++;
-        s1Obj["count"]++
+    if(s1.length > s2.length) return false;
+    let wordMap = {};
+    for(let s of s1){
+        if(!wordMap[s]) wordMap[s] = 0;
+        wordMap[s]++
     }
-    
-    for(let i = 0; i<s2.length; i++){
-        let str = s2.slice(i, i+s1.length);
-        let tempObj = JSON.parse(JSON.stringify(s1Obj))
-        for(let s of str){
-            if(tempObj[s] > 0){
-                tempObj[s]--
-                tempObj["count"]--
-            }
-        }
-        if(tempObj["count"]===0) return true
-    }
+    let s1Len = s1.length;
 
+    for(let i = 0; i<=s2.length-s1Len; i++){
+        let tempStr = s2.slice(i, i+s1Len);
+        let tempMap = {...wordMap};
+        for(let s of tempStr){
+            if(!tempMap[s]) continue;
+            tempMap[s]--
+            if(tempMap[s] === 0) delete tempMap[s]
+        }
+        if(Object.keys(tempMap).length === 0) return true;
+    }
     return false;
 };
 
@@ -65,6 +64,36 @@ checkInclusion(s1, s2);
 
 
 
+
+
+
+
+
+
+
+
+/*
+const s1Obj = {"count":0};
+    for(let i = 0; i<s1.length; i++){
+        if(!s1Obj[s1[i]]) s1Obj[s1[i]] = 0;
+        s1Obj[s1[i]]++;
+        s1Obj["count"]++
+    }
+    
+    for(let i = 0; i<s2.length; i++){
+        let str = s2.slice(i, i+s1.length);
+        let tempObj = JSON.parse(JSON.stringify(s1Obj))
+        for(let s of str){
+            if(tempObj[s] > 0){
+                tempObj[s]--
+                tempObj["count"]--
+            }
+        }
+        if(tempObj["count"]===0) return true
+    }
+
+    return false;
+*/
 
 
 

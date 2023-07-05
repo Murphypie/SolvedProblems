@@ -12,46 +12,17 @@
 
 
  var findCircleNum = function(isConnected) {
-    const M = isConnected;
-
-    let visited = new Array(M.length).fill(false);
-    let edges = [];
-    for(let i = 0; i<M.length; i++){
-        let tempArr = [];
-        for(let j = 0; j<M[0].length; j++){
-            if(M[i][j] === 1 && i !== j){
-                tempArr.push(j);
-            }
-        }
-        edges.push(tempArr);
-    }
-
-    let dfs = (edges, start) => {
-        if(visited[start]) return
-        visited[start] = true;
-
-        for(let edge of edges[start]){
-            dfs(edges, edge)
-        }
-
-    }
-
-    
-    let count = 0;
-    
-    for(let i = 0; i<M.length; i++){
-        if(!visited[i]){
-            dfs(edges, i)
-            count++;
-        }
-    }
-
-    return count;
-
+    // again
  }
+
  let arr =  [[1,1,0],[1,1,0],[0,0,1]]//[[1,1,0,0],[1,1,1,0],[0,1,1,0], [0,0,0,1]]
 findCircleNum(arr);
 // @lc code=end
+
+
+
+
+
 
 
 

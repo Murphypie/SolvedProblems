@@ -14,16 +14,6 @@
 
 
 var exist = function(board, word) {
-    // 1. Go through board and locate the first char of word in the given board
-    // 2. When found, initiate DFS
-    // 3. In DFS function
-        // a. Set termination condition
-        // b. Set current char to 0 or something that wouldn't interfere with the next search
-        // c. If word length is at an end, return true;
-        // d. Go through DFS for left, right, up and down
-        // e. After recursive DFS, put back the original char
-
-
     const dfs = (board, i, j, count, word) =>{
         if(!board[i] || !board[i][j] || board[i][j] === 0 || board[i][j] !== word[count]) return;
         if(word.length-1 === count) return true;

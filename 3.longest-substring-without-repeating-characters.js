@@ -8,29 +8,25 @@
 
 
 var lengthOfLongestSubstring = function(s) {
-   // 1. Traverse through for loop and add each character to a temp string if it doesn't contain that char
-   // 2. If temp string contains the char from for loop, cut the string where we have the same char. 
-   // 3. As string gets manipulated, store the max string length.
-
-   let temp = "";
-   let output = 0;
-
-   for(let i = 0; i<s.length; i++){
-      const charLoc = temp.indexOf(s[i])
-      if(charLoc !== -1){
-         temp = temp.slice(charLoc+1);
-      }
-      temp += s[i]
-      output = Math.max(output, temp.length)
-   }
-   
-   return output;
+    // Sliding
+    let set = new Set();
+    let l = 0;
+    let output = 0;
+    for(r = 0; r<s.length; r++){
+        while(set.has(s[r])){
+            set.delete(s[l]);
+            l+=1;
+        }
+        set.add(s[r]);
+        output = Math.max(output, r-l+1)
+    }
+    return output
 };
 
 
 
 
-let s = "pwwkew";
+let s = "abcabcbb";
 lengthOfLongestSubstring(s);
 
 // @lc code=end

@@ -13,6 +13,97 @@
 
 
 var largestIsland = function(grid) {
+
+    let islandMap = {};
+    let output = 0;
+
+    const dfs = (indx, i, j, grid, count) => {
+        if(!validIdx(grid, i, j) || grid[i][j] === 0 || grid[i][j] === indx) return count
+        let possibleDir = directions(i,j);
+        if(grid[i][j] === 1) count += 1
+        grid[i][j] = indx;
+        for(let [row, col] of possibleDir){
+            count = dfs(indx, row, col, grid, count)
+        }
+        return count;
+    }
+
+    let indx = 1;
+    for(let i = 0; i<grid.length; i++){
+        for(let j = 0; j<grid[0].length; j++){
+            if(grid[i][j] === 1){
+                let size = dfs(++indx, i, j, grid, 0)
+                islandMap[indx] = size;
+                output = Math.max(output, size)
+            }
+        }
+    }
+    
+    const adder = (i,j,visited, grid, sum) =>{
+        let possibleDir = directions(i,j);
+        for(let [row, col] of possibleDir){
+            if(validIdx(grid, row, col)){
+                if(!visited.has(grid[row][col]) && grid[row][col] !== 0){
+                    islandMap[grid[row][col]]
+                    sum += islandMap[grid[row][col]]
+                    visited.add(grid[row][col])
+                }
+            }
+        }
+        return sum;
+    }
+    
+    
+    for(let i = 0; i<grid.length; i++){
+        for(let j = 0; j<grid[0].length; j++){
+            if(grid[i][j] === 0){
+                output = Math.max(output, adder(i,j, new Set(), grid, 0)+1)
+            }
+        }
+    }
+
+    return output
+};
+
+function validIdx(grid, row, col) {
+    return row >= 0 && row < grid.length && col >= 0 && col < grid[0].length;
+}
+
+function directions(row, col) {
+    // up, right, down, left
+    return [[row-1,col], [row,col+1], [row+1,col], [row,col-1]];
+}
+
+
+
+let grid = [[1,1],[1,1]]//[[0,1,0,0,0], [0,0,1,0,0], [0,1,1,0,0], [0,0,0,1,1], [0,0,1,1,1]]  
+//[[0,0,0,0,0,0,0],[0,1,1,1,1,0,0],[0,1,0,0,1,0,0],[1,0,1,0,1,0,0],[0,1,0,0,1,0,0],[0,1,0,0,1,0,0],[0,1,1,1,1,0,0]]
+// [[0,1,0,0,0], [0,0,1,0,0], [0,1,1,0,0], [0,0,0,1,1], [0,0,1,1,1]]  
+//largestIsland(grid);
+largestIsland(grid);
+
+
+
+// @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     let localMax = 0;
     let idxToArea = new Map();
     let idx = 2;
@@ -41,8 +132,6 @@ var largestIsland = function(grid) {
         }
     }
 
-    idxToArea
-    grid;
     
     let alteredAreaMax = localMax;
     
@@ -66,41 +155,7 @@ var largestIsland = function(grid) {
     }
     
     return alteredAreaMax
-};
-
-function validIdx(grid, row, col) {
-    return row >= 0 && row < grid.length && col >= 0 && col < grid[0].length;
-}
-
-function directions(row, col) {
-    // up, right, down, left
-    return [[row-1,col], [row,col+1], [row+1,col], [row,col-1]];
-}
-
-
-// @lc code=end
-
-let grid = [[0,1,0,0,0], [0,0,1,0,0], [0,1,1,0,0], [0,0,0,1,1], [0,0,1,1,1]]  
-//[[0,0,0,0,0,0,0],[0,1,1,1,1,0,0],[0,1,0,0,1,0,0],[1,0,1,0,1,0,0],[0,1,0,0,1,0,0],[0,1,0,0,1,0,0],[0,1,1,1,1,0,0]]
-// [[0,1,0,0,0], [0,0,1,0,0], [0,1,1,0,0], [0,0,0,1,1], [0,0,1,1,1]]  
-//largestIsland(grid);
-largestIsland(grid);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 
 

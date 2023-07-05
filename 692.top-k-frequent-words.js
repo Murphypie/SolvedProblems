@@ -16,34 +16,43 @@
 
  var topKFrequent = function(words, k) {
     //again
-
-    const wordMap = {};
-
-    for(word of words){
-        if(!wordMap[word]) wordMap[word] = 0;
-        wordMap[word]++;
-    }
-
-    const objArr = Object.entries(wordMap).sort((a,b)=>{
-        if(a[1] === b[1]){
+    let wordMap = {};
+    for(let i = 0; i<words.length; i++){
+        if(!wordMap[words[i]]){
+            wordMap[words[i]] = 0;
+        }
+        wordMap[words[i]]++
+    };
+    let wordArr = Object.entries(wordMap).sort((a,b)=>{
+        if(b[1] === a[1]){
             return a[0].localeCompare(b[0])
         }else{
             return b[1]-a[1]
         }
     })
-
-    const output = [];
-
+    output = [];
     for(let i = 0; i<k; i++){
-        output.push(objArr[i][0])
+        output.push(wordArr[i][0])
     }
-
     return output;
 };
 
 
-topKFrequent( ["i","love","leetcode","i","love","coding"], 2)
+topKFrequent(["i","love","leetcode","i","love","coding"], 2)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

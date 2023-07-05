@@ -17,21 +17,18 @@ var trap = function(height) {
     // tp
     let left = 0;
     let right = height.length-1;
-    let sum = 0;
-    let leftMax = 0;
-    let rightMax = 0;
+    let lMax = 0;
+    let rMax = 0;
+    let output = 0;
     while(left<right){
-        if(height[left]>height[right]){
-            rightMax = Math.max(rightMax, height[right])
-            sum += rightMax-height[right]
-            right--
-        }else{
-            leftMax = Math.max(leftMax, height[left])
-            sum += leftMax-height[left]
-            left++
-        }
+        if(lMax<height[left]) lMax = height[left];
+        if(rMax<height[right]) rMax = height[right];
+        output += lMax-height[left];
+        output += rMax-height[right];
+        height[left] > height[right] ? right-- : left++
     }
-    return sum;
+
+    return output;
 };
 
 
@@ -42,7 +39,7 @@ var trap = function(height) {
 // 3. Stack (time - O(n), space - O(n))
 // 4. Two Pointers (time - O(n), space - O(1))
 // https://leetcode.com/problems/trapping-rain-water/discuss/400555/Clean-JavaScript-solutions-(brute-force-dynamic-programming-stack-two-pointers)
-trap([4,2,0,3,2,5]);
+trap( [4,2,0,3,2,5]);
 // @lc code=end
 
 

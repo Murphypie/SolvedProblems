@@ -12,18 +12,18 @@
 var countBinarySubstrings = function(s) {
     let curr = 1, prev = 0, ans = 0;
     for(let i = 1; i<s.length; i++){
-        if(s[i]===s[i-1]) curr++;
+        if(s[i] === s[i-1]) curr++;
         else{
-            ans += Math.min(prev, curr);
+            ans += Math.min(prev,curr);
             prev = curr;
             curr = 1;
         }
     }
-    return ans+Math.min(prev, curr);
+    return ans + Math.min(prev, curr);
 };
 
 
-countBinarySubstrings("00110") //"00110"
+countBinarySubstrings("00110011") //"00110"
 // @lc code=end
 
 

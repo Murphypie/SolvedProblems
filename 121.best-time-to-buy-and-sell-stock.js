@@ -10,8 +10,8 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let low = Infinity;
     let output = 0;
+    let low = prices[0];
     for(let i = 0; i<prices.length; i++){
         low = Math.min(low, prices[i]);
         output = Math.max(output, prices[i]-low)

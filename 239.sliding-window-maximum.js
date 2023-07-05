@@ -14,14 +14,29 @@
 
 
 var maxSlidingWindow = function(nums, k) {
-    // Do dp, dequeue, priority queue
-    
+    let output = []
+    let deque = [];
+    let l=0, r=0;
+    while(r<nums.length){
+        while(deque && nums[deque[deque.length-1]]<nums[r]){
+            deque.pop();
+        }
+        deque.push(r)
+        if(l > deque[0]){
+            deque.shift();
+        }
+        if(r+1>=k){
+            output.push(nums[deque[0]])
+            l++
+        }
+        r++
 
- 
+    }
+    return output;
 };
 
-
-maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3)
+let nums = [1,-1], k = 1
+maxSlidingWindow(nums, k)
 
 // @lc code=end
 

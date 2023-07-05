@@ -18,23 +18,34 @@
  * @param {number[]} to_delete
  * @return {TreeNode[]}
  */
+
+
+   // let roots = [];
+    // let search = function(root, isRoot){
+    //     if(!root) return null;
+    //     let shouldDelete = to_delete.includes(root.val);
+    //     if(isRoot && !shouldDelete) roots.push(root);
+    //     root.left = search(root.left, shouldDelete);
+    //     root.right = search(root.right, shouldDelete);
+    //     return shouldDelete ? null:root;
+    // }
+    // search(root, true);
+    // return roots;
+
 var delNodes = function(root, to_delete) {
-    const output = [];
-
-    const search = (root, isRoot) =>{
-        if(!root) return null;
-        let rootbool = to_delete.includes(root.val)
-        if(isRoot && !rootbool) output.push(root);
-        isRoot = (rootbool) ? true : false;
-        
-        root.left = search(root.left, isRoot)
-        root.right = search(root.right, isRoot)
-
-        return isRoot ? null : root
+    let head = root;
+    const output = []
+    let deleteNums = new Set(to_delete)
+    const dfs = (node, isRoot) => {
+        if(!node) return null;
+        let shouldDelete = deleteNums.has(node.val);
+        if(isRoot && !shouldDelete) output.push(node);
+        node.left = dfs(node.left, shouldDelete)
+        node.right = dfs(node.right, shouldDelete)
+        return shouldDelete? null:node;
     }
 
-    search(root, true);
-
+    dfs(head, true)
     return output;
 };
 
@@ -44,10 +55,30 @@ var delNodes = function(root, to_delete) {
      this.right = (right===undefined ? null : right)
 }
 
-let root = new TreeNode(1);
-root.left = new TreeNode(2, new TreeNode(4), new TreeNode(5));
-root.right = new TreeNode(3, new TreeNode(6), new TreeNode(7));
-delNodes(root, [3,5])
+let arr = [1,2,3,null,null,null,4]
+let to_delete =  [2,1]
+
+let node = new TreeNode(arr[0]);
+let queue = [node]
+
+let idx = 1;
+
+while(queue.length){
+    let tempQueue = []
+    let node = queue.shift();
+    if(arr[idx] && arr[idx] !== null){
+        node.left = new TreeNode(arr[idx])
+        tempQueue.push(node.left)
+    }
+    if(arr[idx+1] && arr[idx+1] !== null){
+        node.right = new TreeNode(arr[idx+1])
+        tempQueue.push(node.right)
+    }
+    idx += 2
+    queue.push(...tempQueue)
+}
+
+delNodes(node, to_delete)
 // @lc code=end
 
 

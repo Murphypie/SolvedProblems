@@ -19,9 +19,20 @@
  * @return {TreeNode}
  */
 var mergeTrees = function (root1, root2) {
-    // Do it again with dfs method
-
-
+    if(root1 === null) return root2;
+    if(root2 === null) return root1;
+    let node1 = root1;
+    let node2 = root2;
+    const dfs = (node1, node2) =>{
+        if(!node1 && !node2) return null;
+        if(!node1 || !node2) return node1 ? node1:node2;
+        if(node1 && node2) node1.val += node2.val;
+        node1.left = dfs(node1.left, node2.left)
+        node1.right = dfs(node1.right, node2.right)
+        return node1;
+    }
+    dfs(node1, node2);
+    return root1;
 
 };
 
@@ -31,16 +42,18 @@ function TreeNode(val, left, right) {
     this.right = right === undefined ? null : right;
 }
 
-let root = new TreeNode(1);
-root.left = new TreeNode(3);
-root.right = new TreeNode(2);
-root.left.left = new TreeNode(5);
+// let root = new TreeNode(1);
+// root.left = new TreeNode(3);
+// root.right = new TreeNode(2);
+// root.left.left = new TreeNode(5);
 
-let subRoot = new TreeNode(2);
-subRoot.left = new TreeNode(1);
-subRoot.right = new TreeNode(3);
-subRoot.left.right = new TreeNode(4);
-subRoot.right.right = new TreeNode(7);
+// let subRoot = new TreeNode(2);
+// subRoot.left = new TreeNode(1);
+// subRoot.right = new TreeNode(3);
+// subRoot.left.right = new TreeNode(4);
+// subRoot.right.right = new TreeNode(7);
+let root = null
+let subRoot = new TreeNode(1);
 mergeTrees(root, subRoot);
 
 // @lc code=end

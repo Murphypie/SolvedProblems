@@ -12,21 +12,21 @@ const { setEmitFlags } = require("typescript");
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    let hash = {};
-
-    for(let i = 0; i<strs.length; i++){
-        let sortedStr = wordSorter(strs[i])
-        if(!hash[sortedStr]){
-            hash[sortedStr] = []
+    let wordMap = {};
+    for(let str of strs){
+        let sortedStr = sorter(str);
+        if(!wordMap[sortedStr]){
+            wordMap[sortedStr] = []
         }
-        hash[sortedStr].push(strs[i])
+        wordMap[sortedStr].push(str);
     }
-    return Object.values(hash)
+    return Object.values(wordMap)
 };
 
-function wordSorter(string){
-    return string.split("").sort().join();
+function sorter(str){
+    return str.split("").sort().join("")
 }
+
 
 
 groupAnagrams(["eat","tea","tan","ate","nat","bat"])

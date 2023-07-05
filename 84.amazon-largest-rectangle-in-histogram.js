@@ -11,29 +11,25 @@
  */
 var largestRectangleArea = function(heights) {
     // do stack and divide/conquer
-    let output = 0;
-    if(heights.length === 0) return 0
-    if(heights.length === 1) return heights[0]
-
-    let localMin = 0;
-    let deviNum = heights[0]
-    let deviator = true;
-    for(let i = 0; i<heights.length; i++){
-        if(heights[localMin] > heights[i]){
-            localMin = i
-        }
-        if(deviator && deviNum !== heights[i]){
-            deviator = false;
+   
+ function calculateArea(heights, start, end){
+    if(start>end){
+        return 0;
+    }
+    let min_index = start;
+    for(let i = start; i<=end; i++){
+        if(heights[min_index] > heights[i]){
+            min_index = i;
         }
     }
+    
+    return Math.max(heights[min_index]*(end-start+1),
+        calculateArea(heights, start, min_index-1),
+        calculateArea(heights, min_index+1, end)
+    )
+}
 
-    if(deviator) return heights.length*heights[localMin]
-    let area = heights[localMin]*heights.length
-    let leftArr =heights.slice(0, localMin);
-    let rightArr = heights.slice(localMin+1)
-    output = Math.max(output, area, largestRectangleArea(leftArr), largestRectangleArea(rightArr))
-
-    return output;
+return calculateArea(heights, 0, heights.length-1);
 };
 
 let heights = [1,1,1]// [2,1,0,3,4,2,3,4]

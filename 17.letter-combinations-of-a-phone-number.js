@@ -23,28 +23,23 @@ var letterCombinations = function(digits) {
         "9": ['w', 'x', 'y', 'z']
     };
 
+    if(digits.length === 0) return []
     const output = [];
-
-    const repeat = (comb, digits, count) =>{
-        if(count === digits.length){
-            output.push(comb);
-            return;
+    const backtracking = (start, str) =>{
+        if(start === digits.length){
+            output.push(str)
+            return
         }
-        for(let char of letterObj[digits[count]]){
-            repeat(comb+char, digits, count+1)
+        for(letter of letterObj[digits[start]]){
+            backtracking(start+1, str+letter)
         }
     }
-    repeat("", digits, 0)
-    return output
+    backtracking(0, "")
+    return output;
 };
 
-letterCombinations("23")
+letterCombinations("")
 // @lc code=end
-
-
-
-
-
 
 
 

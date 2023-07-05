@@ -12,15 +12,30 @@ amazon-droneDelivery
 42.trapping-rain-water
 122.best-time-to-buy-and-sell-stock-ii
 139.word-break
+239.sliding-window-maximum
+279.perfect-squares
+300.longest-increasing-subsequence
+472.concatenated-words
 
 Binary tree
-1110, 1339, amazon-best-expression, amazon-minimumGroups,
+1110, 1339, amazon-best-expression, amazon-minimumGroups
+572.subtree-of-another-tree
+617.merge-two-binary-trees
+938.range-sum-of-bst
+1110.delete-nodes-and-return-forest
+
+Binary Search
 4.median-of-two-sorted-arrays
+240.search-a-2-d-matrix-ii
+278.first-bad-version
+295.find-median-from-data-stream
 33.search-in-rotated-sorted-array
 35.search-insert-position
 
 Graph | union-find | dfs
-210, 547, 684, 1192
+210.course-schedule-ii, 547, 684, 1192, 
+547.number-of-provinces
+684.redundant-connection
 
 Array
 2104, amazon-elementsAdduptoK, amazon-flip-grid-to-zero
@@ -29,19 +44,28 @@ Array
 54.spiral-matrix
 56.merge-intervals
 189.rotate-array
+221.maximal-square
+238.product-of-array-except-self
+253.meeting-rooms-II
+735.asteroid-collision
 
 PriorityQueue
 amazon-find-k-maximumPriority
+239.sliding-window-maximum
 
 DFS
 amazon-interview-exchange
 79.word-search
 200.number-of-islands
+212.word-search-ii
+695.max-area-of-island
+827.making-a-large-island
 
 Linked LinkedList
 amazon-linked-list-swap, 2.add-two-numbers
 19.remove-nth-node-from-end-of-list
 21. merge-two-sorted-lists
+876.middle-of-the-linked-list
 
 Object
 Amazon-merge-two-maps
@@ -50,12 +74,18 @@ Two-Pointers
 11.container-with-most-water
 42.trapping-rain-water
 167.two-sum-ii-input-array-is-sorted
+283.move-zeroes
 
 String
 3.longest-substring-wihtout
 5.longest-palindromic-substring
 8. string-to-interger-atoi
 13.roman-to-integer
+387.first-unique-character-in-a-string
+567.permutation-in-string
+692.top-k-frequent-words
+696.count-binary-substrings
+763.partition-labels
 
 Recursion
 17.letter-combinations-of-a-phone-number
@@ -69,6 +99,7 @@ Queue
 Greedy
 55.amazon-jump-game
 122.best-time-to-buy-and-sell-stock-ii
+994.rotting-oranges
 
 Divide and Conquer
 84.amazon-largest-rectangle-in-histogram

@@ -16,11 +16,12 @@
     let wordSet = new Set(words)
     let trie = trieBuilder(words);
     let head = trie;
-    const output = {}
 
+    const output = []
     const dfs = (board, i, j, head) =>{
-        if(head["word"]){
-            output[head["word"]] = head["word"] 
+        if(wordSet.has(head["word"])){
+            output.push(head["word"])
+            wordSet.delete(head["word"]) 
         }
         if(!board[i] || !board[i][j]) return;
         if(!head[board[i][j]]){
@@ -45,7 +46,8 @@
         }
     }
 
-    return Object.values(output);
+    //return Object.values(output);
+    return output;
 };
 
 
@@ -67,8 +69,8 @@ function trieBuilder(words){
 }
 
 
-const board =  [["a"]]//[["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
-const words = ["a"]//["oath","pea","eat","rain"]
+const board =  [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
+const words = ["oath","pea","eat","rain"]
 findWords(board, words)
 // @lc code=end
 

@@ -10,27 +10,17 @@
  * @return {number[]}
  */
 var productExceptSelf = function(nums) {
-    let zeroCounter = 0;
-    let totalProduct = 1;
-    for(let i = 0; i<nums.length; i++){
-        if(nums[i] === 0){
-            ++zeroCounter
-        }else{
-            totalProduct *= nums[i]
-        }
-        if(zeroCounter > 1){
-            return new Array(nums.length).fill(0);
-        }
+    let output = [1];
+    for(let i = 0; i<nums.length-1; i++){
+        output[i+1] = output[i]*nums[i]
     }
-    
-    for(let i = 0; i<nums.length; i++){
-        if(zeroCounter === 1){
-            nums[i] = nums[i] === 0 ? totalProduct : 0;
-        }else{
-            nums[i] = totalProduct/nums[i]
-        }
+    let post = 1;
+    output;
+    for(let i = nums.length-1; i>=0; i--){
+        output[i] = post*output[i]
+        post *= nums[i]
     }
-    return nums;
+    return output;
 };
 
 productExceptSelf([-1,1,0,-3,3])

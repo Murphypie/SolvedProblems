@@ -10,34 +10,36 @@
  * @return {string[]}
  */
 var findAllConcatenatedWordsInADict = function(words) {
-    let wordSet = new Set(words);
     let output = [];
-
-    for(let i = 0; i<words.length; i++){
-        let dp = new Array(words[i].length+1).fill(0);
+    let wordSet = new Set(words)
+    let dp;
+    for(let word of words){
+        dp = new Array(word.length+1).fill(0)
         dp[0] = 1;
-        for(let end = 1; end<=words[i].length; end++){
+        let temp = word;
+        wordSet.delete(word)
+        for(let end = 1; end<=word.length; end++){
             for(let start = 0; start<end; start++){
-                if(dp[start] === 1){
-                    let str = words[i].slice(start, end)
-                    if(wordSet.has(str) && str !== words[i]){
-                        dp[end] = 1;
-                    }
+                let str = word.slice(start, end)
+                if(dp[start] === 1 && wordSet.has(str)){
+                    dp[end] = 1;
                 }
             }
         }
         if(dp[dp.length-1] === 1){
-            output.push(words[i])
+            output.push(word)
         }
+        wordSet.add(temp);
     }
-
-    return output;
+    return output
 };
 
 
 let words = ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
 findAllConcatenatedWordsInADict(words)
 // @lc code=end
+
+
 
 
 

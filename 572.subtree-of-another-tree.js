@@ -20,23 +20,18 @@
  */
 
 var isSubtree = function (root, subRoot) {
-    // again
-
-    const areEqual = (root, subRoot) =>{
-        if(!root || !subRoot) return !root && !subRoot
-        if(root.val !== subRoot.val) return false;
-        return areEqual(root.left, subRoot.left) && areEqual(root.right,subRoot.right)    
-
+    const comparer = (p, q) =>{
+        if(!p && !q) return true;
+        if(!p || !q || p.val !== q.val) return false;
+        return comparer(p.left, q.left) && comparer(p.right, q.right)
     }
-
-    const navigate = (root) =>{
+    const dfs = (root)=>{
         if(!root) return false;
-        if(areEqual(root, subRoot)) return true;
-        return navigate(root.left) || navigate(root.right)
+        if(comparer(root, subRoot)) return true
+        return dfs(root.left) || dfs(root.right)
     }
 
-    return navigate(root)
-
+    return dfs(root, subRoot)
 };
 
 // @lc code=end
@@ -59,34 +54,8 @@ let subRoot = new TreeNode(4);
 subRoot.left = new TreeNode(1);
 subRoot.right = new TreeNode(2);
 
+
 isSubtree(root, subRoot);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

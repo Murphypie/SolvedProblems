@@ -10,22 +10,50 @@
  * @return {number[]}
  */
 
+class UnionFind{
+    constructor(edges){
+        this.id = new Array(edges.length+1).fill(0).map((_,i)=>i);
+        this.redundant = null;
+    }
 
+    find(x){
+        if(x === this.id[x]) return x;
+        this.id[x] = this.find(this.id[x])
+        return this.id[x]
+    }
 
+    union(x,y){
+        let i = this.find(x);
+        let j = this.find(y);
+        if(i!==j){
+            this.id[j] = i;
+        }else{
+            this.redundant = [x,y]
+        }
+    }
+
+}
 
 var findRedundantConnection = function(edges) {
     //Do it again 
-
-   
+    let unionFind = new UnionFind(edges)
+    for(let i = 0; i<edges.length; i++){
+        unionFind.union(edges[i][0], edges[i][1])
+    }
+    return unionFind.redundant
 }
 
 
 
 
-let edges = [[1,2],[1,3],[2,3]]// [[3,4],[1,2],[2,4],[3,5],[2,5]] //[[1,2],[2,3],[3,4],[1,4],[1,5]] 
+let edges = [[1,4],[3,4],[1,3],[1,2],[4,5]]// [[3,4],[1,2],[2,4],[3,5],[2,5]] //[[1,2],[2,3],[3,4],[1,4],[1,5]] 
 //[[2,7],[7,8],[3,6],[2,5],[6,8],[4,8],[2,8],[1,8],[7,10],[3,9]] // [2,8]
 findRedundantConnection(edges);
 // @lc code=end
+
+
+
+
 
 
 
