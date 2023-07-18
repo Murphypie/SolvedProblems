@@ -10,7 +10,7 @@
  * @return {number[][]}
  */
 var permute = function(nums) {
-   
+
 };
 // @lc code=end
 

@@ -93,9 +93,3 @@ class MinHeap{
 }
 
 const minHeap = new MinHeap();
-minHeap.insert(1);
-minHeap.insert(2);
-minHeap.insert(5);
-minHeap.insert(3);
-minHeap.insert(8);
-minHeap;

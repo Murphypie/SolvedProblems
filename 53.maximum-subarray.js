@@ -10,22 +10,29 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-    let output = -Infinity;
-    let sum = 0;
-    for(let i = 0; i<nums.length; i++){
-        if(sum + nums[i] < nums[i]){
-            sum = 0;
-        }
-        sum += nums[i]
-        output = Math.max(sum, output)
-    }
+    let prev = 0;
+    let max = -Infinity;
 
-    return output;
+    for(let i = 0; i<nums.length; i++){
+        prev = Math.max(prev+nums[i], nums[i]);
+        max = Math.max(max, prev);
+    }
+    return max;
 };
 
-const arr = [-2,1,-3,4,-1,2,1,-5,4]
+const arr = [31,-41,59,26,-53,58,97,-93,-23,84]
 maxSubArray(arr)
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
 
 
 

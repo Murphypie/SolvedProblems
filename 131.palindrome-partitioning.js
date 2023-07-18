@@ -15,14 +15,14 @@ var partition = function(s) {
     const backtracking = (start, arr) =>{
         if(start === s.length){
             output.push([...arr])
-            return
+            return;
         }
-        let str = ""
+        let str = "";
         for(let i = start; i<s.length; i++){
-            str += s[i];
-            arr.push(str)
-            if(palinVali(str)) backtracking(i+1, arr)
-            arr.pop()
+            str += s[i]
+            if(palinVali(str)){
+                backtracking(i+1, arr.concat(str))
+            }
         }
     }
     backtracking(0, [])
@@ -44,7 +44,7 @@ var partition = function(s) {
 };  
 // @lc code=end
 
-partition("abba")
+partition("racecar")
 
 
 
@@ -62,7 +62,19 @@ partition("abba")
 
 
 
-
+/*
+  if(start === s.length){
+            output.push([...arr])
+            return
+        }
+        let str = ""
+        for(let i = start; i<s.length; i++){
+            str += s[i];
+            arr.push(str)
+            if(palinVali(str)) backtracking(i+1, arr)
+            arr.pop()
+        }
+*/
 
 
 
